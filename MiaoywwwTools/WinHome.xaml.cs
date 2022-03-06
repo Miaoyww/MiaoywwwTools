@@ -14,6 +14,7 @@ namespace MiaoywwwTools
     public partial class WinHome : Page
     {
         public WinHome winHome;
+
         public WinHome()
         {
             InitializeComponent();
@@ -45,7 +46,6 @@ namespace MiaoywwwTools
                 // 防止动画播放时，继续点击的次数计入
                 nowTitleClickTimes = lastTitleClickTimes;
             }
-
         }
 
         // 彩蛋的入口
@@ -57,21 +57,27 @@ namespace MiaoywwwTools
                 case 3:
                     ChangeEmotion("ヾ(•ω•`)o");
                     return;
+
                 case 6:
                     ChangeEmotion("(*/ω＼*)");
                     return;
+
                 case 10:
                     ChangeEmotion("✪ ω ✪");
                     return;
+
                 case 14:
                     ChangeEmotion(".·´¯`(>▂<)´¯`·. ");
                     return;
+
                 case 16:
                     ChangeEmotion("(っ °Д °))っ");
                     return;
+
                 case 18:
                     ChangeEmotion("（＞人＜；）");
                     return;
+
                 case 20:
                     ChangeEmotion("(´。＿。｀)");
                     return;
@@ -86,8 +92,8 @@ namespace MiaoywwwTools
             {
                 story.Begin(Label_Emotion);
             }
-
         }
+
         // 这是彩蛋内容隐藏动画完成事件
         private void HideLabel_Completed(object sender, EventArgs e)
         {
@@ -100,9 +106,9 @@ namespace MiaoywwwTools
 
         // 各种头像的文件位置
         public string MiaoywwwfacePath = System.Environment.CurrentDirectory + @"\Resources\Images\MiaoywwwFace.png";
+
         public string userfacePath = System.Environment.CurrentDirectory + @"\Resources\Images\UserFace.png";
         public string userfacetempPath = System.Environment.CurrentDirectory + @"\Resources\Images\UserFacetemp.png";
-
 
         // 头像Image点击事件
         private void Image_Face_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -120,12 +126,11 @@ namespace MiaoywwwTools
                 string selectfilePath = dialog.FileName; // 获取选择的文件名
                 File.Copy(selectfilePath, userfacetempPath);
                 WinMessage winMessage = new WinMessage();
-                WinMessage.winMessage.SetMessageTitle("信息");
-                WinMessage.winMessage.SetMessageBody("本操作需要重启程序,是否继续?");
-                WinMessage.winMessage.SetMessageAction("restart");
+                winMessage.SetMessage("信息", "本操作需要重启程序,是否继续?", "restart", "yesno");
                 winMessage.ShowDialog();
             }
         }
+
         // Miaomiaoywww的头像下载 **需要更改
         public static void DownloadFile(string url, string path)
         {
@@ -146,7 +151,6 @@ namespace MiaoywwwTools
             }
             stream.Close();
             responseStream.Close();
-
         }
 
         // 页面加载时
@@ -179,17 +183,18 @@ namespace MiaoywwwTools
                     Label_Name.Content = "Miaomiaoywww";
                 }
             }
-
         }
+
         // to Github
         private void BtnGoTo_Github_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/Miaoywww");
+            System.Diagnostics.Process.Start("explorer.exe", "https://github.com/Miaoywww");
         }
+
         // to Bilibili
         private void BtnGoTo_Bilibili_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://space.bilibili.com/435970102");
+            System.Diagnostics.Process.Start("explorer.exe", "https://space.bilibili.com/435970102");
         }
     }
 }

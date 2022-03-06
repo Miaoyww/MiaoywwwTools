@@ -10,7 +10,7 @@
             <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.8" Direction="0"/>
         </Border.Effect>
         <Grid>
-            <Label x:Name="Label_MessageTitle" Content="Title" Height="39" VerticalAlignment="Top" Width="584" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" FontSize="18" MouseLeftButtonDown="Label_MouseLeftButtonDown"/>
+            <Label x:Name="Label_MessageTitle" Content="Title" Height="44" VerticalAlignment="Top" Width="594" Background="#FF009CFF" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" FontSize="18" MouseLeftButtonDown="Label_MouseLeftButtonDown" BorderThickness="1,1,1,1" Foreground="White" Margin="0,-5,0,0"/>
             <Label x:Name="Label_MessageBody" Content="Body" Margin="0,89,0,0" VerticalAlignment="Top" Height="145" Width="574" BorderBrush="{x:Null}" Background="White" VerticalContentAlignment="Top" FontSize="18"/>
             <Button x:Name="Btn_Yes" Content="确认" HorizontalAlignment="Left" Height="56" Margin="465,271,0,0" VerticalAlignment="Top" Width="119" Click="Btn_Yes_Click"/>
             <Button x:Name="Btn_No" Content="取消" HorizontalAlignment="Left" Height="56" Margin="0,271,0,0" VerticalAlignment="Top" Width="119" Click="Btn_No_Click"/>

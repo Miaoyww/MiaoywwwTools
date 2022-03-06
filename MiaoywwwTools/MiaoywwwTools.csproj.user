@@ -10,7 +10,13 @@
     <Compile Update="EasterEgg.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="ToolsRr.xaml.cs">
+    <Compile Update="Tools\RandomDraw\ShowResult.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Tools\RandomDraw\ToolRrSettings.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Tools\RandomDraw\ToolsRr.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WinHome.xaml.cs">
@@ -33,7 +39,13 @@
     <Page Update="Resources\MiaoRes.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="ToolsRr.xaml">
+    <Page Update="Tools\RandomDraw\ShowResult.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Tools\RandomDraw\ToolRrSettings.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Tools\RandomDraw\ToolsRr.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WinHome.xaml">

@@ -34,5 +34,10 @@ C:\Users\37562\source\repos\MiaoywwwTools\MiaoywwwTools\obj\Debug\net6.0-windows
 C:\Users\37562\source\repos\MiaoywwwTools\MiaoywwwTools\obj\Debug\net6.0-windows\WinMore.baml
 C:\Users\37562\source\repos\MiaoywwwTools\MiaoywwwTools\obj\Debug\net6.0-windows\WinMessage.g.cs
 C:\Users\37562\source\repos\MiaoywwwTools\MiaoywwwTools\obj\Debug\net6.0-windows\WinMessage.baml
-C:\Users\37562\source\repos\MiaoywwwTools\MiaoywwwTools\obj\Debug\net6.0-windows\ToolsRr.g.cs
-C:\Users\37562\source\repos\MiaoywwwTools\MiaoywwwTools\obj\Debug\net6.0-windows\ToolsRr.baml
+C:\Users\37562\source\repos\MiaoywwwTools\MiaoywwwTools\obj\Debug\net6.0-windows\Tools\RandomDraw\ShowResult.g.cs
+C:\Users\37562\source\repos\MiaoywwwTools\MiaoywwwTools\obj\Debug\net6.0-windows\Tools\RandomDraw\ToolRrSettings.g.cs
+C:\Users\37562\source\repos\MiaoywwwTools\MiaoywwwTools\obj\Debug\net6.0-windows\Tools\RandomDraw\ToolsRr.g.cs
+C:\Users\37562\source\repos\MiaoywwwTools\MiaoywwwTools\obj\Debug\net6.0-windows\Tools\RandomDraw\ToolRrSettings.baml
+C:\Users\37562\source\repos\MiaoywwwTools\MiaoywwwTools\obj\Debug\net6.0-windows\Tools\RandomDraw\ToolsRr.baml
+C:\Users\37562\source\repos\MiaoywwwTools\MiaoywwwTools\obj\Debug\net6.0-windows\Tools\RandomDraw\ShowResult.baml
+C:\Users\37562\source\repos\MiaoywwwTools\MiaoywwwTools\bin\Debug\net6.0-windows\data\stdata.json

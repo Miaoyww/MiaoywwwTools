@@ -21,18 +21,27 @@ namespace MiaoywwwTools
         }
 
         public string action;
-        public void SetMessageTitle(string context)
+
+        public void SetMessage(string title, string content, string act, string yesno)
         {
-            Label_MessageTitle.Content = context;
+            Label_MessageTitle.Content = title;
+            Label_MessageBody.Content = content;
+            action = act;
+            switch (yesno)
+            {
+                case "yesno":
+                    return;
+
+                case "yes":
+                    Btn_No.Visibility = Visibility.Visible;
+                    return;
+
+                case "no":
+                    Btn_Yes.Visibility = Visibility.Visible;
+                    return;
+            }
         }
-        public void SetMessageBody(string context)
-        {
-            Label_MessageBody.Content = context;
-        }
-        public void SetMessageAction(string context)
-        {
-            action = context;
-        }
+
         private void WindowsAction(string context)
         {
             switch (context)
@@ -40,9 +49,11 @@ namespace MiaoywwwTools
                 case "close":
                     this.Close();
                     break;
+
                 case "closeall":
                     WinMain.winMain.Close();
                     break;
+
                 case "restart":
                     Application.Current.Shutdown();
                     break;

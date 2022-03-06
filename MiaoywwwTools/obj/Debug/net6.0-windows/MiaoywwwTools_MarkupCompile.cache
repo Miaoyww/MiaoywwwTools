@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\37562\source\repos\MiaoywwwTools\MiaoywwwTools\App.xaml
-7275449229
+92058353152
 1568858589
-101557585337
+12-1052414678
 197-695477560
-EasterEgg.xaml;Resources\MiaoRes.xaml;ToolsRr.xaml;WinHome.xaml;WinMain.xaml;WinMessage.xaml;WinMore.xaml;
+EasterEgg.xaml;Resources\MiaoRes.xaml;Tools\RandomDraw\ShowResult.xaml;Tools\RandomDraw\ToolRrSettings.xaml;Tools\RandomDraw\ToolsRr.xaml;WinHome.xaml;WinMain.xaml;WinMessage.xaml;WinMore.xaml;
 
-False
+True
 
