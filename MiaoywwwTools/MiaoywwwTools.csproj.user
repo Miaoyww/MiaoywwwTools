@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="EasterEgg.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ToolsRr.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WinHome.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WinMain.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WinMessage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WinMore.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="EasterEgg.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\MiaoRes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ToolsRr.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WinHome.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WinMain.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WinMessage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WinMore.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

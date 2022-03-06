@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>MiaoywwwTools</id>
+    <version>1.0.0</version>
+    <authors>MiaoywwwTools</authors>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework="net6.0-windows7.0">
+        <dependency id="HandyControl" version="3.3.0" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="13.0.1" exclude="Build,Analyzers" />
+        <dependency id="WpfAnimatedGif" version="2.0.2" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net6.0-windows7.0">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WPF" />
+      </group>
+    </frameworkReferences>
+    <contentFiles>
+      <files include="any/net6.0-windows7.0/data/stdata.json" buildAction="Content" />
+    </contentFiles>
+  </metadata>
+  <files>
+    <file src="C:\Users\37562\source\repos\MiaoywwwTools\MiaoywwwTools\bin\Debug\net6.0-windows\MiaoywwwTools.runtimeconfig.json" target="lib\net6.0-windows7.0\MiaoywwwTools.runtimeconfig.json" />
+    <file src="C:\Users\37562\source\repos\MiaoywwwTools\MiaoywwwTools\bin\Debug\net6.0-windows\MiaoywwwTools.dll" target="lib\net6.0-windows7.0\MiaoywwwTools.dll" />
+    <file src="C:\Users\37562\source\repos\MiaoywwwTools\MiaoywwwTools\data\stdata.json" target="content\data\stdata.json" />
+    <file src="C:\Users\37562\source\repos\MiaoywwwTools\MiaoywwwTools\data\stdata.json" target="contentFiles\any\net6.0-windows7.0\data\stdata.json" />
+  </files>
+</package>
