@@ -1,9 +1,0 @@
-C:\Users\37562\source\repos\MiaoywwwTools\MiaoywwwTools\bin\publish\data\stdata.json
-C:\Users\37562\source\repos\MiaoywwwTools\MiaoywwwTools\bin\publish\MiaoywwwTools.exe
-C:\Users\37562\source\repos\MiaoywwwTools\MiaoywwwTools\bin\publish\MiaoywwwTools.dll
-C:\Users\37562\source\repos\MiaoywwwTools\MiaoywwwTools\bin\publish\MiaoywwwTools.deps.json
-C:\Users\37562\source\repos\MiaoywwwTools\MiaoywwwTools\bin\publish\MiaoywwwTools.runtimeconfig.json
-C:\Users\37562\source\repos\MiaoywwwTools\MiaoywwwTools\bin\publish\MiaoywwwTools.pdb
-C:\Users\37562\source\repos\MiaoywwwTools\MiaoywwwTools\bin\publish\HandyControl.dll
-C:\Users\37562\source\repos\MiaoywwwTools\MiaoywwwTools\bin\publish\Newtonsoft.Json.dll
-C:\Users\37562\source\repos\MiaoywwwTools\MiaoywwwTools\bin\publish\WpfAnimatedGif.dll
