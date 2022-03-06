@@ -141,6 +141,14 @@ namespace MiaoywwwTools
             //直到request.GetResponse()程序才开始向目标网页发送Post请求
             Stream responseStream = response.GetResponseStream();
             //创建本地文件写入流
+            try
+            {
+                Stream test = new FileStream(path, FileMode.Create);
+            }
+            catch (DirectoryNotFoundException)
+            {
+                Directory.CreateDirectory(System.Environment.CurrentDirectory + @"\Resources\Images\");
+            }
             Stream stream = new FileStream(path, FileMode.Create);
             byte[] bArr = new byte[1024];
             int size = responseStream.Read(bArr, 0, (int)bArr.Length);
