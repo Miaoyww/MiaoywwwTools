@@ -141,6 +141,7 @@ namespace MiaoywwwTools
             //直到request.GetResponse()程序才开始向目标网页发送Post请求
             Stream responseStream = response.GetResponseStream();
             //创建本地文件写入流
+            // 防止文件夹不存在报错
             try
             {
                 Stream test = new FileStream(path, FileMode.Create);
