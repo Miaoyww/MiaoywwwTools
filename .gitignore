@@ -2,4 +2,10 @@
 # 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
 ################################################################################
 
+.vs/
+/MiaoywwwTools/bin/
+/MiaoywwwTools/obj/
+
+#可能会造成隐私泄露,建议您不要上传此文件
 /MiaoywwwTools/data/stdata.json
+
