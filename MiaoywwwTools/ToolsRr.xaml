@@ -1,0 +1,14 @@
+﻿<Page x:Class="MiaoywwwTools.ToolsRr"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MiaoywwwTools"
+        mc:Ignorable="d"
+        Title="ToolsRr" Height="460" Width="467" Background="Transparent">
+    <Grid Width="467" Margin="0,0,0,-5" Height="460">
+        <Label x:Name="Label_Title" Content="点名器" Margin="0,10,0,0" VerticalAlignment="Top" Height="75" Width="160" Background="White" Foreground="#FF0084FF" FontSize="36" FontWeight="Bold"/>
+        <Button x:Name="Btn_Settings" Content="设置" HorizontalAlignment="Left" Height="72" Margin="10,378,0,0" VerticalAlignment="Top" Width="130" Foreground="#FF0084FF" FontSize="25"/>
+        <Button x:Name="Btn_Start" Content="开始" Height="62" Margin="0,168,0,0" VerticalAlignment="Top" Width="160" FontSize="25" Foreground="#FF212121"/>
+    </Grid>
+</Page>
