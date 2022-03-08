@@ -75,5 +75,15 @@ namespace MiaoywwwTools
         {
             ChangePage("MiaoywwwTools.WinHome");
         }
+
+        private void Btn_Mini_Click(object sender, RoutedEventArgs e)
+        {
+            var story = (Storyboard)this.Resources["HideWindow"];
+            if (story != null)
+            {
+                story.Completed += delegate { this.WindowState = WindowState.Minimized; };
+                story.Begin(this);
+            }
+        }
     }
 }

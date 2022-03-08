@@ -22,10 +22,13 @@ namespace MiaoywwwTools
         {
             RandomDrawLib.RaDraw raDraw = new RandomDrawLib.RaDraw();
             string[] result = raDraw.GetRandomResult();
-            ShowResult showResult = new ShowResult();
-            showResult.Label_Name.Content = result[0];
-            showResult.Label_Grade.Content = result[1];
-            showResult.Show();
+            if(result != null)
+            {
+                ShowResult showResult = new ShowResult();
+                showResult.Label_Name.Content = result[0];
+                showResult.Label_Grade.Content = result[1];
+                showResult.Show();
+            }
         }
 
         private void Btn_Settings_Click(object sender, System.Windows.RoutedEventArgs e)

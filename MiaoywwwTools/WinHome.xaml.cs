@@ -142,11 +142,7 @@ namespace MiaoywwwTools
             Stream responseStream = response.GetResponseStream();
             //创建本地文件写入流
             // 防止文件夹不存在报错
-            try
-            {
-                Stream test = new FileStream(path, FileMode.Create);
-            }
-            catch (DirectoryNotFoundException)
+            if (Directory.Exists(System.Environment.CurrentDirectory + @"\Resources\Images\"))
             {
                 Directory.CreateDirectory(System.Environment.CurrentDirectory + @"\Resources\Images\");
             }

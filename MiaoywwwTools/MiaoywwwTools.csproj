@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="data\stdata.json" />
+    <None Remove="Resources\Data\stdata.json" />
     <None Remove="Resources\Images\bilibili.png" />
     <None Remove="Resources\Images\github.png" />
     <None Remove="Resources\Images\Hutao.gif" />
@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="data\stdata.json">
+    <Content Include="Resources\Data\stdata.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
