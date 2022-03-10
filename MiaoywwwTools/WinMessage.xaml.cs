@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
 
 namespace MiaoywwwTools
 {
@@ -10,9 +11,6 @@ namespace MiaoywwwTools
     public partial class WinMessage : Window
     {
         public static WinMessage? winMessage;
-        public string MessageTitle;
-        public string MessageBody;
-        public string MessageAction;
 
         public WinMessage()
         {
@@ -33,11 +31,11 @@ namespace MiaoywwwTools
                     return;
 
                 case "yes":
-                    Btn_No.Visibility = Visibility.Visible;
+                    Btn_No.Visibility = Visibility.Hidden;
                     return;
 
                 case "no":
-                    Btn_Yes.Visibility = Visibility.Visible;
+                    Btn_Yes.Visibility = Visibility.Hidden;
                     return;
             }
         }
@@ -47,17 +45,28 @@ namespace MiaoywwwTools
             switch (context)
             {
                 case "close":
-                    this.Close();
+                    CloseWindow();
                     break;
 
                 case "closeall":
-                    WinMain.winMain.Close();
+                    WinMain.winMain.CloseWindow();
                     break;
 
                 case "restart":
                     Application.Current.Shutdown();
                     break;
             }
+        }
+
+        private void CloseWindow()
+        {
+            var story = (Storyboard)this.Resources["HideWindow"];
+            if (story != null)
+            {
+                story.Completed += delegate { Close(); };
+                story.Begin(this);
+            }
+            // this.Close();
         }
 
         private void Btn_Yes_Click(object sender, RoutedEventArgs e)
@@ -67,14 +76,14 @@ namespace MiaoywwwTools
 
         private void Btn_No_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            CloseWindow();
         }
 
         private void Window_Closed(object sender, EventArgs e)
         {
             if (action == "restart")
             {
-                System.Diagnostics.Process.Start(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);//重启软件
+                System.Diagnostics.Process.Start(Environment.ProcessPath);//重启软件
             }
         }
 

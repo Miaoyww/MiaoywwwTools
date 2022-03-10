@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
+using MiaoywwwTools.Tools.RandomDraw;
 
 
 namespace MiaoywwwTools
@@ -32,6 +33,10 @@ namespace MiaoywwwTools
         /// 切换窗口
         /// </summary>
         /// <param name="pagename"> 页面名称 </param>
+
+        public Array times;
+        public ShowResult showResult = new ShowResult();
+        public bool Login;
         public void ChangePage(string pagename)
         {
             Type pageType = Type.GetType(pagename);
@@ -59,15 +64,19 @@ namespace MiaoywwwTools
             ChangePage("MiaoywwwTools.WinMore");
         }
 
-        // 关闭按钮，转到动画
-        private void Btn_Close_Click(object sender, RoutedEventArgs e)
+        public void CloseWindow()
         {
             var story = (Storyboard)this.Resources["HideWindow"];
             if (story != null)
             {
-                story.Completed += delegate { Close(); };
+                story.Completed += delegate { Application.Current.Shutdown(); };
                 story.Begin(this);
             }
+        }
+        // 关闭按钮，转到动画
+        private void Btn_Close_Click(object sender, RoutedEventArgs e)
+        {
+            CloseWindow();
         }
 
         // 开机主页

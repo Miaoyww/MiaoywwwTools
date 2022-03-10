@@ -39,6 +39,9 @@
             </Grid>
         </Border>
         <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5,5,5,5" Background="White" Margin="254,299,10,10">
+            <Border.Effect>
+                <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.8" Direction="0"/>
+            </Border.Effect>
             <Grid HorizontalAlignment="Center" Height="161" VerticalAlignment="Center" Width="678">
                 <Button x:Name="BtnGoTo_Bilibili" Content="BiliBili" Height="66" Margin="518,85,0,0" Width="150" Foreground="#FF004DFF" FontSize="20" BorderThickness="1,1,1,1" HorizontalContentAlignment="Right" BorderBrush="Black" HorizontalAlignment="Left" VerticalAlignment="Top" Click="BtnGoTo_Bilibili_Click">
                     <Button.Background>
@@ -72,6 +75,9 @@
             </Grid>
         </Border>
         <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5,5,5,5" Background="White" Margin="254,159,10,176">
+            <Border.Effect>
+                <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.8" Direction="0"/>
+            </Border.Effect>
             <Grid HorizontalAlignment="Center" Height="135" VerticalAlignment="Center" Width="678">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="170*"/>

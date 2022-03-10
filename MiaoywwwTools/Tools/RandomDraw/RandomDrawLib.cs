@@ -1,8 +1,9 @@
-﻿using MiaoywwwTools;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
+using System.Linq;
+using MiaoywwwTools;
 
 namespace RandomDrawLib
 {
@@ -10,16 +11,20 @@ namespace RandomDrawLib
     {
         public string[]? GetRandomResult()
         {
-            if (File.Exists("./Resources/Data/stdata.json"))
+            // 哦这该死的设定
+            // 这里不得用 ./
+            if (File.Exists("/Resources/Data/stdata.json"))
             {
                 WinMessage winMessage = new WinMessage();
-                winMessage.SetMessage("警告", "未找到文件./Resources/Data/stdata.json", "close", "yes");
+                winMessage.SetMessage("错误", "未找到/Resources/Data/stdata.json文件", "close", "yes");
                 winMessage.ShowDialog();
                 return null;
             }
             else
             {
-                using (StreamReader reader = File.OpenText(@"./data/stdata.json"))
+                
+                // 这里的文件目录必须得用 ./
+                using (StreamReader reader = File.OpenText(@"./Resources/Data/stdata.json"))
                 {
                     JObject jsonObject = (JObject)JToken.ReadFrom(new JsonTextReader(reader));
                     if (jsonObject != null)
@@ -37,6 +42,7 @@ namespace RandomDrawLib
                     }
                 }
             }
+            
         }
     }
 }
