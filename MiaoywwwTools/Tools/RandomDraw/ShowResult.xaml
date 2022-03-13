@@ -5,9 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MiaoywwwTools.Tools.RandomDraw"
         mc:Ignorable="d"
-        Title="ShowResult" Height="450" Width="800" KeyUp="Window_KeyUp">
-    <Grid>
-        <Label x:Name="Label_Name" Content="Label" HorizontalAlignment="Left" Margin="285,65,0,0" VerticalAlignment="Top" FontSize="25" Height="81" Width="240" Background="White"/>
-        <Label x:Name="Label_Grade" Content="Label" FontSize="25" Width="240" Margin="0,201,0,0" VerticalAlignment="Top" Height="54"/>
+        Title="ShowResult" Height="1080" Width="1920" KeyUp="Window_KeyUp" Loaded="Window_Loaded">
+    <Grid Background="Black">
+        <Viewbox Stretch=" fill">
+            <Canvas Width="1920" Height="1080">
+                <Label x:Name="Label_Name" Content="Name" FontSize="230" Height="370" Background="Black" Margin="0,65,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Normal" Foreground="White" VerticalAlignment="Top" Width="1920" BorderBrush="#FF797979"/>
+                <Label x:Name="Label_Grade" Content="Grade" FontSize="100" Background="Black" Foreground="White" Height="154" Width="330" BorderBrush="#FF797979" VerticalAlignment="Top" Canvas.Left="795" Canvas.Top="463"/>
+                <Button x:Name="Btn_Close" Content="关闭" Height="100" Width="800" FontSize="45" Click="Btn_Close_Click" BorderBrush="White" Background="Black" Foreground="White" Canvas.Left="560" Canvas.Top="980" VerticalAlignment="Top"/>
+                <Label x:Name="Label_Mode" Content="当前模式: 随机模式" Height="53" FontSize="30" BorderBrush="White" Canvas.Top="1027" VerticalAlignment="Top"/>
+            </Canvas>
+        </Viewbox>
     </Grid>
 </Window>
