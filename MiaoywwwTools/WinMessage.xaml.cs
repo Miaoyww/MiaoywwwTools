@@ -20,6 +20,13 @@ namespace MiaoywwwTools
 
         public string action;
 
+        /// <summary>
+        /// 设置信息窗口的各种信息
+        /// </summary>
+        /// <param name="title"> 信息窗口的标题 </param>
+        /// <param name="content"> 信息窗口的内容 </param>
+        /// <param name="act"> 信息窗口的行为 </param>
+        /// <param name="yesno"> 确认取消按钮的显示与隐藏 </param>
         public void SetMessage(string title, string content, string act, string yesno)
         {
             Label_MessageTitle.Content = title;

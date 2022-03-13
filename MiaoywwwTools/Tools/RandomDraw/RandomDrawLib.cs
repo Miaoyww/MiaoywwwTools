@@ -12,7 +12,7 @@ namespace RandomDrawLib
         public string[]? GetRandomResult()
         {
             // 哦这该死的设定
-            // 这里不得用 ./
+            // 这里不得用 ./ca
             if (File.Exists("/Resources/Data/stdata.json"))
             {
                 WinMessage winMessage = new WinMessage();

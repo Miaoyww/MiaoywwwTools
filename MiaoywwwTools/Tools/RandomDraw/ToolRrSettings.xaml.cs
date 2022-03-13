@@ -72,12 +72,6 @@ namespace MiaoywwwTools
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            // 判断注册表是否有指定值
-            // 无则创建
-            if (Registry.GetValue(keypath, "Mode", null) == null)
-            {
-                Registry.SetValue(keypath, "Mode", "random");
-            }
             // 判断是否为True，是则控制Random_Mode为勾选状态
             if (Registry.GetValue(keypath, "Mode", false).ToString() == "random")
             {

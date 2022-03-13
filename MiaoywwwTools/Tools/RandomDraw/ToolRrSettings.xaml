@@ -25,7 +25,7 @@
             <BeginStoryboard Storyboard="{StaticResource ShowWindow}"/>
         </EventTrigger>
     </Window.Triggers>
-    <Border x:Name="MainBorder" RenderTransformOrigin="0.5,0.5" Margin="5" Background="White" CornerRadius="10">
+    <Border x:Name="MainBorder" RenderTransformOrigin="0.5,0.5" Margin="5" Background="#FFC9DCF3" CornerRadius="10,10,10,10">
         <Border.RenderTransform>
             <TransformGroup>
                 <ScaleTransform  ScaleX="1" ScaleY="1"/>
@@ -37,7 +37,7 @@
         <Border.Effect>
             <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.8" Direction="0"/>
         </Border.Effect>
-        <Grid x:Name="MainGrid" Background="#FFC9DCF3">
+        <Grid x:Name="MainGrid" Background="Transparent">
             <Border x:Name="TopBorder" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,375" Background="#FF0084FF" CornerRadius="10,10,0,0" MouseLeftButtonDown="TopBorder_MouseLeftButtonDown">
                 <Grid HorizontalAlignment="Center" Height="66" VerticalAlignment="Center" Width="790">
                     <Button x:Name="Btn_Close" HorizontalAlignment="Right" Height="66" Margin="720,0,0,0" Width="70" BorderBrush="{x:Null}" Click="Btn_Close_Click">

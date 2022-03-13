@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.IO;
 using System.Net;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
-using MiaoywwwTools.Tools.RandomDraw;
 
 namespace MiaoywwwTools
 {
@@ -25,6 +25,33 @@ namespace MiaoywwwTools
         public int lastTitleClickTimes;
         public int nowTitleClickTimes;
         public bool animationCompleted = true;
+
+        // Miaomiaoywww的头像下载 **需要更改
+        public static void DownloadFile(string url, string path)
+        {
+            // 设置参数
+            HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
+            //发送请求并获取相应回应数据
+            HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+            //直到request.GetResponse()程序才开始向目标网页发送Post请求
+            Stream responseStream = response.GetResponseStream();
+            //创建本地文件写入流
+            // 防止文件夹不存在报错
+            if (Directory.Exists(System.Environment.CurrentDirectory + @"\Resources\Images\"))
+            {
+                Directory.CreateDirectory(System.Environment.CurrentDirectory + @"\Resources\Images\");
+            }
+            Stream stream = new FileStream(path, FileMode.Create);
+            byte[] bArr = new byte[1024];
+            int size = responseStream.Read(bArr, 0, (int)bArr.Length);
+            while (size > 0)
+            {
+                stream.Write(bArr, 0, size);
+                size = responseStream.Read(bArr, 0, (int)bArr.Length);
+            }
+            stream.Close();
+            responseStream.Close();
+        }
 
         // 彩蛋的文字变更
         public void ChangeEmotion(string emotion)
@@ -106,62 +133,108 @@ namespace MiaoywwwTools
         }
 
         // 各种头像的文件位置
+
+        /// <summary>
+        /// ToolsRr的注册表目录
+        /// </summary>
+        public string keypath = "HKEY_CURRENT_USER\\SOFTWARE\\Miaoywww\\MiaoywwwTools\\ToolsRr";
+
+        /// <summary>
+        /// Miaomiaoywww的QQ头像目录
+        /// </summary>
         public string MiaoywwwfacePath = System.Environment.CurrentDirectory + @"\Resources\Images\MiaoywwwFace.png";
 
-        public string userfacePath = System.Environment.CurrentDirectory + @"\Resources\Images\UserFace.png";
-        public string userfacetempPath = System.Environment.CurrentDirectory + @"\Resources\Images\UserFacetemp.png";
+        /// <summary>
+        /// 用户选择的头像目录
+        /// </summary>
+        public string userfacePath = System.Environment.CurrentDirectory + @"\Resources\Images\UserFace.png";   // 用户的头像
+
+        /// <summary>
+        /// 用户选择头像的缓存的目录
+        /// </summary>
+        public string userfacetempPath = System.Environment.CurrentDirectory + @"\Resources\Images\UserFacetemp.png";   // 用户头像的temp,解决资源占用
+
+        /// <summary>
+        /// 修改Image_Face的图像内容
+        /// </summary>
+        /// <param name="way"> 改变头像的方法 </param>
+        private void ChangeFace(string way)
+        {
+            if (WinMain.winMain.FaceChanged is false)  // 防止操作冲突
+            {
+                // 用户选择头像
+                if (way == "change")
+                {
+                    // 选择文件
+                    Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
+                    dialog.Title = "选择你的头像";
+                    dialog.DefaultExt = ".png";
+                    dialog.Filter = @"图像文件(*.jpg,*.png,*.tif,*.gif)|*jpeg;*.jpg;*.png;*.tif;*.tiff;*.gif
+                |JPEG(*.jpeg, *.jpg)|*.jpeg;*.jpg|PNG(*.png)|*.png";
+                    // 打开选择框选择
+                    Nullable<bool> result = dialog.ShowDialog();
+                    if (result == true)
+                    {
+                        string selectfilePath = dialog.FileName; // 获取选择的文件名
+                        File.Copy(selectfilePath, userfacetempPath);
+                    }
+                    WinMain.winMain.FaceChanged = true;
+                }
+                // 清理头像，即选择Miaomiaoywww的头像
+                if (way == "cleanup")
+                {
+                    WinMain.winMain.FaceChanged = true;
+                    Registry.SetValue(keypath, "FaceCleanUp", "true");
+                }
+            }
+            else  // 如果头像已修改
+            {
+                WinMessage winMessage1 = new WinMessage();
+                winMessage1.SetMessage("错误", "已经设置过头像了，请重启本应用之后再试", "restart", "yesno");
+                winMessage1.ShowDialog();
+                return;
+            }
+            WinMessage winMessage2 = new WinMessage();
+            winMessage2.SetMessage("信息", "本操作需要重启程序,是否现在重启?", "restart", "yesno");
+            winMessage2.ShowDialog();
+        }
 
         // 头像Image点击事件
         private void Image_Face_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            // 选择文件
-            Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
-            dialog.Title = "选择你的头像";
-            dialog.DefaultExt = ".png";
-            dialog.Filter = @"图像文件(*.jpg,*.png,*.tif,*.gif)|*jpeg;*.jpg;*.png;*.tif;*.tiff;*.gif
-            |JPEG(*.jpeg, *.jpg)|*.jpeg;*.jpg|PNG(*.png)|*.png";
-            // 打开选择框选择
-            Nullable<bool> result = dialog.ShowDialog();
-            if (result == true)
-            {
-                string selectfilePath = dialog.FileName; // 获取选择的文件名
-                File.Copy(selectfilePath, userfacetempPath);
-                WinMessage winMessage = new WinMessage();
-                winMessage.SetMessage("信息", "本操作需要重启程序,是否继续?", "restart", "yesno");
-                winMessage.ShowDialog();
-            }
+            ChangeFace("change");
         }
 
-        // Miaomiaoywww的头像下载 **需要更改
-        public static void DownloadFile(string url, string path)
+        // 头像右键菜单
+        private void CleanUpFace_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            // 设置参数
-            HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
-            //发送请求并获取相应回应数据
-            HttpWebResponse response = request.GetResponse() as HttpWebResponse;
-            //直到request.GetResponse()程序才开始向目标网页发送Post请求
-            Stream responseStream = response.GetResponseStream();
-            //创建本地文件写入流
-            // 防止文件夹不存在报错
-            if (Directory.Exists(System.Environment.CurrentDirectory + @"\Resources\Images\"))
-            {
-                Directory.CreateDirectory(System.Environment.CurrentDirectory + @"\Resources\Images\");
-            }
-            Stream stream = new FileStream(path, FileMode.Create);
-            byte[] bArr = new byte[1024];
-            int size = responseStream.Read(bArr, 0, (int)bArr.Length);
-            while (size > 0)
-            {
-                stream.Write(bArr, 0, size);
-                size = responseStream.Read(bArr, 0, (int)bArr.Length);
-            }
-            stream.Close();
-            responseStream.Close();
+            ChangeFace("cleanup");
         }
 
         // 页面加载时
         private void MainGrid_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
+            // 清除头像
+            if (Registry.GetValue(keypath, "FaceCleanUp", false).ToString() == "true")
+            {
+                if (!File.Exists(MiaoywwwfacePath))
+                {
+                    //无则下载
+                    DownloadFile("http://q1.qlogo.cn/g?b=qq&nk=375629202&s=640", MiaoywwwfacePath);
+                }
+                if (File.Exists(userfacetempPath))
+                {
+                    File.Delete(userfacetempPath);
+                }
+                if (File.Exists(userfacePath))
+                {
+                    File.Delete(userfacePath);
+                }
+                Image_Face.Source = new BitmapImage(new Uri(MiaoywwwfacePath));
+                Label_Name.Content = "MiaoMiaoywww";
+                Registry.SetValue(keypath, "FaceCleanUp", "false");
+
+            }
             // 判断是否有用户temp头像
             if (File.Exists(userfacetempPath))
             {

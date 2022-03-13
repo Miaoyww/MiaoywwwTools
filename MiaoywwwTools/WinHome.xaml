@@ -9,6 +9,13 @@
         Title="Home" Width="942" Height="470">
     <Page.Resources>
         <ResourceDictionary>
+            <ContextMenu x:Key="Image_Face_Menu">
+                <MenuItem Name="CleanUpFace" Click="CleanUpFace_Click" Header="清除头像"/>
+                <!--
+                <Separator></Separator>
+                <MenuItem Name="Refresh" Header="刷新"/>
+                -->
+            </ContextMenu>
             <Storyboard x:Key="HideLabel">
                 <DoubleAnimation Duration="0:0:2" From="1" To="0" Storyboard.TargetProperty="Opacity" FillBehavior="Stop" Completed="HideLabel_Completed"/>
             </Storyboard>
@@ -29,7 +36,7 @@
                     <Border.Effect>
                         <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0"/>
                     </Border.Effect>
-                    <Image x:Name="Image_Face" Source="/Resources/Images/MiaoywwwFace.png" Cursor="Hand" MouseLeftButtonDown="Image_Face_MouseLeftButtonDown" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" Height="160">
+                    <Image x:Name="Image_Face" Source="/Resources/Images/MiaoywwwFace.png" Cursor="Hand" MouseLeftButtonDown="Image_Face_MouseLeftButtonDown" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" Height="160" ContextMenu="{StaticResource Image_Face_Menu}">
                         <Image.Clip>
                             <RectangleGeometry RadiusX="35" RadiusY="35" Rect="0,0,160,160"/>
                         </Image.Clip>
