@@ -1,10 +1,10 @@
-﻿using System;
+﻿using MiaoywwwTools.Tools.RandomDraw;
+using Microsoft.Win32;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
-using MiaoywwwTools.Tools.RandomDraw;
-using Microsoft.Win32;
 
 namespace MiaoywwwTools
 {
@@ -13,22 +13,23 @@ namespace MiaoywwwTools
     /// </summary>
 
 #pragma warning disable CS8600 // 将 null 字面量或可能为 null 的值转换为非 null 类型。
+
     public partial class WinMain : Window
     {
         public static WinMain? winMain;
+
         public WinMain()
         {
             InitializeComponent();
             winMain = this;
-
         }
-
 
         public Array times; // 预留接口，准备做ToolsRr的概率计算
         public ShowResult showResult = new ShowResult();
         public bool Login;  // ToolsRr的Result窗口是否登录
         public bool FaceChanged; // Home的头像是否已经修改
         public bool CleanUpFace;    // 清除Home的头像
+
         /// <summary>
         /// 切换窗口
         /// </summary>
@@ -50,11 +51,13 @@ namespace MiaoywwwTools
         {
             DragMove();
         }
+
         // 导航栏
         private void Btns_Home_Click(object sender, RoutedEventArgs e)
         {
             ChangePage("MiaoywwwTools.WinHome");
         }
+
         private void Btns_More_Click(object sender, RoutedEventArgs e)
         {
             ChangePage("MiaoywwwTools.WinMore");
@@ -69,6 +72,7 @@ namespace MiaoywwwTools
                 story.Begin(this);
             }
         }
+
         // 关闭按钮，转到动画
         private void Btn_Close_Click(object sender, RoutedEventArgs e)
         {
@@ -78,7 +82,6 @@ namespace MiaoywwwTools
         // 开机主页
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
             ChangePage("MiaoywwwTools.WinHome");
 
             string keypath = "HKEY_CURRENT_USER\\SOFTWARE\\Miaoywww\\MiaoywwwTools\\ToolsRr";
@@ -92,7 +95,6 @@ namespace MiaoywwwTools
             {
                 Registry.SetValue(keypath, "FaceCleanUp", "false");
             }
-
         }
 
         private void Btn_Mini_Click(object sender, RoutedEventArgs e)

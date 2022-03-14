@@ -9,10 +9,10 @@
     <Grid Background="Black">
         <Viewbox Stretch=" fill">
             <Canvas Width="1920" Height="1080">
-                <Label x:Name="Label_Name" Content="Name" FontSize="230" Height="370" Background="Black" Margin="0,65,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Normal" Foreground="White" VerticalAlignment="Top" Width="1920" BorderBrush="#FF797979"/>
-                <Label x:Name="Label_Grade" Content="Grade" FontSize="100" Background="Black" Foreground="White" Height="154" Width="330" BorderBrush="#FF797979" VerticalAlignment="Top" Canvas.Left="795" Canvas.Top="463"/>
-                <Button x:Name="Btn_Close" Content="关闭" Height="100" Width="800" FontSize="45" Click="Btn_Close_Click" BorderBrush="White" Background="Black" Foreground="White" Canvas.Left="560" Canvas.Top="980" VerticalAlignment="Top"/>
-                <Label x:Name="Label_Mode" Content="当前模式: 随机模式" Height="53" FontSize="30" BorderBrush="White" Canvas.Top="1027" VerticalAlignment="Top"/>
+                <Label x:Name="Label_Name" Content="Name" FontSize="230" Height="370" Background="Black" Margin="0,65,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Normal" Foreground="White" VerticalAlignment="Top" Width="1920" BorderBrush="#FF797979" />
+                <Label x:Name="Label_Grade" Content="Grade" FontSize="100" Background="Black" Foreground="White" Height="154" Width="330" BorderBrush="#FF797979" VerticalAlignment="Top" Canvas.Left="795" Canvas.Top="463" />
+                <Button x:Name="Btn_Close" Content="关闭" Height="100" Width="800" FontSize="45" Click="Btn_Close_Click" BorderBrush="White" Background="Black" Foreground="White" Canvas.Left="560" Canvas.Top="980" VerticalAlignment="Top" />
+                <Label x:Name="Label_Mode" Content="当前模式: 随机模式" Height="53" FontSize="30" BorderBrush="White" Canvas.Top="1027" VerticalAlignment="Top" />
             </Canvas>
         </Viewbox>
     </Grid>

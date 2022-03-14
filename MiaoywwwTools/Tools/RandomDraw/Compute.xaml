@@ -73,7 +73,7 @@
                 </Grid>
             </Border>
             <Button x:Name="Btn_Compute" Content="开始" Height="64" Width="200" FontSize="25" BorderBrush="#FF868686" BorderThickness="2,2,2,2" HorizontalAlignment="Left" Margin="10,356,0,0" VerticalAlignment="Top" Click="Btn_Compute_Click" />
-            <TextBlock x:Name="TextBlock_Result" HorizontalAlignment="Left" Height="320" Margin="320,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="460" Foreground="White" Background="#FF424242"/>
+            <TextBlock x:Name="TextBlock_Result" HorizontalAlignment="Left" Height="320" Margin="320,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="460" Foreground="White" Background="#FF424242" />
             <Label Content="结果" HorizontalAlignment="Left" Margin="313,70,0,0" VerticalAlignment="Top" Foreground="Black" FontSize="15" />
         </Grid>
     </Border>

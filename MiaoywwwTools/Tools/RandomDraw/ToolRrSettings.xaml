@@ -1,41 +1,40 @@
 ﻿<Window x:Class="MiaoywwwTools.ToolRrSettings"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MiaoywwwTools"
         mc:Ignorable="d"
         Title="ToolRrSettings" Height="450" Width="800" AllowsTransparency="True" Background="Transparent" WindowStyle="None" Loaded="Window_Loaded">
     <Window.Resources>
         <ResourceDictionary>
             <Storyboard x:Key="HideWindow">
                 <DoubleAnimation Duration="0:0:0.2" From="1" To="0" Storyboard.TargetProperty="Opacity" FillBehavior="Stop" />
-                <DoubleAnimation Duration="0:0:0.2" From="1" To="0.9" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleX)" FillBehavior="Stop" Storyboard.TargetName="MainBorder"/>
-                <DoubleAnimation Duration="0:0:0.2" From="1" To="0.9" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleY)" FillBehavior="Stop" Storyboard.TargetName="MainBorder"/>
+                <DoubleAnimation Duration="0:0:0.2" From="1" To="0.9" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleX)" FillBehavior="Stop" Storyboard.TargetName="MainBorder" />
+                <DoubleAnimation Duration="0:0:0.2" From="1" To="0.9" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleY)" FillBehavior="Stop" Storyboard.TargetName="MainBorder" />
             </Storyboard>
-            <Storyboard x:Key="ShowWindow" >
-                <DoubleAnimation Duration="0:0:0.2" From="0" To="1" Storyboard.TargetProperty="Opacity" FillBehavior="Stop"/>
-                <DoubleAnimation Duration="0:0:0.2" From="0.9" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleX)" FillBehavior="Stop" Storyboard.TargetName="MainBorder"/>
-                <DoubleAnimation Duration="0:0:0.2" From="0.9" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleY)" FillBehavior="Stop" Storyboard.TargetName="MainBorder"/>
+            <Storyboard x:Key="ShowWindow">
+                <DoubleAnimation Duration="0:0:0.2" From="0" To="1" Storyboard.TargetProperty="Opacity" FillBehavior="Stop" />
+                <DoubleAnimation Duration="0:0:0.2" From="0.9" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleX)" FillBehavior="Stop" Storyboard.TargetName="MainBorder" />
+                <DoubleAnimation Duration="0:0:0.2" From="0.9" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleY)" FillBehavior="Stop" Storyboard.TargetName="MainBorder" />
             </Storyboard>
         </ResourceDictionary>
     </Window.Resources>
     <Window.Triggers>
         <EventTrigger RoutedEvent="Loaded">
-            <BeginStoryboard Storyboard="{StaticResource ShowWindow}"/>
+            <BeginStoryboard Storyboard="{StaticResource ShowWindow}" />
         </EventTrigger>
     </Window.Triggers>
     <Border x:Name="MainBorder" RenderTransformOrigin="0.5,0.5" Margin="5" Background="#FFC9DCF3" CornerRadius="10,10,10,10">
         <Border.RenderTransform>
             <TransformGroup>
-                <ScaleTransform  ScaleX="1" ScaleY="1"/>
-                <SkewTransform/>
-                <RotateTransform/>
-                <TranslateTransform/>
+                <ScaleTransform  ScaleX="1" ScaleY="1" />
+                <SkewTransform />
+                <RotateTransform />
+                <TranslateTransform />
             </TransformGroup>
         </Border.RenderTransform>
         <Border.Effect>
-            <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.8" Direction="0"/>
+            <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.8" Direction="0" />
         </Border.Effect>
         <Grid x:Name="MainGrid" Background="Transparent">
             <Border x:Name="TopBorder" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,375" Background="#FF0084FF" CornerRadius="10,10,0,0" MouseLeftButtonDown="TopBorder_MouseLeftButtonDown">
@@ -45,16 +44,16 @@
                             <ImageBrush ImageSource="/Resources/Images/icon_close.png" Stretch="Uniform">
                                 <ImageBrush.RelativeTransform>
                                     <TransformGroup>
-                                        <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.4" ScaleY="0.4"/>
-                                        <SkewTransform CenterX="0.5" CenterY="0.5"/>
-                                        <RotateTransform CenterX="0.5" CenterY="0.5"/>
-                                        <TranslateTransform/>
+                                        <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.4" ScaleY="0.4" />
+                                        <SkewTransform CenterX="0.5" CenterY="0.5" />
+                                        <RotateTransform CenterX="0.5" CenterY="0.5" />
+                                        <TranslateTransform />
                                     </TransformGroup>
                                 </ImageBrush.RelativeTransform>
                             </ImageBrush>
                         </Button.Background>
                     </Button>
-                    <Label Content="点名器设置" HorizontalAlignment="Left" Height="66" Width="110" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" FontSize="16" FontWeight="Bold"/>
+                    <Label Content="点名器设置" HorizontalAlignment="Left" Height="66" Width="110" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" FontSize="16" FontWeight="Bold" />
                 </Grid>
             </Border>
             <Grid x:Name="Gird_RandomSettings" HorizontalAlignment="Left" Height="125" Margin="10,70,0,0" VerticalAlignment="Top" Width="270" Background="#FFEFEFEF">

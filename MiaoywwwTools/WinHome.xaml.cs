@@ -233,7 +233,6 @@ namespace MiaoywwwTools
                 Image_Face.Source = new BitmapImage(new Uri(MiaoywwwfacePath));
                 Label_Name.Content = "MiaoMiaoywww";
                 Registry.SetValue(keypath, "FaceCleanUp", "false");
-
             }
             // 判断是否有用户temp头像
             if (File.Exists(userfacetempPath))

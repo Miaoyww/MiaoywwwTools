@@ -1,18 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using RandomDrawLib;
-using System.Drawing;
 
 namespace MiaoywwwTools.Tools.RandomDraw
 {
@@ -22,6 +9,7 @@ namespace MiaoywwwTools.Tools.RandomDraw
     public partial class ShowResult : Window
     {
         public ShowResult showResult;
+
         public ShowResult()
         {
             InitializeComponent();

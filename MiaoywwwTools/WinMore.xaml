@@ -1,11 +1,11 @@
 ﻿<Page
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:MiaoywwwTools"
       xmlns:hc="https://handyorg.github.io/handycontrol" x:Class="MiaoywwwTools.WinMore"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
       d:DesignHeight="470" d:DesignWidth="942"
       Title="WinMore">
 
@@ -13,10 +13,10 @@
         <Grid HorizontalAlignment="Left" Height="470" VerticalAlignment="Center" Width="249" Background="#FFF5F7FB">
             <Button x:Name="Btn_RandomDraw" Content="点名器" Height="48" Width="229" BorderBrush="#FF868686" Foreground="White" FontSize="20" FontWeight="Bold" Click="Btn_RandomDraw_Click">
                 <Button.Background>
-                    <SolidColorBrush Color="Black" Opacity="0.7"/>
+                    <SolidColorBrush Color="Black" Opacity="0.7" />
                 </Button.Background>
             </Button>
         </Grid>
-        <ContentControl x:Name="NestPage" Content="" HorizontalAlignment="Left" Width="678" Margin="254,0,0,0"/>
+        <ContentControl x:Name="NestPage" Content="" HorizontalAlignment="Left" Width="678" Margin="254,0,0,0" />
     </Grid>
 </Page>

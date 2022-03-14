@@ -11,45 +11,45 @@
         <ResourceDictionary>
             <Storyboard x:Key="HideWindow">
                 <DoubleAnimation Duration="0:0:0.2" From="1" To="0" Storyboard.TargetProperty="Opacity" FillBehavior="Stop" />
-                <DoubleAnimation Duration="0:0:0.2" From="1" To="0.9" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleX)" FillBehavior="Stop" Storyboard.TargetName="MainBorder"/>
-                <DoubleAnimation Duration="0:0:0.2" From="1" To="0.9" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleY)" FillBehavior="Stop" Storyboard.TargetName="MainBorder"/>
+                <DoubleAnimation Duration="0:0:0.2" From="1" To="0.9" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleX)" FillBehavior="Stop" Storyboard.TargetName="MainBorder" />
+                <DoubleAnimation Duration="0:0:0.2" From="1" To="0.9" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleY)" FillBehavior="Stop" Storyboard.TargetName="MainBorder" />
             </Storyboard>
-            <Storyboard x:Key="ShowWindow" >
-                <DoubleAnimation Duration="0:0:0.2" From="0" To="1" Storyboard.TargetProperty="Opacity" FillBehavior="Stop"/>
-                <DoubleAnimation Duration="0:0:0.2" From="0.9" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleX)" FillBehavior="Stop" Storyboard.TargetName="MainBorder"/>
-                <DoubleAnimation Duration="0:0:0.2" From="0.9" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleY)" FillBehavior="Stop" Storyboard.TargetName="MainBorder"/>
+            <Storyboard x:Key="ShowWindow">
+                <DoubleAnimation Duration="0:0:0.2" From="0" To="1" Storyboard.TargetProperty="Opacity" FillBehavior="Stop" />
+                <DoubleAnimation Duration="0:0:0.2" From="0.9" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleX)" FillBehavior="Stop" Storyboard.TargetName="MainBorder" />
+                <DoubleAnimation Duration="0:0:0.2" From="0.9" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleY)" FillBehavior="Stop" Storyboard.TargetName="MainBorder" />
             </Storyboard>
         </ResourceDictionary>
     </Window.Resources>
     <Window.Triggers>
         <EventTrigger RoutedEvent="Loaded">
-            <BeginStoryboard Storyboard="{StaticResource ShowWindow}"/>
+            <BeginStoryboard Storyboard="{StaticResource ShowWindow}" />
         </EventTrigger>
     </Window.Triggers>
     <Border x:Name="MainBorder" RenderTransformOrigin="0.5,0.5" Margin="5" Background="White" CornerRadius="10">
         <Border.RenderTransform>
             <TransformGroup>
-                <ScaleTransform  ScaleX="1" ScaleY="1"/>
-                <SkewTransform/>
-                <RotateTransform/>
-                <TranslateTransform/>
+                <ScaleTransform  ScaleX="1" ScaleY="1" />
+                <SkewTransform />
+                <RotateTransform />
+                <TranslateTransform />
             </TransformGroup>
         </Border.RenderTransform>
         <Border.Effect>
-            <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0"/>
+            <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
         </Border.Effect>
         <Grid x:Name="MainGrid">
-            <Border x:Name="Border_Top" BorderBrush="Black" HorizontalAlignment="Center" VerticalAlignment="Top" CornerRadius="10,10,0,0" Background="#FF0084FF" Height="65" Width="942" MouseLeftButtonDown="Border_Top_MouseLeftButtonDown" >
+            <Border x:Name="Border_Top" BorderBrush="Black" HorizontalAlignment="Center" VerticalAlignment="Top" CornerRadius="10,10,0,0" Background="#FF0084FF" Height="65" Width="942" MouseLeftButtonDown="Border_Top_MouseLeftButtonDown">
                 <Grid>
                     <Button x:Name="Btns_More" Content="更多" Width="70" Height="40" HorizontalContentAlignment="Right" Foreground="White" BorderThickness="0,0,0,0" Click="Btns_More_Click">
                         <Button.Background>
                             <ImageBrush Stretch="Uniform" ImageSource="/Resources/Images/icon_more.ico">
                                 <ImageBrush.RelativeTransform>
                                     <TransformGroup>
-                                        <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.4" ScaleY="0.4"/>
-                                        <SkewTransform CenterX="0.5" CenterY="0.5"/>
-                                        <RotateTransform CenterX="0.5" CenterY="0.5"/>
-                                        <TranslateTransform X="-0.25"/>
+                                        <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.4" ScaleY="0.4" />
+                                        <SkewTransform CenterX="0.5" CenterY="0.5" />
+                                        <RotateTransform CenterX="0.5" CenterY="0.5" />
+                                        <TranslateTransform X="-0.25" />
                                     </TransformGroup>
                                 </ImageBrush.RelativeTransform>
                             </ImageBrush>
@@ -60,10 +60,10 @@
                             <ImageBrush Stretch="Uniform" ImageSource="/Resources/Images/icon_home.ico">
                                 <ImageBrush.RelativeTransform>
                                     <TransformGroup>
-                                        <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.25" ScaleY="0.25"/>
-                                        <SkewTransform CenterX="0.5" CenterY="0.5"/>
-                                        <RotateTransform CenterX="0.5" CenterY="0.5"/>
-                                        <TranslateTransform X="-0.25"/>
+                                        <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.25" ScaleY="0.25" />
+                                        <SkewTransform CenterX="0.5" CenterY="0.5" />
+                                        <RotateTransform CenterX="0.5" CenterY="0.5" />
+                                        <TranslateTransform X="-0.25" />
                                     </TransformGroup>
                                 </ImageBrush.RelativeTransform>
                             </ImageBrush>
@@ -74,25 +74,25 @@
                             <ImageBrush Stretch="Uniform" ImageSource="/Resources/Images/icon_settings.ico">
                                 <ImageBrush.RelativeTransform>
                                     <TransformGroup>
-                                        <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.35" ScaleY="0.35"/>
-                                        <SkewTransform CenterX="0.5" CenterY="0.5"/>
-                                        <RotateTransform CenterX="0.5" CenterY="0.5"/>
-                                        <TranslateTransform X="-0.25"/>
+                                        <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.35" ScaleY="0.35" />
+                                        <SkewTransform CenterX="0.5" CenterY="0.5" />
+                                        <RotateTransform CenterX="0.5" CenterY="0.5" />
+                                        <TranslateTransform X="-0.25" />
                                     </TransformGroup>
                                 </ImageBrush.RelativeTransform>
                             </ImageBrush>
                         </Button.Background>
                     </Button>
-                    <Label Content="M" HorizontalAlignment="Left" Height="65" Width="65" BorderThickness="0,0,0,0" Background="{x:Null}" Foreground="White" FontSize="25"/>
+                    <Label Content="M" HorizontalAlignment="Left" Height="65" Width="65" BorderThickness="0,0,0,0" Background="{x:Null}" Foreground="White" FontSize="25" />
                     <Button x:Name="Btn_Close" HorizontalAlignment="Left" Height="68" Margin="879,0,0,0" Width="63" BorderThickness="0,0,0,0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="Btn_Close_Click">
                         <Button.Background>
                             <ImageBrush ImageSource="/Resources/Images/icon_close.png">
                                 <ImageBrush.RelativeTransform>
                                     <TransformGroup>
-                                        <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.35" ScaleY="0.35"/>
-                                        <SkewTransform CenterX="0.5" CenterY="0.5"/>
-                                        <RotateTransform CenterX="0.5" CenterY="0.5"/>
-                                        <TranslateTransform/>
+                                        <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.35" ScaleY="0.35" />
+                                        <SkewTransform CenterX="0.5" CenterY="0.5" />
+                                        <RotateTransform CenterX="0.5" CenterY="0.5" />
+                                        <TranslateTransform />
                                     </TransformGroup>
                                 </ImageBrush.RelativeTransform>
                             </ImageBrush>
@@ -103,10 +103,10 @@
                             <ImageBrush ImageSource="/Resources/Images/icon_mini.png">
                                 <ImageBrush.RelativeTransform>
                                     <TransformGroup>
-                                        <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.35" ScaleY="0.35"/>
-                                        <SkewTransform CenterX="0.5" CenterY="0.5"/>
-                                        <RotateTransform CenterX="0.5" CenterY="0.5"/>
-                                        <TranslateTransform/>
+                                        <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.35" ScaleY="0.35" />
+                                        <SkewTransform CenterX="0.5" CenterY="0.5" />
+                                        <RotateTransform CenterX="0.5" CenterY="0.5" />
+                                        <TranslateTransform />
                                     </TransformGroup>
                                 </ImageBrush.RelativeTransform>
                             </ImageBrush>
@@ -114,7 +114,7 @@
                     </Button>
                 </Grid>
             </Border>
-            <ContentControl x:Name="NestPage" HorizontalAlignment="Center" Height="470" Margin="0,65,0,0" VerticalAlignment="Top" Width="942"/>
+            <ContentControl x:Name="NestPage" HorizontalAlignment="Center" Height="470" Margin="0,65,0,0" VerticalAlignment="Top" Width="942" />
         </Grid>
     </Border>
 </Window>

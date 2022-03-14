@@ -26,26 +26,29 @@ namespace RandomDrawLib
                 reader = File.OpenText(@"./Resources/Data/stdata.json");
             }
         }
+
         public JObject GetStdataContent()
         {
             return (JObject)JToken.ReadFrom(new JsonTextReader(reader));
         }
+
         public string[]? GetRandomResult()
         {
             if (Read == null)
             {
                 WinMessage winMessage = new WinMessage();
-                winMessage.SetMessage("调试","先使用Read","close","yes");
+                winMessage.SetMessage("调试", "先使用Read", "close", "yes");
                 winMessage.ShowDialog();
                 return null;
-            }else
+            }
+            else
             {
                 JObject jsonObject = (JObject)JToken.ReadFrom(new JsonTextReader(reader));
                 if (jsonObject != null)
                 {
                     Random rd = new Random();
                     int randomtimes = jsonObject.Count;
-                    
+
                     int[] randomNumberList = new int[randomtimes];
                     string[,] std = new string[randomtimes, 2];
                     for (int i = 0; i < randomNumberList.Length; i++)
@@ -93,8 +96,8 @@ namespace RandomDrawLib
                     return null;
                 }
             }
-            
         }
+
         public int GetStdataLentgh()
         {
             using (StreamReader reader = File.OpenText(@"./Resources/Data/stdata.json"))

@@ -1,8 +1,5 @@
-﻿using System.Windows.Controls;
-using System.Runtime.InteropServices;
-using System.Windows.Interop;
-using RandomDrawLib;
-using MiaoywwwTools.Tools.RandomDraw;
+﻿using MiaoywwwTools.Tools.RandomDraw;
+using System.Windows.Controls;
 
 namespace MiaoywwwTools
 {

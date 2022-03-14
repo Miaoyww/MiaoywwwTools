@@ -1,18 +1,7 @@
 ﻿using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace MiaoywwwTools
 {
@@ -27,6 +16,7 @@ namespace MiaoywwwTools
         }
 
         public string keypath = "HKEY_CURRENT_USER\\SOFTWARE\\Miaoywww\\MiaoywwwTools\\ToolsRr";
+
         // 关闭按钮，转到动画
         private void Btn_Close_Click(object sender, RoutedEventArgs e)
         {
@@ -40,7 +30,7 @@ namespace MiaoywwwTools
 
         private void Random_Mode_Checked(object sender, RoutedEventArgs e)
         {
-           if (Grade_Mode.IsChecked == true)
+            if (Grade_Mode.IsChecked == true)
             {
                 Grade_Mode.IsChecked = false;
             }
@@ -59,7 +49,6 @@ namespace MiaoywwwTools
             winMessage.SetMessage("注意", "功能暂未开放", "close", "yes");
             winMessage.ShowDialog();
             Grade_Mode.IsChecked = false;
-
         }
 
         private void GlobalShortcuts_Checked(object sender, RoutedEventArgs e)

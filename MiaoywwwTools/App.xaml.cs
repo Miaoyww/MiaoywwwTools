@@ -8,7 +8,7 @@ namespace MiaoywwwTools
     /// </summary>
     public partial class App : Application
     {
-        System.Threading.Mutex mutex;
+        private System.Threading.Mutex mutex;
 
         protected override void OnStartup(StartupEventArgs e)
         {
