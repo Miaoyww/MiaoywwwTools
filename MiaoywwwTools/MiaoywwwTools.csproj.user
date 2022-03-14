@@ -12,6 +12,9 @@
     <Compile Update="EasterEgg.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Tools\RandomDraw\Compute.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Tools\RandomDraw\ShowResult.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -39,6 +42,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Resources\MiaoRes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Tools\RandomDraw\Compute.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Tools\RandomDraw\ShowResult.xaml">

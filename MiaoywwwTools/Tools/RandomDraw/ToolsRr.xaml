@@ -5,11 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MiaoywwwTools"
         mc:Ignorable="d"
-        Title="ToolsRr" Height="460" Width="678
-      " Background="Transparent">
-    <Grid Height="460" Background="Transparent" Width="678">
-        <Label x:Name="Label_Title" Content="点名器" Margin="0,10,0,0" VerticalAlignment="Top" Height="75" Width="380" Background="Black" Foreground="White" FontSize="36" FontWeight="Bold" BorderBrush="{x:Null}"/>
-        <Button x:Name="Btn_Settings" Content="设置" HorizontalAlignment="Left" Height="72" Margin="10,378,0,0" VerticalAlignment="Top" Width="130" Foreground="#FF0084FF" FontSize="25" FontWeight="Bold" Background="#FFDEDEDE" Click="Btn_Settings_Click"/>
-        <Button x:Name="Btn_Start" Content="开始" Height="104" Width="250" FontSize="25" Foreground="White" Click="Btn_Start_Click" Background="#FF008AFF"/>
-    </Grid>
+        Title="ToolsRr" Height="460" Width="678"
+        Background="Transparent">
+    <Border BorderThickness="1" Background="White" Height="456" Width="674" Margin="1,1,1,1" CornerRadius="5,5,5,5">
+        <Border.Effect>
+            <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.8" Direction="0"/>
+        </Border.Effect>
+        <Grid>
+            <Label x:Name="Label_Title" Content="点名器" Margin="0,10,0,0" VerticalAlignment="Top" Height="75" Width="678" Background="{x:Null}" Foreground="Black" FontSize="36" FontWeight="Bold" BorderBrush="{x:Null}"/>
+            <Button x:Name="Btn_Settings" Content="设置" HorizontalAlignment="Left" Height="72" Margin="10,378,0,0" VerticalAlignment="Top" Width="130" Foreground="#FF0084FF" FontSize="25" FontWeight="Bold" Background="#FFDEDEDE" Click="Btn_Settings_Click" BorderBrush="#FF868686" BorderThickness="2,2,2,2"/>
+            <Button x:Name="Btn_Start" Content="开始" Height="104" Width="250" FontSize="25" Foreground="White" Click="Btn_Start_Click" Background="#FF008AFF" BorderBrush="#FF868686" BorderThickness="2,2,2,2"/>
+            <Button x:Name="Btn_ComputeProbability" Content="概率计算" HorizontalAlignment="Left" Height="72" Margin="532,378,0,0" VerticalAlignment="Top" Width="130" Foreground="#FF0084FF" FontSize="25" FontWeight="Bold" Background="#FFDEDEDE" BorderBrush="#FF868686" BorderThickness="2,2,2,2" Click="Btn_ComputeProbability_Click"/>
+        </Grid>
+    </Border>
 </Page>

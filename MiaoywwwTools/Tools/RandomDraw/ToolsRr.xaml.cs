@@ -21,6 +21,7 @@ namespace MiaoywwwTools
         private void Btn_Start_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             RandomDrawLib.RaDraw raDraw = new RandomDrawLib.RaDraw();
+            raDraw.Read();
             string[] result = raDraw.GetRandomResult();
             if (result != null)
             {
@@ -36,6 +37,12 @@ namespace MiaoywwwTools
         {
             ToolRrSettings toolRrSettings = new ToolRrSettings();
             toolRrSettings.ShowDialog();
+        }
+
+        private void Btn_ComputeProbability_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Compute compute = new Compute();
+            compute.ShowDialog();
         }
     }
 }

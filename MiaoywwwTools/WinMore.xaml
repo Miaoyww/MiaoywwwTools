@@ -11,12 +11,12 @@
 
     <Grid Width="942" Height="470" Background="#FFC9DCF3">
         <Grid HorizontalAlignment="Left" Height="470" VerticalAlignment="Center" Width="249" Background="#FFF5F7FB">
-            <Button x:Name="Btn_RandomDraw" Content="点名器" Height="48" VerticalAlignment="Center" Width="249" BorderBrush="White" Foreground="White" FontSize="20" FontWeight="Bold" Click="Btn_RandomDraw_Click">
+            <Button x:Name="Btn_RandomDraw" Content="点名器" Height="48" Width="229" BorderBrush="#FF868686" Foreground="White" FontSize="20" FontWeight="Bold" Click="Btn_RandomDraw_Click">
                 <Button.Background>
                     <SolidColorBrush Color="Black" Opacity="0.7"/>
                 </Button.Background>
             </Button>
         </Grid>
-        <ContentControl x:Name="NestPage" Content="" HorizontalAlignment="Left" Height="460" Margin="254,10,0,0" VerticalAlignment="Top" Width="678"/>
+        <ContentControl x:Name="NestPage" Content="" HorizontalAlignment="Left" Width="678" Margin="254,0,0,0"/>
     </Grid>
 </Page>

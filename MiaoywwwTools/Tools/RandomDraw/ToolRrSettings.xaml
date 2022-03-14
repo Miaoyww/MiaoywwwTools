@@ -10,13 +10,13 @@
         <ResourceDictionary>
             <Storyboard x:Key="HideWindow">
                 <DoubleAnimation Duration="0:0:0.2" From="1" To="0" Storyboard.TargetProperty="Opacity" FillBehavior="Stop" />
-                <DoubleAnimation Duration="0:0:0.2" From="1" To="0.7" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleX)" FillBehavior="Stop" Storyboard.TargetName="MainBorder"/>
-                <DoubleAnimation Duration="0:0:0.2" From="1" To="0.7" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleY)" FillBehavior="Stop" Storyboard.TargetName="MainBorder"/>
+                <DoubleAnimation Duration="0:0:0.2" From="1" To="0.9" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleX)" FillBehavior="Stop" Storyboard.TargetName="MainBorder"/>
+                <DoubleAnimation Duration="0:0:0.2" From="1" To="0.9" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleY)" FillBehavior="Stop" Storyboard.TargetName="MainBorder"/>
             </Storyboard>
             <Storyboard x:Key="ShowWindow" >
                 <DoubleAnimation Duration="0:0:0.2" From="0" To="1" Storyboard.TargetProperty="Opacity" FillBehavior="Stop"/>
-                <DoubleAnimation Duration="0:0:0.2" From="0.7" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleX)" FillBehavior="Stop" Storyboard.TargetName="MainBorder"/>
-                <DoubleAnimation Duration="0:0:0.2" From="0.7" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleY)" FillBehavior="Stop" Storyboard.TargetName="MainBorder"/>
+                <DoubleAnimation Duration="0:0:0.2" From="0.9" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleX)" FillBehavior="Stop" Storyboard.TargetName="MainBorder"/>
+                <DoubleAnimation Duration="0:0:0.2" From="0.9" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleY)" FillBehavior="Stop" Storyboard.TargetName="MainBorder"/>
             </Storyboard>
         </ResourceDictionary>
     </Window.Resources>
@@ -54,18 +54,17 @@
                             </ImageBrush>
                         </Button.Background>
                     </Button>
-                    <Button Content="点名器设置" HorizontalAlignment="Left" Height="66" Width="125" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White" FontWeight="Normal" FontSize="18"/>
+                    <Label Content="点名器设置" HorizontalAlignment="Left" Height="66" Width="110" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" FontSize="16" FontWeight="Bold"/>
                 </Grid>
-
             </Border>
             <Grid x:Name="Gird_RandomSettings" HorizontalAlignment="Left" Height="125" Margin="10,70,0,0" VerticalAlignment="Top" Width="270" Background="#FFEFEFEF">
-                <Label Content="点名顺序" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="Black"/>
-                <CheckBox x:Name="Random_Mode" Content="随机模式" HorizontalAlignment="Left" Height="25" Margin="10,45,0,0" Width="90" VerticalAlignment="Top" Checked="Random_Mode_Checked"/>
-                <CheckBox x:Name="Grade_Mode" Content="成绩模式" HorizontalAlignment="Left" Height="25" Margin="10,75,0,0" Width="90" VerticalAlignment="Top" Checked="Grade_Mode_Checked"/>
+                <Label Content="点名顺序" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="Black" FontSize="15" />
+                <CheckBox x:Name="Random_Mode" Content="随机模式" HorizontalAlignment="Left" Height="25" Margin="10,45,0,0" Width="90" VerticalAlignment="Top" Checked="Random_Mode_Checked" FontSize="13" />
+                <CheckBox x:Name="Grade_Mode" Content="成绩模式" HorizontalAlignment="Left" Height="25" Margin="10,75,0,0" Width="90" VerticalAlignment="Top" Checked="Grade_Mode_Checked" FontSize="13" />
             </Grid>
             <Grid x:Name="Gird_WindowsSettings" HorizontalAlignment="Left" Height="125" Margin="10,200,0,0" VerticalAlignment="Top" Width="270" Background="#FFEFEFEF">
-                <Label Content="全局设置" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="Black"/>
-                <CheckBox x:Name="GlobalShortcuts" Content="全局快捷键" HorizontalAlignment="Left" Height="25" Margin="10,45,0,0" Width="90" VerticalAlignment="Top" Checked="GlobalShortcuts_Checked"/>
+                <Label Content="全局设置" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="Black" FontSize="15" />
+                <CheckBox x:Name="GlobalShortcuts" Content="全局快捷键" HorizontalAlignment="Left" Height="25" Margin="10,45,0,0" Width="90" VerticalAlignment="Top" Checked="GlobalShortcuts_Checked" FontSize="13" />
             </Grid>
         </Grid>
     </Border>

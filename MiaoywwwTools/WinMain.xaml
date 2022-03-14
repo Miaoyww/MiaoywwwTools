@@ -11,13 +11,13 @@
         <ResourceDictionary>
             <Storyboard x:Key="HideWindow">
                 <DoubleAnimation Duration="0:0:0.2" From="1" To="0" Storyboard.TargetProperty="Opacity" FillBehavior="Stop" />
-                <DoubleAnimation Duration="0:0:0.2" From="1" To="0.8" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleX)" FillBehavior="Stop" Storyboard.TargetName="MainBorder"/>
-                <DoubleAnimation Duration="0:0:0.2" From="1" To="0.8" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleY)" FillBehavior="Stop" Storyboard.TargetName="MainBorder"/>
+                <DoubleAnimation Duration="0:0:0.2" From="1" To="0.9" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleX)" FillBehavior="Stop" Storyboard.TargetName="MainBorder"/>
+                <DoubleAnimation Duration="0:0:0.2" From="1" To="0.9" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleY)" FillBehavior="Stop" Storyboard.TargetName="MainBorder"/>
             </Storyboard>
             <Storyboard x:Key="ShowWindow" >
                 <DoubleAnimation Duration="0:0:0.2" From="0" To="1" Storyboard.TargetProperty="Opacity" FillBehavior="Stop"/>
-                <DoubleAnimation Duration="0:0:0.2" From="0.8" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleX)" FillBehavior="Stop" Storyboard.TargetName="MainBorder"/>
-                <DoubleAnimation Duration="0:0:0.2" From="0.8" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleY)" FillBehavior="Stop" Storyboard.TargetName="MainBorder"/>
+                <DoubleAnimation Duration="0:0:0.2" From="0.9" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleX)" FillBehavior="Stop" Storyboard.TargetName="MainBorder"/>
+                <DoubleAnimation Duration="0:0:0.2" From="0.9" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleY)" FillBehavior="Stop" Storyboard.TargetName="MainBorder"/>
             </Storyboard>
         </ResourceDictionary>
     </Window.Resources>

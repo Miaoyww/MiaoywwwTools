@@ -32,6 +32,7 @@ namespace MiaoywwwTools.Tools.RandomDraw
             if (e.Key == Key.Enter)
             {
                 RandomDrawLib.RaDraw raDraw = new RandomDrawLib.RaDraw();
+                raDraw.Read();
                 string[] result = raDraw.GetRandomResult();
                 Label_Name.Content = result[0];
                 Label_Grade.Content = result[1];
@@ -43,8 +44,8 @@ namespace MiaoywwwTools.Tools.RandomDraw
             this.WindowState = System.Windows.WindowState.Normal;//还原窗口（非最小化和最大化）
             this.WindowStyle = System.Windows.WindowStyle.None; //仅工作区可见，不显示标题栏和边框
             this.ResizeMode = System.Windows.ResizeMode.NoResize;//不显示最大化和最小化按钮
-            this.Topmost = true;    //窗口在最前
-
+            // this.Topmost = true;    //窗口在最前
+            this.Activate();
             this.Left = 0.0;
             this.Top = 0.0;
             this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
@@ -53,6 +54,7 @@ namespace MiaoywwwTools.Tools.RandomDraw
 
         private void Btn_Close_Click(object sender, RoutedEventArgs e)
         {
+            WinMain.winMain.Login = false;
             this.Close();
         }
     }
