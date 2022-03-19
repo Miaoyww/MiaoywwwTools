@@ -4,7 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Compute" Height="450" Width="800" AllowsTransparency="True" Background="Transparent" WindowStyle="None">
+        Title="Compute" Height="450" Width="800" AllowsTransparency="True" Background="Transparent" WindowStyle="None" Loaded="Window_Loaded" Closed="Window_Closed">
     <Window.Resources>
         <ResourceDictionary>
             <Storyboard x:Key="HideWindow">
@@ -16,6 +16,12 @@
                 <DoubleAnimation Duration="0:0:0.2" From="0" To="1" Storyboard.TargetProperty="Opacity" FillBehavior="Stop" />
                 <DoubleAnimation Duration="0:0:0.2" From="0.9" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleX)" FillBehavior="Stop" Storyboard.TargetName="MainBorder" />
                 <DoubleAnimation Duration="0:0:0.2" From="0.9" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleY)" FillBehavior="Stop" Storyboard.TargetName="MainBorder" />
+            </Storyboard>
+            <Storyboard x:Key="HideLabel">
+                <DoubleAnimation Duration="0:0:2" From="1" To="0" Storyboard.TargetProperty="Opacity" FillBehavior="Stop" />
+            </Storyboard>
+            <Storyboard x:Key="ShowLabel">
+                <DoubleAnimation Duration="0:0:2" From="0" To="1" Storyboard.TargetProperty="Opacity" FillBehavior="HoldEnd" />
             </Storyboard>
         </ResourceDictionary>
     </Window.Resources>
@@ -56,7 +62,7 @@
                     <Label Content="概率计算" HorizontalAlignment="Left" Height="66" Width="110" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" FontSize="16" FontWeight="Bold" />
                 </Grid>
             </Border>
-            <Border Background="#FFEFEFEF" CornerRadius="5,5,5,5" Margin="10,70,500,130">
+            <Border Background="#FFEFEFEF" CornerRadius="5,5,5,5" Margin="10,70,500,150">
                 <Border.Effect>
                     <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.8" Direction="0" />
                 </Border.Effect>
@@ -65,9 +71,9 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <TextBox x:Name="TextBox_ComputeTimes" HorizontalAlignment="Left" Height="25" Margin="67,66,0,0" TextWrapping="Wrap" Text="1000" VerticalAlignment="Top" Width="175" TextChanged="TextBox_ComputeTimes_TextChanged" />
-                    <TextBox x:Name="TextBox_RemanentTimes" HorizontalAlignment="Left" Height="25" Margin="10,201,0,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top" Width="175" TextChanged="TextBox_ComputeTimes_TextChanged" />
+                    <TextBox x:Name="TextBox_RemanentTimes" HorizontalAlignment="Left" Height="25" Margin="10,180,0,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top" Width="175" TextChanged="TextBox_ComputeTimes_TextChanged" />
                     <CheckBox x:Name="RealTime" Content="实时输出结果" HorizontalAlignment="Left" Height="25" Margin="10,101,0,0" Width="110" VerticalAlignment="Top" FontSize="13" />
-                    <Label Content="剩余次数" HorizontalAlignment="Left" Margin="10,163,0,0" VerticalAlignment="Top" Foreground="Black" FontSize="15" />
+                    <Label Content="剩余次数" HorizontalAlignment="Left" Margin="10,142,0,0" VerticalAlignment="Top" Foreground="Black" FontSize="15" />
                     <Label Content="计算设置" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Foreground="Black" FontSize="15" />
                     <Label Content="次数" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" />
                 </Grid>
@@ -75,6 +81,7 @@
             <Button x:Name="Btn_Compute" Content="开始" Height="64" Width="200" FontSize="25" BorderBrush="#FF868686" BorderThickness="2,2,2,2" HorizontalAlignment="Left" Margin="10,356,0,0" VerticalAlignment="Top" Click="Btn_Compute_Click" />
             <TextBlock x:Name="TextBlock_Result" HorizontalAlignment="Left" Height="320" Margin="320,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="460" Foreground="White" Background="#FF424242" />
             <Label Content="结果" HorizontalAlignment="Left" Margin="313,70,0,0" VerticalAlignment="Top" Foreground="Black" FontSize="15" />
+            <Label x:Name="Label_Info" Content="信息" HorizontalAlignment="Left" Height="36" Margin="10,315,0,0" VerticalAlignment="Top" Width="200" FontSize="15" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF4293FF" FontWeight="Bold"/>
         </Grid>
     </Border>
 </Window>

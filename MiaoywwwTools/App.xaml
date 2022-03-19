@@ -1,7 +1,7 @@
 ﻿<Application x:Class="MiaoywwwTools.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="WinMain.xaml">
+             StartupUri="MainWin/WinMain.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

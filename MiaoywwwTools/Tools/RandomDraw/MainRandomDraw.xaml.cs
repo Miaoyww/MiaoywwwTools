@@ -1,45 +1,51 @@
-﻿using MiaoywwwTools.Tools.RandomDraw;
+﻿using System;
+using System.Threading;
+using System.Windows;
 using System.Windows.Controls;
 
-namespace MiaoywwwTools
+namespace MiaoywwwTools.Tools.RandomDraw
 {
     /// <summary>
     /// ToolsRr.xaml 的交互逻辑
     /// </summary>
-    public partial class ToolsRr : Page
+    public partial class MainRandomDraw : Page
     {
-        public ToolsRr trr;
+        public MainRandomDraw trr;
 
-        public ToolsRr()
+        public MainRandomDraw()
         {
             InitializeComponent();
             trr = this;
         }
+
         private void Btn_Start_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            RandomDrawLib.RaDraw raDraw = new RandomDrawLib.RaDraw();
+            RandomDrawLib.RaDraw raDraw = new();
             raDraw.Read();
             string[] result = raDraw.GetRandomResult();
             if (result != null)
             {
-                ShowResult showResult = new ShowResult();
+                ShowResult showResult = new();
                 showResult.Label_Name.Content = result[0];
                 showResult.Label_Grade.Content = result[1];
                 showResult.Show();
             }
-
         }
 
         private void Btn_Settings_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            ToolRrSettings toolRrSettings = new ToolRrSettings();
-            toolRrSettings.ShowDialog();
+            Settings settings = new();
+            settings.ShowDialog();
         }
 
         private void Btn_ComputeProbability_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            Compute compute = new Compute();
-            compute.ShowDialog();
+            Thread thread = new(() =>
+            {
+                Application.Current.Dispatcher.Invoke(new Action(() => { Compute.Show(); }));
+            });
+            thread.IsBackground = true;
+            thread.Start();
         }
     }
 }

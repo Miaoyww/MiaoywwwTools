@@ -11,9 +11,14 @@
 
     <Grid Width="942" Height="470" Background="#FFC9DCF3">
         <Grid HorizontalAlignment="Left" Height="470" VerticalAlignment="Center" Width="249" Background="#FFF5F7FB">
-            <Button x:Name="Btn_RandomDraw" Content="点名器" Height="48" Width="229" BorderBrush="#FF868686" Foreground="White" FontSize="20" FontWeight="Bold" Click="Btn_RandomDraw_Click">
+            <Button x:Name="Btn_RandomDraw" Content="点名器" Height="48" Width="229" BorderBrush="#FF868686" Foreground="White" FontSize="20" FontWeight="Bold" Click="Btn_RandomDraw_Click" Margin="0,187,0,0" VerticalAlignment="Top">
                 <Button.Background>
                     <SolidColorBrush Color="Black" Opacity="0.7" />
+                </Button.Background>
+            </Button>
+            <Button x:Name="Btn_WallPaper" Content="壁纸" Height="48" Width="229" BorderBrush="#FF868686" Foreground="White" FontSize="20" FontWeight="Bold" Click="Btn_WallPaper_Click" Margin="0,240,0,0" VerticalAlignment="Top">
+                <Button.Background>
+                    <SolidColorBrush Color="#FF00A7FF" Opacity="0.7" />
                 </Button.Background>
             </Button>
         </Grid>

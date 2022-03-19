@@ -7,4 +7,4 @@ using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage("Style", "IDE0090:使用 \"new(...)\"", Justification = "<挂起>", Scope = "member", Target = "~M:RandomDraw.RaDraw.GetRandomResult~System.String[]")]
 [assembly: SuppressMessage("Style", "IDE0090:使用 \"new(...)\"", Justification = "<挂起>", Scope = "member", Target = "~M:MiaoywwwTools.WinMain.Button_Click(System.Object,System.Windows.RoutedEventArgs)")]
-[assembly: SuppressMessage("Style", "IDE0063:使用简单的 \"using\" 语句", Justification = "<挂起>", Scope = "member", Target = "~M:RandomDraw.RaDraw.GetRandomResult~System.String[]")]
+[assembly: SuppressMessage("Style", "IDE0063:使用简单的 \"using\" 语句", Justification = "<挂起>", Scope = "member", Target = "~M:RandomDraw.RaDraw.GetRandomResult~System.String[]")] 

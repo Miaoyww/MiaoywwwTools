@@ -16,7 +16,7 @@ namespace RandomDrawLib
             // 这里不得用 ./ca
             if (File.Exists("/Resources/Data/stdata.json"))
             {
-                WinMessage winMessage = new WinMessage();
+                WinMessage winMessage = new();
                 winMessage.SetMessage("错误", "未找到/Resources/Data/stdata.json文件", "close", "yes");
                 winMessage.ShowDialog();
             }
@@ -32,11 +32,17 @@ namespace RandomDrawLib
             return (JObject)JToken.ReadFrom(new JsonTextReader(reader));
         }
 
+        public int GetRandomNumber(int start, int end)
+        {
+            Random random = new();
+            return random.Next(start, end);
+        }
+
         public string[]? GetRandomResult()
         {
             if (Read == null)
             {
-                WinMessage winMessage = new WinMessage();
+                WinMessage winMessage = new();
                 winMessage.SetMessage("调试", "先使用Read", "close", "yes");
                 winMessage.ShowDialog();
                 return null;
@@ -46,7 +52,7 @@ namespace RandomDrawLib
                 JObject jsonObject = (JObject)JToken.ReadFrom(new JsonTextReader(reader));
                 if (jsonObject != null)
                 {
-                    Random rd = new Random();
+                    Random rd = new();
                     int randomtimes = jsonObject.Count;
 
                     int[] randomNumberList = new int[randomtimes];
@@ -100,18 +106,16 @@ namespace RandomDrawLib
 
         public int GetStdataLentgh()
         {
-            using (StreamReader reader = File.OpenText(@"./Resources/Data/stdata.json"))
+            using StreamReader reader = File.OpenText(@"./Resources/Data/stdata.json");
+            JObject jsonObject = (JObject)JToken.ReadFrom(new JsonTextReader(reader));
+            if (jsonObject != null)
             {
-                JObject jsonObject = (JObject)JToken.ReadFrom(new JsonTextReader(reader));
-                if (jsonObject != null)
-                {
-                    int result = jsonObject.Count;
-                    return result;
-                }
-                else
-                {
-                    return 0;
-                }
+                int result = jsonObject.Count;
+                return result;
+            }
+            else
+            {
+                return 0;
             }
         }
     }

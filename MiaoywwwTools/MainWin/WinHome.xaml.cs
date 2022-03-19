@@ -37,7 +37,7 @@ namespace MiaoywwwTools
             Stream responseStream = response.GetResponseStream();
             //创建本地文件写入流
             // 防止文件夹不存在报错
-            if (Directory.Exists(System.Environment.CurrentDirectory + @"\Resources\Images\"))
+            if (!Directory.Exists(System.Environment.CurrentDirectory + @"\Resources\Images\"))
             {
                 Directory.CreateDirectory(System.Environment.CurrentDirectory + @"\Resources\Images\");
             }
@@ -137,7 +137,7 @@ namespace MiaoywwwTools
         /// <summary>
         /// ToolsRr的注册表目录
         /// </summary>
-        public string keypath = "HKEY_CURRENT_USER\\SOFTWARE\\Miaoywww\\MiaoywwwTools\\ToolsRr";
+        public string keypath = "HKEY_CURRENT_USER\\SOFTWARE\\Miaoywww\\MiaoywwwTools\\";
 
         /// <summary>
         /// Miaomiaoywww的QQ头像目录
@@ -166,19 +166,18 @@ namespace MiaoywwwTools
                 if (way == "change")
                 {
                     // 选择文件
-                    Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
+                    Microsoft.Win32.OpenFileDialog dialog = new();
                     dialog.Title = "选择你的头像";
                     dialog.DefaultExt = ".png";
-                    dialog.Filter = @"图像文件(*.jpg,*.png,*.tif,*.gif)|*jpeg;*.jpg;*.png;*.tif;*.tiff;*.gif
-                |JPEG(*.jpeg, *.jpg)|*.jpeg;*.jpg|PNG(*.png)|*.png";
+                    dialog.Filter = @"图像文件(*.jpg,*.png)|*jpeg;*.jpg;*.png;|JPEG(*.jpeg, *.jpg)|*.jpeg;*.jpg|PNG(*.png)|*.png";
                     // 打开选择框选择
                     Nullable<bool> result = dialog.ShowDialog();
                     if (result == true)
                     {
                         string selectfilePath = dialog.FileName; // 获取选择的文件名
                         File.Copy(selectfilePath, userfacetempPath);
+                        WinMain.winMain.FaceChanged = true;
                     }
-                    WinMain.winMain.FaceChanged = true;
                 }
                 // 清理头像，即选择Miaomiaoywww的头像
                 if (way == "cleanup")
@@ -189,14 +188,18 @@ namespace MiaoywwwTools
             }
             else  // 如果头像已修改
             {
-                WinMessage winMessage1 = new WinMessage();
+                WinMessage winMessage1 = new();
                 winMessage1.SetMessage("错误", "已经设置过头像了，请重启本应用之后再试", "restart", "yesno");
                 winMessage1.ShowDialog();
                 return;
             }
-            WinMessage winMessage2 = new WinMessage();
-            winMessage2.SetMessage("信息", "本操作需要重启程序,是否现在重启?", "restart", "yesno");
-            winMessage2.ShowDialog();
+            if (WinMain.winMain.FaceChanged)
+            {
+                WinMessage winMessage2 = new();
+                winMessage2.SetMessage("信息", "本操作需要重启程序,是否现在重启?", "restart", "yesno");
+                winMessage2.ShowDialog();
+            }
+            
         }
 
         // 头像Image点击事件

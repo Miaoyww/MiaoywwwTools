@@ -4,6 +4,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media.Animation;
 
 namespace MiaoywwwTools
@@ -25,24 +26,29 @@ namespace MiaoywwwTools
         }
 
         public Array times; // 预留接口，准备做ToolsRr的概率计算
-        public ShowResult showResult = new ShowResult();
+        public ShowResult showResult = new();
         public bool Login;  // ToolsRr的Result窗口是否登录
         public bool FaceChanged; // Home的头像是否已经修改
         public bool CleanUpFace;    // 清除Home的头像
-
+        public string PageName;     // 储存页面
+        public int hwnd;
         /// <summary>
         /// 切换窗口
         /// </summary>
         /// <param name="pagename"> 页面名称 </param>
         public void ChangePage(string pagename)
         {
-            Type pageType = Type.GetType(pagename);
-            if (pageType != null)
+            if (pagename != PageName)
             {
-                this.NestPage.Content = new Frame()
+                Type pageType = Type.GetType(pagename);
+                if (pageType != null)
                 {
-                    Content = Activator.CreateInstance(pageType)
-                };
+                    this.NestPage.Content = new Frame()
+                    {
+                        Content = Activator.CreateInstance(pageType)
+                    };
+                }
+                PageName = pagename;
             }
         }
 
@@ -68,7 +74,7 @@ namespace MiaoywwwTools
             var story = (Storyboard)this.Resources["HideWindow"];
             if (story != null)
             {
-                story.Completed += delegate { Application.Current.Shutdown(); };
+                story.Completed += delegate { Environment.Exit(0); };
                 story.Begin(this);
             }
         }
@@ -82,19 +88,8 @@ namespace MiaoywwwTools
         // 开机主页
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            hwnd = (int)new WindowInteropHelper(this).Handle;
             ChangePage("MiaoywwwTools.WinHome");
-
-            string keypath = "HKEY_CURRENT_USER\\SOFTWARE\\Miaoywww\\MiaoywwwTools\\ToolsRr";
-            // 判断注册表是否有指定值
-            // 无则创建
-            if (Registry.GetValue(keypath, "Mode", null) == null)
-            {
-                Registry.SetValue(keypath, "Mode", "random");
-            }
-            if (Registry.GetValue(keypath, "FaceCleanUp", null) == null)
-            {
-                Registry.SetValue(keypath, "FaceCleanUp", "false");
-            }
         }
 
         private void Btn_Mini_Click(object sender, RoutedEventArgs e)

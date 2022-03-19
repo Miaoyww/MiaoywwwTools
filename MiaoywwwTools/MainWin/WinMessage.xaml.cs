@@ -30,7 +30,7 @@ namespace MiaoywwwTools
         public void SetMessage(string title, string content, string act, string yesno)
         {
             Label_MessageTitle.Content = title;
-            Label_MessageBody.Content = content;
+            TextBlock_MessageBody.Text = content;
             action = act;
             switch (yesno)
             {

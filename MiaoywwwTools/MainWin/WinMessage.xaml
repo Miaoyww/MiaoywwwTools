@@ -41,7 +41,7 @@
                 <Label x:Name="Label_MessageTitle" Height="52" Width="476" HorizontalContentAlignment="Left" FontSize="18" BorderThickness="1,1,1,1" Foreground="White" Background="{x:Null}" BorderBrush="{x:Null}" Content="Title" HorizontalAlignment="Left" Margin="-1,0,0,0" />
             </Border>
 
-            <Label x:Name="Label_MessageBody" Content="Body" Height="92" Width="360" BorderBrush="{x:Null}" Background="White" VerticalContentAlignment="Top" FontSize="20" Foreground="Black" FontWeight="Normal" />
+            <TextBlock x:Name="TextBlock_MessageBody" Text="Body" Margin="10,65,10,71" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" TextWrapping="NoWrap" Block.TextAlignment="Center" />
             <Button x:Name="Btn_Yes" Content="确认" HorizontalAlignment="Left" Height="56" Margin="346,189,0,0" VerticalAlignment="Top" Width="119" Click="Btn_Yes_Click" Foreground="White" Background="#FF0095F3" BorderBrush="White" FontWeight="Bold" />
             <Button x:Name="Btn_No" Content="取消" HorizontalAlignment="Left" Height="56" Margin="10,189,0,0" VerticalAlignment="Top" Width="119" Click="Btn_No_Click" Background="#FF0095F3" Foreground="White" BorderBrush="White" FontWeight="Bold" />
         </Grid>

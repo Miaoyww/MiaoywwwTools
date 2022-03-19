@@ -9,7 +9,7 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="EasterEgg.xaml.cs">
+    <Compile Update="MainWin\EasterEgg.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Tools\RandomDraw\Compute.xaml.cs">
@@ -18,27 +18,30 @@
     <Compile Update="Tools\RandomDraw\ShowResult.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Tools\RandomDraw\ToolRrSettings.xaml.cs">
+    <Compile Update="Tools\RandomDraw\Settings.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Tools\RandomDraw\ToolsRr.xaml.cs">
+    <Compile Update="Tools\RandomDraw\MainRandomDraw.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WinHome.xaml.cs">
+    <Compile Update="Tools\WallPaper\MainWallPaper.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WinMain.xaml.cs">
+    <Compile Update="MainWin\WinHome.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WinMessage.xaml.cs">
+    <Compile Update="MainWin\WinMain.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WinMore.xaml.cs">
+    <Compile Update="MainWin\WinMessage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MainWin\WinMore.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="EasterEgg.xaml">
+    <Page Update="MainWin\EasterEgg.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Resources\MiaoRes.xaml">
@@ -50,22 +53,25 @@
     <Page Update="Tools\RandomDraw\ShowResult.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Tools\RandomDraw\ToolRrSettings.xaml">
+    <Page Update="Tools\RandomDraw\Settings.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Tools\RandomDraw\ToolsRr.xaml">
+    <Page Update="Tools\RandomDraw\MainRandomDraw.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WinHome.xaml">
+    <Page Update="Tools\WallPaper\MainWallPaper.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WinMain.xaml">
+    <Page Update="MainWin\WinHome.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WinMessage.xaml">
+    <Page Update="MainWin\WinMain.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WinMore.xaml">
+    <Page Update="MainWin\WinMessage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MainWin\WinMore.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

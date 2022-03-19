@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using Microsoft.Win32;
+using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace MiaoywwwTools.Tools.RandomDraw
 {
@@ -14,6 +16,7 @@ namespace MiaoywwwTools.Tools.RandomDraw
         {
             InitializeComponent();
         }
+        public string keypath = "HKEY_CURRENT_USER\\SOFTWARE\\Miaoywww\\MiaoywwwTools\\Tools\\RandomDraw\\";
 
         private void Window_KeyUp(object sender, KeyEventArgs e)
         {
@@ -38,6 +41,14 @@ namespace MiaoywwwTools.Tools.RandomDraw
             this.Top = 0.0;
             this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
             this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
+
+            BrushConverter brushConverter = new BrushConverter();
+            Label_Name.Foreground = (Brush)brushConverter.ConvertFromString(Registry.GetValue(keypath, "NameColor", null).ToString());
+            Label_Grade.Foreground = (Brush)brushConverter.ConvertFromString(Registry.GetValue(keypath, "GradeColor", null).ToString());
+            Grid_Main.Background = (Brush)brushConverter.ConvertFromString(Registry.GetValue(keypath, "BackGround", null).ToString());
+
+            Label_Name.FontSize = int.Parse(Registry.GetValue(keypath, "NameSize", null).ToString());
+            Label_Grade.FontSize = int.Parse(Registry.GetValue(keypath, "GradeSize", null).ToString());
         }
 
         private void Btn_Close_Click(object sender, RoutedEventArgs e)

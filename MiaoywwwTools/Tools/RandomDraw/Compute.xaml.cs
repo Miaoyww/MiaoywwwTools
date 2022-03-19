@@ -1,11 +1,14 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
+
 
 namespace MiaoywwwTools.Tools.RandomDraw
 {
@@ -14,9 +17,20 @@ namespace MiaoywwwTools.Tools.RandomDraw
     /// </summary>
     public partial class Compute : Window
     {
+        public bool Computing;
+        public bool AnimationCompleted = true;
+        public bool _run = true;
+        public Thread thread;
+
         public Compute()
         {
             InitializeComponent();
+        }
+
+        public static void Show()
+        {
+            Compute compute = new();
+            compute.ShowDialog();
         }
 
         private void Btn_Close_Click(object sender, RoutedEventArgs e)
@@ -24,7 +38,10 @@ namespace MiaoywwwTools.Tools.RandomDraw
             var story = (Storyboard)this.Resources["HideWindow"];
             if (story != null)
             {
-                story.Completed += delegate { Close(); };
+                story.Completed += delegate
+                {
+                    this.Close();
+                };
                 story.Begin(this);
             }
         }
@@ -34,81 +51,105 @@ namespace MiaoywwwTools.Tools.RandomDraw
             DragMove();
         }
 
+        private void ShowInfo(string content)
+        {
+            if (AnimationCompleted)
+            {
+                Label_Info.Content = content;
+                AnimationCompleted = false;
+                var story = (Storyboard)this.Resources["ShowLabel"];
+                if (story != null)
+                {
+                    story.Completed += delegate
+                    {
+                        var story = (Storyboard)this.Resources["HideLabel"];
+                        if (story != null)
+                        {
+                            AnimationCompleted = true;
+                            story.Begin(Label_Info, true);
+                        }
+                    };
+                    story.Begin(Label_Info, true);
+                }
+            }
+        }
+
         private void Btn_Compute_Click(object sender, RoutedEventArgs e)
         {
-            if (RealTime.IsChecked is true)
+            if (Computing)
             {
-                Thread thread = new Thread(new ThreadStart(ThreadList));
-                thread.Start();
+                Btn_Compute.Content = "开始";
+                _run = false;
+                Computing = false;
             }
             else
             {
-                Thread threadb = new Thread(new ThreadStart(AfterComputeResult));
-                threadb.Start();
+                Btn_Compute.Content = "停止";
+                Computing = true;
+                _run = true;
+                int runtimes = int.Parse(TextBox_ComputeTimes.Text);
+                // ComputeResult computeResult = new ComputeResult();
+                // computeResult.RunTimes = runtimes;
+                // computeResult.RealTimeOutPut = (bool)RealTime.IsChecked;
+                bool realTimeoutput = (bool)RealTime.IsChecked;
+                thread = new Thread(() =>
+                {
+                    GetRandomResult(runtimes, realTimeoutput);
+                });
+                // thread.SetApartmentState(ApartmentState.STA);
+                thread.IsBackground = true;
+                thread.Start();
             }
         }
 
-        private void ThreadList()
+        private void Story_Completed(object? sender, EventArgs e)
         {
-            for (int i = 0; i < 1; i++)
-                new Thread(() => { RealTimeComputeResult(); }).Start();
+            throw new NotImplementedException();
         }
 
-        private void AfterComputeResult()
+        public async void GetRandomResult(int RunTimes, bool RealTimeOutPut = false)
         {
-            RandomDrawLib.RaDraw raDraw = new RandomDrawLib.RaDraw();
+            RandomDrawLib.RaDraw raDraw = new();
             raDraw.Read();
             int arraylength = raDraw.GetStdataLentgh();
-            string[,] std = new string[arraylength, 2];  // 数据
+            string[,] PersonList = new string[arraylength, 2];  // 数据
             JObject jsonObject = raDraw.GetStdataContent();
-            int times = 0;
-            // 委托主线程改变内容
-            TextBox_ComputeTimes.Dispatcher.Invoke(new Action(
-                delegate
-                {
-                    times = int.Parse(TextBox_ComputeTimes.Text);
-                })
-                );
             // 将jsonObject中的数据转存到std中，并加入一个“重复到的次数”
             for (int i = 0; i < arraylength; i++)
             {
-                std[i, 0] = jsonObject[i.ToString()]["name"].ToString();
-                std[i, 1] = "0";
+                PersonList[i, 0] = jsonObject[i.ToString()]["name"].ToString();
+                PersonList[i, 1] = "0";
             }
             // 重复执行
-            for (int i = times; i >= 0; i--)
+            for (int lefttimes = RunTimes; RunTimes >= 0; RunTimes--)
             {
-                TextBox_RemanentTimes.Dispatcher.Invoke(new Action(
-                delegate
+                if (_run)
                 {
-                    TextBox_RemanentTimes.Text = i.ToString();
-                })
-                );
-                raDraw.Read();
-                string[] result = raDraw.GetRandomResult();
-                std[int.Parse(result[2]), 1] = (int.Parse(std[int.Parse(result[2]), 1]) + 1).ToString();
-            }
-            // 用冒泡排序将二维数组排序
-            for (int i = 0; i < arraylength; i++)
-            {
-                for (int j = 0; j < arraylength - i - 1; j++)
-                {
-                    if (int.Parse(std[j, 1]) < int.Parse(std[j + 1, 1]))
+                    await this.Dispatcher.BeginInvoke(new Action(delegate
                     {
-                        string[] temp0 = new string[2];
-                        string[] temp1 = new string[2];
-                        temp0[0] = std[j, 0];  // 人名
-                        temp0[1] = std[j, 1]; // 成绩
+                        this.TextBox_RemanentTimes.Text = RunTimes.ToString();
+                    }));
+                    raDraw.Read();
+                    string[] result = raDraw.GetRandomResult();
+                    PersonList[int.Parse(result[2]), 1] = (int.Parse(PersonList[int.Parse(result[2]), 1]) + 1).ToString();
+                    PersonList = await SortData(PersonList, arraylength);
+                    if (RealTimeOutPut is true)
+                    {
+                        string wholeContent = "";
+                        for (int ic = 0; ic < arraylength; ic++)
+                        {
+                            wholeContent += string.Format("-{0} {1}:{2} \n", ic, PersonList[ic, 0], PersonList[ic, 1]);
+                        }
 
-                        temp1[0] = std[j + 1, 0];
-                        temp1[1] = std[j + 1, 1];
-
-                        std[j, 0] = temp1[0];
-                        std[j, 1] = temp1[1];
-
-                        std[j + 1, 0] = temp0[0];
-                        std[j + 1, 1] = temp0[1];
+                        await this.Dispatcher.BeginInvoke(new Action(delegate
+                        {
+                            this.TextBlock_Result.Text = wholeContent;
+                        }));
                     }
+                }
+                else
+                {
+                    return;
                 }
             }
             DateTime time = new DateTime();
@@ -126,84 +167,49 @@ namespace MiaoywwwTools.Tools.RandomDraw
             StreamWriter sw = new(filepath, true, System.Text.Encoding.Default);
             for (int i = 0; i < arraylength; i++)
             {
-                sw.WriteLine(String.Format("-{0} {1}:{2}", i, std[i, 0], std[i, 1]));
+                sw.WriteLine(String.Format("-{0} {1}:{2}", i, PersonList[i, 0], PersonList[i, 1]));
             }
             sw.Flush();
             sw.Close();
+            if (RealTimeOutPut is false)
+            {
+                Process.Start("notepad.exe", filepath);
+            }
+            Computing = false;
+            this.Dispatcher.Invoke(new Action(delegate
+            {
+                this.Btn_Compute.Content = "开始";
+            }));
         }
 
-        private void RealTimeComputeResult()
+        private Task<string[,]> SortData(string[,] data, int length)
         {
-            RandomDrawLib.RaDraw raDraw = new RandomDrawLib.RaDraw();
-            raDraw.Read();
-            int arraylength = raDraw.GetStdataLentgh();
-            string[,] std = new string[arraylength, 2];  // 数据
-            JObject jsonObject = raDraw.GetStdataContent();
-            int times = 0;
-            // 委托主线程改变内容
-            TextBox_ComputeTimes.Dispatcher.Invoke(new Action(
-                delegate
-                {
-                    times = int.Parse(TextBox_ComputeTimes.Text);
-                })
-                );
-            // 将jsonObject中的数据转存到std中，并加入一个“重复到的次数”
-            for (int i = 0; i < arraylength; i++)
+            return Task.Run(() =>
             {
-                std[i, 0] = jsonObject[i.ToString()]["name"].ToString();
-                std[i, 1] = "0";
-            }
-            // 重复执行
-            for (int i = times; i >= 0; i--)
-            {
-                TextBox_RemanentTimes.Dispatcher.Invoke(new Action(
-                delegate
+                for (int i = 0; i < length; i++)
                 {
-                    TextBox_RemanentTimes.Text = i.ToString();
-                })
-                );
-                raDraw.Read();
-                string[] result = raDraw.GetRandomResult();
-                std[int.Parse(result[2]), 1] = (int.Parse(std[int.Parse(result[2]), 1]) + 1).ToString();
-                // 用冒泡排序将二维数组排序
-                for (int ib = 0; ib < arraylength; ib++)
-                {
-                    for (int j = 0; j < arraylength - ib - 1; j++)
+                    for (int j = 0; j < length - i - 1; j++)
                     {
-                        if (int.Parse(std[j, 1]) < int.Parse(std[j + 1, 1]))
+                        if (int.Parse(data[j, 1]) < int.Parse(data[j + 1, 1]))
                         {
                             string[] temp0 = new string[2];
                             string[] temp1 = new string[2];
-                            temp0[0] = std[j, 0];  // 人名
-                            temp0[1] = std[j, 1]; // 成绩
+                            temp0[0] = data[j, 0];  // 人名
+                            temp0[1] = data[j, 1]; // 成绩
 
-                            temp1[0] = std[j + 1, 0];
-                            temp1[1] = std[j + 1, 1];
+                            temp1[0] = data[j + 1, 0];
+                            temp1[1] = data[j + 1, 1];
 
-                            std[j, 0] = temp1[0];
-                            std[j, 1] = temp1[1];
+                            data[j, 0] = temp1[0];
+                            data[j, 1] = temp1[1];
 
-                            std[j + 1, 0] = temp0[0];
-                            std[j + 1, 1] = temp0[1];
+                            data[j + 1, 0] = temp0[0];
+                            data[j + 1, 1] = temp0[1];
                         }
                     }
                 }
-                TextBlock_Result.Dispatcher.Invoke(new Action(
-                delegate
-                {
-                    TextBlock_Result.Text = null;
-                })
-                );
-                for (int ic = 0; ic < arraylength; ic++)
-                {
-                    TextBlock_Result.Dispatcher.Invoke(new Action(
-                    delegate
-                    {
-                        TextBlock_Result.Text += string.Format("-{0} {1}:{2} \n", ic, std[ic, 0], std[ic, 1]);
-                    })
-                    );
-                }
-            }
+                return data;
+            });
         }
 
         private void TextBox_ComputeTimes_TextChanged(object sender, TextChangedEventArgs e)
@@ -212,17 +218,29 @@ namespace MiaoywwwTools.Tools.RandomDraw
             {
                 int.Parse(TextBox_ComputeTimes.Text);
             }
-            catch
+            catch (FormatException)
             {
-                WinMessage winMessage = new WinMessage();
-                winMessage.SetMessage("错误", "请输入一个正整数", "close", "yesno");
+                ShowInfo("请输入一个正整数");
+                TextBox_ComputeTimes.Text = (1000).ToString();
                 return;
             }
             if (int.Parse(TextBox_ComputeTimes.Text) <= 0)
             {
-                WinMessage winMessage = new WinMessage();
-                winMessage.SetMessage("错误", "请输入一个正整数", "close", "yesno");
+                ShowInfo("请输入一个正整数");
+                TextBox_ComputeTimes.Text = (1000).ToString();
             }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Label_Info.Opacity = 0;
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            _run = false;
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
     }
 }
