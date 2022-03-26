@@ -84,21 +84,23 @@ namespace MiaoywwwTools.Tools.RandomDraw
             }
             else
             {
-                Btn_Compute.Content = "停止";
-                Computing = true;
-                _run = true;
-                int runtimes = int.Parse(TextBox_ComputeTimes.Text);
-                // ComputeResult computeResult = new ComputeResult();
-                // computeResult.RunTimes = runtimes;
-                // computeResult.RealTimeOutPut = (bool)RealTime.IsChecked;
-                bool realTimeoutput = (bool)RealTime.IsChecked;
-                thread = new Thread(() =>
+                RandomDrawLib.RaDraw raDraw = new();
+                bool real = raDraw.Read();  // 若文件不存在，返回false
+                if (real)
                 {
-                    GetRandomResult(runtimes, realTimeoutput);
-                });
-                // thread.SetApartmentState(ApartmentState.STA);
-                thread.IsBackground = true;
-                thread.Start();
+                    Btn_Compute.Content = "停止";
+                    Computing = true;
+                    _run = true;
+                    int runtimes = int.Parse(TextBox_ComputeTimes.Text);
+                    bool realTimeoutput = (bool)RealTime.IsChecked;
+                    thread = new Thread(() =>
+                    {
+                        GetRandomResult(runtimes, realTimeoutput);
+                    });
+                    // thread.SetApartmentState(ApartmentState.STA);
+                    thread.IsBackground = true;
+                    thread.Start();
+                }
             }
         }
 
@@ -110,76 +112,83 @@ namespace MiaoywwwTools.Tools.RandomDraw
         public async void GetRandomResult(int RunTimes, bool RealTimeOutPut = false)
         {
             RandomDrawLib.RaDraw raDraw = new();
-            raDraw.Read();
-            int arraylength = raDraw.GetStdataLentgh();
-            string[,] PersonList = new string[arraylength, 2];  // 数据
-            JObject jsonObject = raDraw.GetStdataContent();
-            // 将jsonObject中的数据转存到std中，并加入一个“重复到的次数”
-            for (int i = 0; i < arraylength; i++)
+            bool real = raDraw.Read();  // 若文件不存在，返回false
+            if (real)
             {
-                PersonList[i, 0] = jsonObject[i.ToString()]["name"].ToString();
-                PersonList[i, 1] = "0";
-            }
-            // 重复执行
-            for (int lefttimes = RunTimes; RunTimes >= 0; RunTimes--)
-            {
-                if (_run)
+                int arraylength = raDraw.GetStdataLentgh();
+                string[,] PersonList = new string[arraylength, 2];  // 数据
+                JObject jsonObject = raDraw.GetStdataContent();
+                // 将jsonObject中的数据转存到std中，并加入一个“重复到的次数”
+                for (int i = 0; i < arraylength; i++)
                 {
-                    await this.Dispatcher.BeginInvoke(new Action(delegate
+                    PersonList[i, 0] = jsonObject[i.ToString()]["name"].ToString();
+                    PersonList[i, 1] = "0";
+                }
+                // 重复执行
+                for (int lefttimes = RunTimes; RunTimes >= 0; RunTimes--)
+                {
+                    if (_run)
                     {
-                        this.TextBox_RemanentTimes.Text = RunTimes.ToString();
-                    }));
-                    raDraw.Read();
-                    string[] result = raDraw.GetRandomResult();
-                    PersonList[int.Parse(result[2]), 1] = (int.Parse(PersonList[int.Parse(result[2]), 1]) + 1).ToString();
-                    PersonList = await SortData(PersonList, arraylength);
-                    if (RealTimeOutPut is true)
-                    {
-                        string wholeContent = "";
-                        for (int ic = 0; ic < arraylength; ic++)
-                        {
-                            wholeContent += string.Format("-{0} {1}:{2} \n", ic, PersonList[ic, 0], PersonList[ic, 1]);
-                        }
-
                         await this.Dispatcher.BeginInvoke(new Action(delegate
                         {
-                            this.TextBlock_Result.Text = wholeContent;
+                            this.TextBox_RemanentTimes.Text = RunTimes.ToString();
                         }));
+                        raDraw.Read();
+                        string[] result = raDraw.GetRandomResult();
+                        PersonList[int.Parse(result[2]), 1] = (int.Parse(PersonList[int.Parse(result[2]), 1]) + 1).ToString();
+                        PersonList = await SortData(PersonList, arraylength);
+                        if (RealTimeOutPut is true)
+                        {
+                            string wholeContent = "";
+                            for (int ic = 0; ic < arraylength; ic++)
+                            {
+                                wholeContent += string.Format("-{0} {1}:{2} \n", ic, PersonList[ic, 0], PersonList[ic, 1]);
+                            }
+
+                            await this.Dispatcher.BeginInvoke(new Action(delegate
+                            {
+                                this.TextBlock_Result.Text = wholeContent;
+                            }));
+                        }
+                    }
+                    else
+                    {
+                        return;
                     }
                 }
-                else
+                DateTime time = new DateTime();
+                time = DateTime.Now;
+                int second = time.Second;
+                string filepath = String.Format(
+                    "./Result/ToolsRr_compute_{0}.{1}.{2}.{3}_{4}_{5}.txt",
+                    time.Year, time.Month, time.Day, time.Hour, time.Minute, time.Second
+                );
+                if (Directory.Exists("./Result/") is false)
                 {
-                    return;
+                    Directory.CreateDirectory("Result");
                 }
+                File.Create(filepath).Close();
+                StreamWriter sw = new(filepath, true, System.Text.Encoding.Default);
+                for (int i = 0; i < arraylength; i++)
+                {
+                    sw.WriteLine(String.Format("-{0} {1}:{2}", i, PersonList[i, 0], PersonList[i, 1]));
+                }
+                sw.Flush();
+                sw.Close();
+                if (RealTimeOutPut is false)
+                {
+                    Process.Start("notepad.exe", filepath);
+                }
+                Computing = false;
+                this.Dispatcher.Invoke(new Action(delegate
+                {
+                    this.Btn_Compute.Content = "开始";
+                }));
             }
-            DateTime time = new DateTime();
-            time = DateTime.Now;
-            int second = time.Second;
-            string filepath = String.Format(
-                "./Result/ToolsRr_compute_{0}.{1}.{2}.{3}_{4}_{5}.txt",
-                time.Year, time.Month, time.Day, time.Hour, time.Minute, time.Second
-            );
-            if (Directory.Exists("./Result/") is false)
+            else
             {
-                Directory.CreateDirectory("Result");
+                return;
             }
-            File.Create(filepath).Close();
-            StreamWriter sw = new(filepath, true, System.Text.Encoding.Default);
-            for (int i = 0; i < arraylength; i++)
-            {
-                sw.WriteLine(String.Format("-{0} {1}:{2}", i, PersonList[i, 0], PersonList[i, 1]));
-            }
-            sw.Flush();
-            sw.Close();
-            if (RealTimeOutPut is false)
-            {
-                Process.Start("notepad.exe", filepath);
-            }
-            Computing = false;
-            this.Dispatcher.Invoke(new Action(delegate
-            {
-                this.Btn_Compute.Content = "开始";
-            }));
         }
 
         private Task<string[,]> SortData(string[,] data, int length)

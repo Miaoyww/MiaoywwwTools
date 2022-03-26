@@ -17,7 +17,22 @@ namespace MiaoywwwTools.Tools.RandomDraw
             InitializeComponent();
         }
         public string keypath = "HKEY_CURRENT_USER\\SOFTWARE\\Miaoywww\\MiaoywwwTools\\Tools\\RandomDraw\\";
-
+        public static void Show(
+            Brush nameColor,
+            Brush gradeColor,
+            Brush backgroundColor,
+            int nameFontSize,
+            int gradeFontSize,
+            string name,
+            string grade)
+        {
+            ShowResult showResult = new();
+            showResult.ChangeColor(nameColor, gradeColor, backgroundColor);
+            showResult.ChangeFontSize(nameFontSize, gradeFontSize);
+            showResult.Label_Name.Content = name;
+            showResult.Label_Grade.Content = grade; 
+            showResult.ShowDialog();
+        }
         private void Window_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -28,6 +43,31 @@ namespace MiaoywwwTools.Tools.RandomDraw
                 Label_Name.Content = result[0];
                 Label_Grade.Content = result[1];
             }
+        }
+
+        /// <summary>
+        /// 改变颜色
+        /// </summary>
+        /// <param name="name">名称</param>
+        /// <param name="grade">成绩</param>
+        /// <param name="background">背景</param>
+        public void ChangeColor(Brush name, Brush grade, Brush background)
+        {
+            Label_Name.Foreground = name;
+            Label_Grade.Foreground = grade;
+            Grid_Main.Background = background;
+
+        }
+
+        /// <summary>
+        /// 改变字体大小
+        /// </summary>
+        /// <param name="name">名称</param>
+        /// <param name="grade">名称</param>
+        public void ChangeFontSize(int name, int grade)
+        {
+            Label_Name.FontSize = name;
+            Label_Grade.FontSize = grade;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -41,19 +81,11 @@ namespace MiaoywwwTools.Tools.RandomDraw
             this.Top = 0.0;
             this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
             this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
-
-            BrushConverter brushConverter = new BrushConverter();
-            Label_Name.Foreground = (Brush)brushConverter.ConvertFromString(Registry.GetValue(keypath, "NameColor", null).ToString());
-            Label_Grade.Foreground = (Brush)brushConverter.ConvertFromString(Registry.GetValue(keypath, "GradeColor", null).ToString());
-            Grid_Main.Background = (Brush)brushConverter.ConvertFromString(Registry.GetValue(keypath, "BackGround", null).ToString());
-
-            Label_Name.FontSize = int.Parse(Registry.GetValue(keypath, "NameSize", null).ToString());
-            Label_Grade.FontSize = int.Parse(Registry.GetValue(keypath, "GradeSize", null).ToString());
         }
 
         private void Btn_Close_Click(object sender, RoutedEventArgs e)
         {
-            WinMain.winMain.Login = false;
+            GlobalV.Login = false;
             this.Close();
         }
     }

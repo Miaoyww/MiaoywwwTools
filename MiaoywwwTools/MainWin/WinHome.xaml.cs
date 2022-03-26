@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
@@ -160,7 +161,7 @@ namespace MiaoywwwTools
         /// <param name="way"> 改变头像的方法 </param>
         private void ChangeFace(string way)
         {
-            if (WinMain.winMain.FaceChanged is false)  // 防止操作冲突
+            if (GlobalV.FaceChanged is false)  // 防止操作冲突
             {
                 // 用户选择头像
                 if (way == "change")
@@ -176,28 +177,34 @@ namespace MiaoywwwTools
                     {
                         string selectfilePath = dialog.FileName; // 获取选择的文件名
                         File.Copy(selectfilePath, userfacetempPath);
-                        WinMain.winMain.FaceChanged = true;
+                        GlobalV.FaceChanged = true;
                     }
                 }
                 // 清理头像，即选择Miaomiaoywww的头像
                 if (way == "cleanup")
                 {
-                    WinMain.winMain.FaceChanged = true;
+                    GlobalV.FaceChanged = true;
                     Registry.SetValue(keypath, "FaceCleanUp", "true");
                 }
             }
             else  // 如果头像已修改
             {
-                WinMessage winMessage1 = new();
-                winMessage1.SetMessage("错误", "已经设置过头像了，请重启本应用之后再试", "restart", "yesno");
-                winMessage1.ShowDialog();
+                var mb = MessageBox.ShowDialog("已经设置过头像了，请重启本应用之后再试");
+                if (mb.IsYes)
+                {
+                    GlobalV.AppRestart = true;
+                    WinMain.winMain.CloseWindow();
+                }
                 return;
             }
-            if (WinMain.winMain.FaceChanged)
+            if (GlobalV.FaceChanged)
             {
-                WinMessage winMessage2 = new();
-                winMessage2.SetMessage("信息", "本操作需要重启程序,是否现在重启?", "restart", "yesno");
-                winMessage2.ShowDialog();
+                var mb = MessageBox.ShowDialog("本操作需要重启程序,是否现在重启?");
+                if (mb.IsYes)
+                {
+                    GlobalV.AppRestart = true;
+                    WinMain.winMain.CloseWindow();
+                }
             }
             
         }
@@ -217,6 +224,10 @@ namespace MiaoywwwTools
         // 页面加载时
         private void MainGrid_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
+            if (Registry.GetValue(keypath, "FaceCleanUp", null) == null)
+            {
+                Registry.SetValue(keypath, "FaceCleanUp", "false");
+            }
             // 清除头像
             if (Registry.GetValue(keypath, "FaceCleanUp", false).ToString() == "true")
             {

@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using RandomDrawLib;
 
 namespace MiaoywwwTools.Tools.RandomDraw
 {
@@ -17,18 +20,36 @@ namespace MiaoywwwTools.Tools.RandomDraw
             InitializeComponent();
             trr = this;
         }
-
+        public RaDraw raDraw = new();
         private void Btn_Start_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+
+            BrushConverter brushConverter = new BrushConverter();
             RandomDrawLib.RaDraw raDraw = new();
             raDraw.Read();
             string[] result = raDraw.GetRandomResult();
             if (result != null)
             {
-                ShowResult showResult = new();
-                showResult.Label_Name.Content = result[0];
-                showResult.Label_Grade.Content = result[1];
-                showResult.Show();
+                Thread thread = new(() =>
+                {
+                    Application.Current.Dispatcher.Invoke(new Action(() => {
+                        Brush nameColor = (Brush)brushConverter.ConvertFromString(Registry.GetValue(raDraw.keypath, "NameColor", null).ToString());
+                        Brush gradeColor = (Brush)brushConverter.ConvertFromString(Registry.GetValue(raDraw.keypath, "GradeColor", null).ToString());
+                        Brush backgroundColor = (Brush)brushConverter.ConvertFromString(Registry.GetValue(raDraw.keypath, "BackGroundColor", null).ToString());
+                        int nameFontSize = int.Parse(Registry.GetValue(raDraw.keypath, "NameSize", null).ToString());
+                        int gradeFontSize = int.Parse(Registry.GetValue(raDraw.keypath, "GradeSize", null).ToString());
+                        ShowResult.Show(nameColor,
+                            gradeColor,
+                            backgroundColor,
+                            nameFontSize,
+                            gradeFontSize,
+                            result[0],
+                            result[1]);
+                        
+                    }));
+                });
+                thread.IsBackground = true;
+                thread.Start();
             }
         }
 

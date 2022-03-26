@@ -1,11 +1,13 @@
 ﻿using Microsoft.Win32;
+using RandomDrawLib;
 using System;
-using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace MiaoywwwTools.Tools.RandomDraw
 {
@@ -19,7 +21,7 @@ namespace MiaoywwwTools.Tools.RandomDraw
             InitializeComponent();
         }
 
-        public string keypath = "HKEY_CURRENT_USER\\SOFTWARE\\Miaoywww\\MiaoywwwTools\\Tools\\RandomDraw\\";
+        public RaDraw raDraw = new();
         public Border changeColorBorder;
         public TextBox changeContextBox;
 
@@ -45,10 +47,9 @@ namespace MiaoywwwTools.Tools.RandomDraw
         {
             if (Random_Mode.IsChecked is true)
             {
-                Registry.SetValue(keypath, "Mode", "random");
+                Registry.SetValue(raDraw.keypath, "Mode", "random");
                 Grade_Mode.IsChecked = false;
             }
-            
         }
 
         private void Grade_Mode_Checked(object sender, RoutedEventArgs e)
@@ -59,9 +60,7 @@ namespace MiaoywwwTools.Tools.RandomDraw
                 Random_Mode.IsChecked = false;
             }
             */
-            WinMessage winMessage = new();
-            winMessage.SetMessage("注意", "功能暂未开放", "close", "yes");
-            winMessage.ShowDialog();
+            MessageBox.ShowDialog("功能暂未开放");
             Grade_Mode.IsChecked = false;
         }
 
@@ -69,51 +68,36 @@ namespace MiaoywwwTools.Tools.RandomDraw
         {
             // 判断注册表是否有指定值
             // 无则创建
-            if (Registry.GetValue(keypath, "Mode", null) == null)
+            string[][] keylist = new string[6][];
+            for(int i = 0; i < keylist.Length; i++)
             {
-                Registry.SetValue(keypath, "Mode", "random");
+                keylist[i] = new string[2];
             }
-            if (Registry.GetValue(keypath, "FaceCleanUp", null) == null)
+            keylist[0] = new string[] { "Mode", "random" };
+            keylist[1] = new string[] { "NameColor", "#FFFFFFFF" };
+            keylist[2] = new string[] { "NameSize", "340" };
+            keylist[3] = new string[] { "GradeColor", "#FFFFFFFF" };
+            keylist[4] = new string[] { "GradeSize", "100" };
+            keylist[5] = new string[] { "BackGroundColor", "#FF000000" };
+            foreach (string[] item in keylist)
             {
-                Registry.SetValue(keypath, "FaceCleanUp", "false");
-            }
-
-            if (Registry.GetValue(keypath, "NameColor", null) == null)
-            {
-                Registry.SetValue(keypath, "NameColor", "#FFFFFFFF");
-            }
-            if (Registry.GetValue(keypath, "NameSize", null) == null)
-            {
-                Registry.SetValue(keypath, "NameSize", "340");
-            }
-
-
-            if (Registry.GetValue(keypath, "GradeColor", null) == null)
-            {
-                Registry.SetValue(keypath, "GradeColor", "#FFFFFFFF");
-            }
-            if (Registry.GetValue(keypath, "GradeSize", null) == null)
-            {
-                Registry.SetValue(keypath, "GradeSize", "100");
-            }
-
-
-            if (Registry.GetValue(keypath, "BackGround", null) == null)
-            {
-                Registry.SetValue(keypath, "BackGround", "#FF000000");
+                object? keyvalue = Registry.GetValue(raDraw.keypath, item[0], null);
+                if (keyvalue is null)
+                {
+                    Registry.SetValue(raDraw.keypath, item[0], item[1]);
+                }
             }
             // 判断是否为True，是则控制Random_Mode为勾选状态
-            if (Registry.GetValue(keypath, "Mode", false).ToString() == "random")
+            if (Registry.GetValue(raDraw.keypath, "Mode", false)?.ToString() == "random")
             {
                 Random_Mode.IsChecked = true;
             }
-            TextBox_NameSettings_Color.Text = Registry.GetValue(keypath, "NameColor", false).ToString();
-            TextBox_GradeSettings_Color.Text = Registry.GetValue(keypath, "GradeColor", false).ToString();
-            TextBox_BackGroundSettings_Color.Text = Registry.GetValue(keypath, "BackGround", false).ToString();
-
-            TextBox_NameSettings_Size.Text = Registry.GetValue(keypath, "NameSize", false).ToString();
-            TextBox_GradeSettings_Size.Text = Registry.GetValue(keypath, "GradeSize", false).ToString();
-
+            TextBox_NameSettings_Color.Text = Registry.GetValue(raDraw.keypath, "NameColor", false)?.ToString();
+            TextBox_GradeSettings_Color.Text = Registry.GetValue(raDraw.keypath, "GradeColor", false)?.ToString();
+            TextBox_BackGroundSettings_Color.Text = Registry.GetValue(raDraw.keypath, "BackGroundColor", false)?.ToString();
+            ChangeSettingsBorderColor();
+            TextBox_NameSettings_Size.Text = Registry.GetValue(raDraw.keypath, "NameSize", false)?.ToString();
+            TextBox_GradeSettings_Size.Text = Registry.GetValue(raDraw.keypath, "GradeSize", false)?.ToString();
         }
 
         private void TopBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -143,7 +127,8 @@ namespace MiaoywwwTools.Tools.RandomDraw
                 }
             }
         }
-        private void AAContentLegality(TextBox textBox)
+
+        private void FontSizeContentLegality(TextBox textBox)
         {
             if (textBox.Text != "")
             {
@@ -164,14 +149,15 @@ namespace MiaoywwwTools.Tools.RandomDraw
                 }
             }
         }
-        private void FFContentLegality(TextBox textBox)
+
+        private void ColorContentLegality(TextBox textBox)
         {
             BrushConverter brushConverter = new BrushConverter();
             if (textBox.Text != "")
             {
                 try
                 {
-                    Brush a = (Brush)brushConverter.ConvertFromString(textBox.Text);
+                    Brush test = (Brush)brushConverter.ConvertFromString(textBox.Text);
                 }
                 catch (FormatException)
                 {
@@ -184,73 +170,6 @@ namespace MiaoywwwTools.Tools.RandomDraw
                 ShowInfo("请输入一个正确的ARGB颜色");
                 textBox.Text = "#FFFFFFFF";
             }
-        }
-        // 字体设置
-        private void TextBox_NameSettings_Size_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            AAContentLegality(TextBox_NameSettings_Size);
-            if (Registry.GetValue(keypath, "NameSize", null) != TextBox_NameSettings_Size.Text) 
-            {
-                if (TNchangetimes > 0)
-                {
-                    Registry.SetValue(keypath, "NameSize", TextBox_NameSettings_Size.Text);
-                }
-            }
-            TNchangetimes++;
-        }
-
-        private void TextBox_GradeSettings_Size_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            AAContentLegality(TextBox_GradeSettings_Size);
-            if (Registry.GetValue(keypath, "GradeSize", null) != TextBox_GradeSettings_Size.Text)
-            {
-                if (TGchangetimes > 0)
-                {
-                    Registry.SetValue(keypath, "GradeSize", TextBox_GradeSettings_Size.Text);
-                }
-            }
-            TGchangetimes++;
-
-        }
-        // 颜色设置
-        private void TextBox_NameSettings_Color_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-            FFContentLegality(TextBox_NameSettings_Color);
-            BrushConverter brushConverter = new BrushConverter();
-            Border_NameSettings.Background = (Brush)brushConverter.ConvertFromString(TextBox_NameSettings_Color.Text);
-            if (Registry.GetValue(keypath, "NameColor", null) != TextBox_NameSettings_Color.Text)
-            {
-                if (CNchangetimes > 0)
-                    Registry.SetValue(keypath, "NameColor", TextBox_NameSettings_Color.Text);
-            }
-            CNchangetimes++;
-        }
-
-        private void TextBox_GradeSettings_Color_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            FFContentLegality(TextBox_GradeSettings_Color);
-
-            BrushConverter brushConverter = new BrushConverter();
-            Border_GradeSettings.Background = (Brush)brushConverter.ConvertFromString(TextBox_GradeSettings_Color.Text);
-            if (Registry.GetValue(keypath, "GradeColor", null) != TextBox_GradeSettings_Color.Text)
-            {
-                if (CGchangetimes > 0)
-                    Registry.SetValue(keypath, "GradeColor", TextBox_GradeSettings_Color.Text);
-            }
-            CGchangetimes++;
-        }
-
-        private void TextBox_BackGroundSettings_Color_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            FFContentLegality(TextBox_BackGroundSettings_Color);
-            BrushConverter brushConverter = new BrushConverter();
-            Border_BackGroundSettings.Background = (Brush)brushConverter.ConvertFromString(TextBox_BackGroundSettings_Color.Text);
-            if (Registry.GetValue(keypath, "BackGround", null) != TextBox_BackGroundSettings_Color.Text)
-            {
-                if (CBchangetimes > 0)
-                    Registry.SetValue(keypath, "BackGround", TextBox_BackGroundSettings_Color.Text);
-            }
-            CBchangetimes++;
         }
 
         // 颜色选择
@@ -271,26 +190,60 @@ namespace MiaoywwwTools.Tools.RandomDraw
             changeColorBorder = Border_BackGroundSettings;
             changeContextBox = TextBox_BackGroundSettings_Color;
         }
+
+        /// <summary>
+        /// 以组件内容修改其颜色
+        /// </summary>
+        public void ChangeSettingsBorderColor()
+        {
+            BrushConverter brushConverter = new BrushConverter();
+            Border_BackGroundSettings.Background = (Brush)brushConverter.ConvertFromString(TextBox_BackGroundSettings_Color.Text);
+            Border_GradeSettings.Background = (Brush)brushConverter.ConvertFromString(TextBox_GradeSettings_Color.Text);
+            Border_NameSettings.Background = (Brush)brushConverter.ConvertFromString(TextBox_NameSettings_Color.Text);
+        }
+        // 设置重置
+        private void Btn_OutPutSettingsReSet_Click(object sender, RoutedEventArgs e)
+        {
+            TextBox_NameSettings_Color.Text = TextBox_GradeSettings_Color.Text = "#FFFFFFFF";
+            TextBox_BackGroundSettings_Color.Text = "#FF000000";
+            TextBox_NameSettings_Size.Text = (340).ToString();
+            TextBox_GradeSettings_Size.Text = (100).ToString();
+            ChangeSettingsBorderColor();
+        }
+
+        // 设置保存
+        private void Btn_OutPutSettingsSave_Click(object sender, RoutedEventArgs e)
+        {
+            // 颜色
+            ColorContentLegality(TextBox_NameSettings_Color);
+            ColorContentLegality(TextBox_GradeSettings_Color);
+            ColorContentLegality(TextBox_BackGroundSettings_Color);
+            ChangeSettingsBorderColor();
+            Registry.SetValue(raDraw.keypath, "BackGroundColor", TextBox_BackGroundSettings_Color.Text);
+            Registry.SetValue(raDraw.keypath, "GradeColor", TextBox_GradeSettings_Color.Text);
+            Registry.SetValue(raDraw.keypath, "NameColor", TextBox_NameSettings_Color.Text);
+
+            // 字体大小
+            FontSizeContentLegality(TextBox_NameSettings_Size);
+            FontSizeContentLegality(TextBox_GradeSettings_Size);
+            Registry.SetValue(raDraw.keypath, "NameSize", TextBox_NameSettings_Size.Text);
+            Registry.SetValue(raDraw.keypath, "GradeSize", TextBox_GradeSettings_Size.Text);
+        }
+
+        // 拾色器确认
         private void ColorPicker_Confirmed(object sender, HandyControl.Data.FunctionEventArgs<System.Windows.Media.Color> e)
         {
-            if(changeColorBorder is not null)
+            if (changeColorBorder is not null)
             {
                 changeColorBorder.Background = ColorPicker_Main.SelectedBrush;
             }
-            if(changeContextBox is not null)
+            if (changeContextBox is not null)
             {
                 changeContextBox.Text = ColorPicker_Main.SelectedBrush.ToString();
             }
-            
         }
 
-        private void Btn_OutPutSettingsReSet_Click(object sender, RoutedEventArgs e)
-        {
-            TextBox_NameSettings_Color.Text = TextBox_GradeSettings_Color.Text = "#FFFFFF";
-            TextBox_NameSettings_Size.Text = (340).ToString();
-            TextBox_GradeSettings_Size.Text = (100).ToString();
-        }
-
+        // 拾色器的取消按钮，关闭窗口
         private void ColorPicker_Main_Canceled(object sender, EventArgs e)
         {
             var story = (Storyboard)this.Resources["HideWindow"];

@@ -12,24 +12,29 @@
   <ItemGroup>
     <None Remove="Resources\Data\stdata.json" />
     <None Remove="Resources\Images\bilibili.png" />
+    <None Remove="Resources\Images\close.png" />
     <None Remove="Resources\Images\github.png" />
+    <None Remove="Resources\Images\home.png" />
     <None Remove="Resources\Images\Hutao.gif" />
     <None Remove="Resources\Images\icon_home.ico" />
     <None Remove="Resources\Images\icon_more.ico" />
     <None Remove="Resources\Images\icon_settings.ico" />
     <None Remove="Resources\Images\MiaoywwwFace.png" />
+    <None Remove="Resources\Images\mini.png" />
+    <None Remove="Resources\Images\more.png" />
+    <None Remove="Resources\Images\settings.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Resources\Data\stdata.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Resources\Images\MiaoywwwFace.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
+    <Resource Include="Resources\Images\close.png" />
+    <Resource Include="Resources\Images\home.png" />
+    <Resource Include="Resources\Images\MiaoywwwFace.png" />
+    <Resource Include="Resources\Images\mini.png" />
+    <Resource Include="Resources\Images\more.png" />
+    <Resource Include="Resources\Images\settings.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,21 +51,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Images\Hutao.gif">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Images\icon_home.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Images\icon_settings.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Images\icon_more.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Images\icon_close.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Images\icon_mini.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

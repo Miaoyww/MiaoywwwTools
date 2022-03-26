@@ -43,11 +43,14 @@
             <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.8" Direction="0" />
         </Border.Effect>
         <Grid x:Name="MainGrid" Background="Transparent">
-            <Border x:Name="TopBorder" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,375" Background="#FF0084FF" CornerRadius="10,10,0,0" MouseLeftButtonDown="TopBorder_MouseLeftButtonDown">
+            <Border x:Name="TopBorder" BorderBrush="#FF0095F3" BorderThickness="2,2,2,2" Height="65" VerticalAlignment="Top" CornerRadius="10,10,10,10" Background="White" MouseLeftButtonDown="TopBorder_MouseLeftButtonDown">
+                <Border.Effect>
+                    <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
+                </Border.Effect>
                 <Grid HorizontalAlignment="Center" Height="66" VerticalAlignment="Center" Width="790">
                     <Button x:Name="Btn_Close" HorizontalAlignment="Right" Height="66" Margin="720,0,0,0" Width="70" BorderBrush="{x:Null}" Click="Btn_Close_Click">
                         <Button.Background>
-                            <ImageBrush ImageSource="/Resources/Images/icon_close.png" Stretch="Uniform">
+                            <ImageBrush ImageSource="/Resources/Images/close.png" Stretch="Uniform">
                                 <ImageBrush.RelativeTransform>
                                     <TransformGroup>
                                         <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.4" ScaleY="0.4" />
@@ -59,7 +62,7 @@
                             </ImageBrush>
                         </Button.Background>
                     </Button>
-                    <Label Content="概率计算" HorizontalAlignment="Left" Height="66" Width="110" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" FontSize="16" FontWeight="Bold" />
+                    <Label Content="概率计算" HorizontalAlignment="Left" Height="66" Width="110" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF0095F3" FontSize="16" FontWeight="Bold" />
                 </Grid>
             </Border>
             <Border Background="#FFEFEFEF" CornerRadius="5,5,5,5" Margin="10,70,500,150">

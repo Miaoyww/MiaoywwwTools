@@ -6,65 +6,57 @@ using System.Windows.Media.Animation;
 namespace MiaoywwwTools
 {
     /// <summary>
-    /// WinMessage.xaml 的交互逻辑
+    /// MessageBox.xaml 的交互逻辑
     /// </summary>
-    public partial class WinMessage : Window
+    public class MessageResult
     {
-        public static WinMessage? winMessage;
+        /// <summary>
+        /// 结果，Yes为true，No为false
+        /// </summary>
+        public bool IsYes { get; set; }
+    }
+    public class MessageBoxEventArgs : EventArgs
+    {
+        /// <summary>
+        /// 结果，Yes为true，No为false
+        /// </summary>
+        public MessageResult Result { get; set; }
+    }
+    /// <summary>
+    /// MessageBox.xaml 的交互逻辑
+    /// </summary>
+    public partial class MessageBox : Window
+    {
+        public event EventHandler<MessageBoxEventArgs> Result;
 
-        public WinMessage()
+        public string Context
+        {
+            get { return TextBlock_MessageBody.Text; }
+            set { TextBlock_MessageBody.Text = value; }
+        }
+        bool _isLegal = false;
+        public MessageBox()
         {
             InitializeComponent();
-            winMessage = this;
         }
-
-        public string action;
-
-        /// <summary>
-        /// 设置信息窗口的各种信息
-        /// </summary>
-        /// <param name="title"> 信息窗口的标题 </param>
-        /// <param name="content"> 信息窗口的内容 </param>
-        /// <param name="act"> 信息窗口的行为 </param>
-        /// <param name="yesno"> 确认取消按钮的显示与隐藏 </param>
-        public void SetMessage(string title, string content, string act, string yesno)
+        public static void Show(string context, EventHandler<MessageBoxEventArgs> result)
         {
-            Label_MessageTitle.Content = title;
-            TextBlock_MessageBody.Text = content;
-            action = act;
-            switch (yesno)
-            {
-                case "yesno":
-                    return;
-
-                case "yes":
-                    Btn_No.Visibility = Visibility.Hidden;
-                    return;
-
-                case "no":
-                    Btn_Yes.Visibility = Visibility.Hidden;
-                    return;
-            }
+            var mb = new MessageBox();
+            mb.Context = context;
+            mb.Result += result;
+            mb.Show();
         }
-
-        private void WindowsAction(string context)
+        public static MessageResult ShowDialog(string context)
         {
-            switch (context)
-            {
-                case "close":
-                    CloseWindow();
-                    break;
-
-                case "closeall":
-                    WinMain.winMain.CloseWindow();
-                    break;
-
-                case "restart":
-                    Application.Current.Shutdown();
-                    break;
-            }
+            var mb = new MessageBox();
+            mb.Context = context;
+            MessageResult r = null;
+            mb.Result += (s, e) => {
+                r = e.Result;
+            };
+            mb.ShowDialog();
+            return r;
         }
-
         private void CloseWindow()
         {
             var story = (Storyboard)this.Resources["HideWindow"];
@@ -73,24 +65,43 @@ namespace MiaoywwwTools
                 story.Completed += delegate { Close(); };
                 story.Begin(this);
             }
-            // this.Close();
         }
 
         private void Btn_Yes_Click(object sender, RoutedEventArgs e)
         {
-            WindowsAction(action);
+            _isLegal = true;
+            CloseWindow();
+            Result?.Invoke(this, new MessageBoxEventArgs() 
+            { 
+                Result = new MessageResult() { 
+                    IsYes = true
+                } 
+            });
         }
 
         private void Btn_No_Click(object sender, RoutedEventArgs e)
         {
+            _isLegal = true;
             CloseWindow();
+            Result?.Invoke(this, new MessageBoxEventArgs()
+            {
+                Result = new MessageResult()
+                {
+                    IsYes = false
+                }
+            });
         }
 
-        private void Window_Closed(object sender, EventArgs e)
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (action == "restart")
+            if (!_isLegal)
             {
-                System.Diagnostics.Process.Start(Environment.ProcessPath);//重启软件
+                e.Cancel = false;
+                var story = (Storyboard)this.Resources["ShowWindow"];
+                if (story != null)
+                {
+                    story.Begin(this);
+                }
             }
         }
 

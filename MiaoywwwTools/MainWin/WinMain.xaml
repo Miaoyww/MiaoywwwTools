@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MiaoywwwTools"
         mc:Ignorable="d"
-        Title="MiaoywwwTools" Height="545" Width="952" AllowsTransparency="True" Background="Transparent" WindowStyle="None" Loaded="Window_Loaded">
+        Title="MiaoywwwTools" Height="549" Width="956" AllowsTransparency="True" Background="#00000000" WindowStyle="None" Loaded="Window_Loaded" Closed="Window_Closed" Closing="Window_Closing">
     <Window.Resources>
         <ResourceDictionary>
             <Storyboard x:Key="HideWindow">
@@ -26,7 +26,7 @@
             <BeginStoryboard Storyboard="{StaticResource ShowWindow}" />
         </EventTrigger>
     </Window.Triggers>
-    <Border x:Name="MainBorder" RenderTransformOrigin="0.5,0.5" Margin="5" Background="White" CornerRadius="10">
+    <Border x:Name="MainBorder" Background="Transparent" RenderTransformOrigin="0.5,0.5" Margin="5" CornerRadius="10">
         <Border.RenderTransform>
             <TransformGroup>
                 <ScaleTransform  ScaleX="1" ScaleY="1" />
@@ -39,54 +39,15 @@
             <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
         </Border.Effect>
         <Grid x:Name="MainGrid">
-            <Border x:Name="Border_Top" BorderBrush="Black" HorizontalAlignment="Center" VerticalAlignment="Top" CornerRadius="10,10,0,0" Background="#FF0084FF" Height="65" Width="942" MouseLeftButtonDown="Border_Top_MouseLeftButtonDown">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Border x:Name="Border_Top" BorderBrush="#FF0084FF" HorizontalAlignment="Center" VerticalAlignment="Top" CornerRadius="10,10,10,10" Height="70" Width="946" MouseLeftButtonDown="Border_Top_MouseLeftButtonDown" BorderThickness="2,2,2,2" Background="White" Margin="0,-5,0,0">
                 <Grid>
-                    <Button x:Name="Btns_More" Content="更多" Width="70" Height="40" HorizontalContentAlignment="Right" Foreground="White" BorderThickness="0,0,0,0" Click="Btns_More_Click">
+                    <Label Content="M" HorizontalAlignment="Left" Height="65" Width="65" BorderThickness="0,0,0,0" Background="{x:Null}" Foreground="#FF0084FF" FontSize="25" />
+                    <Button x:Name="Btn_Close" HorizontalAlignment="Left" Height="62" Margin="875,0,0,0" Width="63" BorderThickness="0,0,0,0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="Btn_Close_Click">
                         <Button.Background>
-                            <ImageBrush Stretch="Uniform" ImageSource="/Resources/Images/icon_more.ico">
-                                <ImageBrush.RelativeTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.4" ScaleY="0.4" />
-                                        <SkewTransform CenterX="0.5" CenterY="0.5" />
-                                        <RotateTransform CenterX="0.5" CenterY="0.5" />
-                                        <TranslateTransform X="-0.25" />
-                                    </TransformGroup>
-                                </ImageBrush.RelativeTransform>
-                            </ImageBrush>
-                        </Button.Background>
-                    </Button>
-                    <Button x:Name="Btns_Home" Content="主页" Width="70" Height="40" HorizontalAlignment="Left" Margin="317,0,0,0" Foreground="White" BorderThickness="0,0,0,0" HorizontalContentAlignment="Right" UseLayoutRounding="True" Click="Btns_Home_Click">
-                        <Button.Background>
-                            <ImageBrush Stretch="Uniform" ImageSource="/Resources/Images/icon_home.ico">
-                                <ImageBrush.RelativeTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.25" ScaleY="0.25" />
-                                        <SkewTransform CenterX="0.5" CenterY="0.5" />
-                                        <RotateTransform CenterX="0.5" CenterY="0.5" />
-                                        <TranslateTransform X="-0.25" />
-                                    </TransformGroup>
-                                </ImageBrush.RelativeTransform>
-                            </ImageBrush>
-                        </Button.Background>
-                    </Button>
-                    <Button x:Name="Btns_Settings" Content="设置" Width="70" Height="40" HorizontalAlignment="Left" Margin="539,0,0,0" Foreground="White" BorderThickness="0,0,0,0" HorizontalContentAlignment="Right" UseLayoutRounding="True">
-                        <Button.Background>
-                            <ImageBrush Stretch="Uniform" ImageSource="/Resources/Images/icon_settings.ico">
-                                <ImageBrush.RelativeTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.35" ScaleY="0.35" />
-                                        <SkewTransform CenterX="0.5" CenterY="0.5" />
-                                        <RotateTransform CenterX="0.5" CenterY="0.5" />
-                                        <TranslateTransform X="-0.25" />
-                                    </TransformGroup>
-                                </ImageBrush.RelativeTransform>
-                            </ImageBrush>
-                        </Button.Background>
-                    </Button>
-                    <Label Content="M" HorizontalAlignment="Left" Height="65" Width="65" BorderThickness="0,0,0,0" Background="{x:Null}" Foreground="White" FontSize="25" />
-                    <Button x:Name="Btn_Close" HorizontalAlignment="Left" Height="68" Margin="879,0,0,0" Width="63" BorderThickness="0,0,0,0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="Btn_Close_Click">
-                        <Button.Background>
-                            <ImageBrush ImageSource="/Resources/Images/icon_close.png">
+                            <ImageBrush ImageSource="/Resources/Images/close.png">
                                 <ImageBrush.RelativeTransform>
                                     <TransformGroup>
                                         <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.35" ScaleY="0.35" />
@@ -98,12 +59,12 @@
                             </ImageBrush>
                         </Button.Background>
                     </Button>
-                    <Button x:Name="Btn_Mini" HorizontalAlignment="Left" Height="68" Margin="816,0,0,0" Width="63" BorderThickness="0,0,0,0" BorderBrush="{x:Null}" Foreground="{x:Null}" VerticalAlignment="Top" Click="Btn_Mini_Click">
+                    <Button x:Name="Btn_Mini" HorizontalAlignment="Left" Height="62" Margin="814,0,0,0" Width="61" BorderThickness="0,0,0,0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="Btn_Mini_Click">
                         <Button.Background>
-                            <ImageBrush ImageSource="/Resources/Images/icon_mini.png">
+                            <ImageBrush ImageSource="/Resources/Images/mini.png">
                                 <ImageBrush.RelativeTransform>
                                     <TransformGroup>
-                                        <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.35" ScaleY="0.35" />
+                                        <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.5" ScaleY="0.5" />
                                         <SkewTransform CenterX="0.5" CenterY="0.5" />
                                         <RotateTransform CenterX="0.5" CenterY="0.5" />
                                         <TranslateTransform />
@@ -112,9 +73,59 @@
                             </ImageBrush>
                         </Button.Background>
                     </Button>
+                    <Border BorderBrush="#FF0084FF" BorderThickness="1" HorizontalAlignment="Left" Height="42" Margin="314,0,0,0" VerticalAlignment="Center" Width="78" CornerRadius="10,10,10,10">
+                        <Button x:Name="Btns_Home" Content="主页" Height="42" BorderThickness="0,0,0,0" HorizontalContentAlignment="Right" UseLayoutRounding="True" Click="Btns_Home_Click" FontSize="15" Width="78" Foreground="#FF0084FF">
+                            <Button.Background>
+                                <ImageBrush Stretch="Uniform" ImageSource="/Resources/Images/home.png">
+                                    <ImageBrush.RelativeTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.45" ScaleY="0.45" />
+                                            <SkewTransform CenterX="0.5" CenterY="0.5" />
+                                            <RotateTransform CenterX="0.5" CenterY="0.5" />
+                                            <TranslateTransform X="-0.25" />
+                                        </TransformGroup>
+                                    </ImageBrush.RelativeTransform>
+                                </ImageBrush>
+                            </Button.Background>
+                        </Button>
+                    </Border>
+                    <Border BorderBrush="#FF0084FF" BorderThickness="1" HorizontalAlignment="Center" Height="42" VerticalAlignment="Center" Width="78" CornerRadius="10,10,10,10">
+                        <Button x:Name="Btns_More" Content="更多" Width="78" Height="42" HorizontalContentAlignment="Right" Foreground="#FF0084FF" BorderThickness="0,0,0,0" Click="Btns_More_Click" FontSize="15">
+                            <Button.Background>
+                                <ImageBrush Stretch="Uniform" ImageSource="/Resources/Images/more.png">
+                                    <ImageBrush.RelativeTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.4" ScaleY="0.4" />
+                                            <SkewTransform CenterX="0.5" CenterY="0.5" />
+                                            <RotateTransform CenterX="0.5" CenterY="0.5" />
+                                            <TranslateTransform X="-0.25" />
+                                        </TransformGroup>
+                                    </ImageBrush.RelativeTransform>
+                                </ImageBrush>
+                            </Button.Background>
+                        </Button>
+                    </Border>
+                    <Border BorderBrush="#FF0084FF" BorderThickness="1" HorizontalAlignment="Left" Height="42" Margin="550,0,0,0" VerticalAlignment="Center" Width="78" CornerRadius="10,10,10,10">
+                        <Button x:Name="Btns_Settings" Content="设置" Width="78" Height="42" Foreground="#FF0084FF" BorderThickness="0,0,0,0" HorizontalContentAlignment="Right" UseLayoutRounding="True" FontSize="14">
+                            <Button.Background>
+                                <ImageBrush Stretch="Uniform" ImageSource="/Resources/Images/settings.png">
+                                    <ImageBrush.RelativeTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.35" ScaleY="0.35" />
+                                            <SkewTransform CenterX="0.5" CenterY="0.5" />
+                                            <RotateTransform CenterX="0.5" CenterY="0.5" />
+                                            <TranslateTransform X="-0.25" />
+                                        </TransformGroup>
+                                    </ImageBrush.RelativeTransform>
+                                </ImageBrush>
+                            </Button.Background>
+                        </Button>
+                    </Border>
                 </Grid>
             </Border>
-            <ContentControl x:Name="NestPage" HorizontalAlignment="Center" Height="470" Margin="0,65,0,0" VerticalAlignment="Top" Width="942" />
+            <Border Margin="0,70,0,0" CornerRadius="8,8,8,8" Background="#FFC2D4EA">
+                <ContentControl x:Name="NestPage" HorizontalAlignment="Center" Height="466" VerticalAlignment="Center" Width="942" BorderThickness="2,2,2,2" Foreground="{x:Null}" />
+            </Border>
         </Grid>
     </Border>
 </Window>

@@ -55,9 +55,7 @@ namespace MiaoywwwTools.Tools.WallPaper
                 }
                 catch (UnauthorizedAccessException)
                 {
-                    WinMessage winMessage = new();
-                    winMessage.SetMessage("错误", "请使用管理员模式再试", "close", "yesno");
-                    winMessage.ShowDialog();
+                    MessageBox.ShowDialog("请使用管理员模式再试");
                     return;
                 }
                 Thread thread = new(() => SystemParametersInfo(20, 0, selectpath, wallpaperStyle));

@@ -3,27 +3,38 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
+using System.Windows.Threading;
 
 namespace RandomDrawLib
 {
     public class RaDraw
     {
+        public string keypath
+        {
+            get
+            {
+                return @"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\Tools\RandomDraw";
+            }
+            set
+            {
+                keypath = value;
+            }
+        }
         public StreamReader reader;
-
-        public void Read()
+        public bool Read()
         {
             // 哦这该死的设定
             // 这里不得用 ./ca
-            if (File.Exists("/Resources/Data/stdata.json"))
-            {
-                WinMessage winMessage = new();
-                winMessage.SetMessage("错误", "未找到/Resources/Data/stdata.json文件", "close", "yes");
-                winMessage.ShowDialog();
-            }
-            else
+            if (File.Exists("./Resources/Data/stdata.json"))
             {
                 // 这里的文件目录必须得用 ./
                 reader = File.OpenText(@"./Resources/Data/stdata.json");
+                return true;
+            }
+            else
+            {
+                MessageBox.ShowDialog("未找到/Resources/Data/stdata.json文件");
+                return false;
             }
         }
 
@@ -40,14 +51,7 @@ namespace RandomDrawLib
 
         public string[]? GetRandomResult()
         {
-            if (Read == null)
-            {
-                WinMessage winMessage = new();
-                winMessage.SetMessage("调试", "先使用Read", "close", "yes");
-                winMessage.ShowDialog();
-                return null;
-            }
-            else
+            if (reader is not null)
             {
                 JObject jsonObject = (JObject)JToken.ReadFrom(new JsonTextReader(reader));
                 if (jsonObject != null)
@@ -101,6 +105,10 @@ namespace RandomDrawLib
                 {
                     return null;
                 }
+            }
+            else
+            {
+                return null;
             }
         }
 

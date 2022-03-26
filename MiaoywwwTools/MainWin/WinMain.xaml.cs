@@ -1,10 +1,9 @@
 ﻿using MiaoywwwTools.Tools.RandomDraw;
-using Microsoft.Win32;
 using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Interop;
 using System.Windows.Media.Animation;
 
 namespace MiaoywwwTools
@@ -25,13 +24,9 @@ namespace MiaoywwwTools
             winMain = this;
         }
 
-        public Array times; // 预留接口，准备做ToolsRr的概率计算
-        public ShowResult showResult = new();
-        public bool Login;  // ToolsRr的Result窗口是否登录
-        public bool FaceChanged; // Home的头像是否已经修改
-        public bool CleanUpFace;    // 清除Home的头像
-        public string PageName;     // 储存页面
-        public int hwnd;
+
+        public static string PageName;     // 储存页面
+
         /// <summary>
         /// 切换窗口
         /// </summary>
@@ -74,7 +69,7 @@ namespace MiaoywwwTools
             var story = (Storyboard)this.Resources["HideWindow"];
             if (story != null)
             {
-                story.Completed += delegate { Environment.Exit(0); };
+                story.Completed += delegate { Application.Current.Shutdown(); };
                 story.Begin(this);
             }
         }
@@ -88,7 +83,6 @@ namespace MiaoywwwTools
         // 开机主页
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            hwnd = (int)new WindowInteropHelper(this).Handle;
             ChangePage("MiaoywwwTools.WinHome");
         }
 
@@ -100,6 +94,24 @@ namespace MiaoywwwTools
                 story.Completed += delegate { this.WindowState = WindowState.Minimized; };
                 story.Begin(this);
             }
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            if (GlobalV.AppRestart)
+            {
+                ProcessStartInfo process = new ProcessStartInfo();
+                process.FileName = System.Environment.CurrentDirectory + @"\RestartApp.exe";
+                process.Arguments = Environment.ProcessPath;
+                Process.Start(process);
+            }
+            Environment.Exit(0);
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+            
         }
     }
 }
