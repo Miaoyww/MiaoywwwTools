@@ -189,12 +189,7 @@ namespace MiaoywwwTools
             }
             else  // 如果头像已修改
             {
-                var mb = MessageBox.ShowDialog("已经设置过头像了，请重启本应用之后再试");
-                if (mb.IsYes)
-                {
-                    GlobalV.AppRestart = true;
-                    WinMain.winMain.CloseWindow();
-                }
+                MessageBox.ShowDialog("已经设置过头像了，请重启本应用之后再试");
                 return;
             }
             if (GlobalV.FaceChanged)

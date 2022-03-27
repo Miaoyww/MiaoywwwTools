@@ -1,5 +1,4 @@
-﻿using MiaoywwwTools.Tools.RandomDraw;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,7 +22,6 @@ namespace MiaoywwwTools
             InitializeComponent();
             winMain = this;
         }
-
 
         public static string PageName;     // 储存页面
 
@@ -69,7 +67,7 @@ namespace MiaoywwwTools
             var story = (Storyboard)this.Resources["HideWindow"];
             if (story != null)
             {
-                story.Completed += delegate { Application.Current.Shutdown(); };
+                story.Completed += delegate { this.Close(); };
                 story.Begin(this);
             }
         }
@@ -98,20 +96,31 @@ namespace MiaoywwwTools
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            if (GlobalV.AppRestart)
-            {
-                ProcessStartInfo process = new ProcessStartInfo();
-                process.FileName = System.Environment.CurrentDirectory + @"\RestartApp.exe";
-                process.Arguments = Environment.ProcessPath;
-                Process.Start(process);
-            }
             Environment.Exit(0);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
-            
+            string runpath = System.Environment.CurrentDirectory + @"\RestartApp.exe";
+            if (GlobalV.AppRestart)
+            {
+                try
+                {
+                    ProcessStartInfo process = new ProcessStartInfo();
+                    process.FileName = System.Environment.CurrentDirectory + @"\RestartApp.exe";
+                    process.Arguments = Environment.ProcessPath;
+                    Process.Start(process);
+                }
+                catch (System.ComponentModel.Win32Exception)
+                {
+                    e.Cancel = true;
+                    this.Visibility = Visibility.Hidden;
+                    this.Opacity = 0;
+                    MessageBox.ShowDialog("重启失败，请自行重启");
+                    GlobalV.AppRestart = false;
+                    CloseWindow();
+                }
+            }
         }
     }
 }

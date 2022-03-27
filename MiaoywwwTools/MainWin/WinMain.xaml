@@ -123,7 +123,7 @@
                     </Border>
                 </Grid>
             </Border>
-            <Border Margin="0,70,0,0" CornerRadius="8,8,8,8" Background="#FFC2D4EA">
+            <Border x:Name="Border_Content" Margin="0,70,0,0" CornerRadius="8,8,8,8" Background="#FFC2D4EA" BorderBrush="White" BorderThickness="2,2,2,2">
                 <ContentControl x:Name="NestPage" HorizontalAlignment="Center" Height="466" VerticalAlignment="Center" Width="942" BorderThickness="2,2,2,2" Foreground="{x:Null}" />
             </Border>
         </Grid>

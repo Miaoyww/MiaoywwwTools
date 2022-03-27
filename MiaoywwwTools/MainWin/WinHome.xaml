@@ -22,7 +22,7 @@
         <Grid x:Name="MainGrid" RenderTransformOrigin="0.5,0.5" Loaded="MainGrid_Loaded" Margin="0,0,-2,0">
             <Label x:Name="Label_Title" Content="MiaoywwwTools" Margin="358,10,0,0" VerticalAlignment="Top" Height="72" Width="436" FontSize="40" Background="White" Foreground="#FF0084FF" BorderBrush="White" MouseLeftButtonDown="Label_Title_MouseLeftButtonDown" HorizontalAlignment="Left" />
             <Label x:Name="Label_Emotion" Height="55" Margin="514,87,0,0" VerticalAlignment="Top" Width="124" Background="{x:Null}" Foreground="#FF0084FF" FontSize="15" FontWeight="Bold" BorderThickness="0,0,0,0" HorizontalAlignment="Left" Opacity="0" />
-            <Border Background="#FFF5F7FB" CornerRadius="10" Margin="8,10,705,10">
+            <Border Background="#FFF5F7FB" CornerRadius="10" Margin="10,10,705,10">
                 <Border.Effect>
                     <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
                 </Border.Effect>

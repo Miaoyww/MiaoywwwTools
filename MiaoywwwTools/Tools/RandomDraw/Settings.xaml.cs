@@ -69,7 +69,7 @@ namespace MiaoywwwTools.Tools.RandomDraw
             // 判断注册表是否有指定值
             // 无则创建
             string[][] keylist = new string[6][];
-            for(int i = 0; i < keylist.Length; i++)
+            for (int i = 0; i < keylist.Length; i++)
             {
                 keylist[i] = new string[2];
             }
@@ -105,29 +105,6 @@ namespace MiaoywwwTools.Tools.RandomDraw
             DragMove();
         }
 
-        private void ShowInfo(string content)
-        {
-            if (AnimationCompleted)
-            {
-                Label_Info.Content = content;
-                AnimationCompleted = false;
-                var story = (Storyboard)this.Resources["ShowLabel"];
-                if (story != null)
-                {
-                    story.Completed += delegate
-                    {
-                        var story = (Storyboard)this.Resources["HideLabel"];
-                        if (story != null)
-                        {
-                            AnimationCompleted = true;
-                            story.Begin(Label_Info, true);
-                        }
-                    };
-                    story.Begin(Label_Info, true);
-                }
-            }
-        }
-
         private void FontSizeContentLegality(TextBox textBox)
         {
             if (textBox.Text != "")
@@ -138,15 +115,20 @@ namespace MiaoywwwTools.Tools.RandomDraw
                 }
                 catch (FormatException)
                 {
-                    ShowInfo("请输入一个正整数");
+                    MessageBox.ShowDialog("请输入一个正整数");
                     textBox.Text = "100";
                     return;
                 }
                 if (int.Parse(textBox.Text) <= 0)
                 {
-                    ShowInfo("请输入一个正整数");
+                    MessageBox.ShowDialog("请输入一个正整数");
                     textBox.Text = "100";
                 }
+            }
+            else
+            {
+                MessageBox.ShowDialog("请输入一个正整数");
+                textBox.Text = "100";
             }
         }
 
@@ -161,13 +143,13 @@ namespace MiaoywwwTools.Tools.RandomDraw
                 }
                 catch (FormatException)
                 {
-                    ShowInfo("请输入一个正确的ARGB颜色");
+                    MessageBox.ShowDialog("请输入一个正确的ARGB颜色");
                     textBox.Text = "#FFFFFFFF";
                 }
             }
             else
             {
-                ShowInfo("请输入一个正确的ARGB颜色");
+                MessageBox.ShowDialog("请输入一个正确的ARGB颜色");
                 textBox.Text = "#FFFFFFFF";
             }
         }
@@ -210,10 +192,7 @@ namespace MiaoywwwTools.Tools.RandomDraw
             TextBox_GradeSettings_Size.Text = (100).ToString();
             ChangeSettingsBorderColor();
         }
-
-        // 设置保存
-        private void Btn_OutPutSettingsSave_Click(object sender, RoutedEventArgs e)
-        {
+        public void SaveSettings(){
             // 颜色
             ColorContentLegality(TextBox_NameSettings_Color);
             ColorContentLegality(TextBox_GradeSettings_Color);
@@ -230,16 +209,20 @@ namespace MiaoywwwTools.Tools.RandomDraw
             Registry.SetValue(raDraw.keypath, "GradeSize", TextBox_GradeSettings_Size.Text);
         }
 
+        // 设置保存
+        private void Btn_OutPutSettingsSave_Click(object sender, RoutedEventArgs e)
+        {
+            SaveSettings();
+        }
+
         // 拾色器确认
         private void ColorPicker_Confirmed(object sender, HandyControl.Data.FunctionEventArgs<System.Windows.Media.Color> e)
         {
-            if (changeColorBorder is not null)
+            if (changeColorBorder is not null && changeContextBox is not null)
             {
                 changeColorBorder.Background = ColorPicker_Main.SelectedBrush;
-            }
-            if (changeContextBox is not null)
-            {
                 changeContextBox.Text = ColorPicker_Main.SelectedBrush.ToString();
+                SaveSettings();
             }
         }
 
