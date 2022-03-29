@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "RestartApp": {
+      "commandName": "Project",
+      "commandLineArgs": "MiaoywwwTools"
+    }
+  }
+}

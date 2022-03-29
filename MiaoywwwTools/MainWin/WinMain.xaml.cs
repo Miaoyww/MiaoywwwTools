@@ -101,14 +101,13 @@ namespace MiaoywwwTools
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            string runpath = System.Environment.CurrentDirectory + @"\RestartApp.exe";
             if (GlobalV.AppRestart)
             {
                 try
                 {
                     ProcessStartInfo process = new ProcessStartInfo();
-                    process.FileName = System.Environment.CurrentDirectory + @"\RestartApp.exe";
-                    process.Arguments = Environment.ProcessPath;
+                    process.FileName = Environment.CurrentDirectory + @"\RestartApp.exe";
+                    process.Arguments = "MiaoywwwTools";
                     Process.Start(process);
                 }
                 catch (System.ComponentModel.Win32Exception)

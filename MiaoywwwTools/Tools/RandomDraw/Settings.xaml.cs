@@ -1,13 +1,12 @@
 ﻿using Microsoft.Win32;
 using RandomDrawLib;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace MiaoywwwTools.Tools.RandomDraw
 {
@@ -105,34 +104,37 @@ namespace MiaoywwwTools.Tools.RandomDraw
             DragMove();
         }
 
-        private void FontSizeContentLegality(TextBox textBox)
+        private bool FontSizeContentLegality(TextBox textBox)
         {
             if (textBox.Text != "")
             {
                 try
                 {
                     int.Parse(textBox.Text);
+                    return true;
                 }
                 catch (FormatException)
                 {
                     MessageBox.ShowDialog("请输入一个正整数");
                     textBox.Text = "100";
-                    return;
+                    return false;
                 }
                 if (int.Parse(textBox.Text) <= 0)
                 {
                     MessageBox.ShowDialog("请输入一个正整数");
                     textBox.Text = "100";
+                    return false;
                 }
             }
             else
             {
                 MessageBox.ShowDialog("请输入一个正整数");
                 textBox.Text = "100";
+                return false;
             }
         }
 
-        private void ColorContentLegality(TextBox textBox)
+        private bool ColorContentLegality(TextBox textBox)
         {
             BrushConverter brushConverter = new BrushConverter();
             if (textBox.Text != "")
@@ -140,17 +142,20 @@ namespace MiaoywwwTools.Tools.RandomDraw
                 try
                 {
                     Brush test = (Brush)brushConverter.ConvertFromString(textBox.Text);
+                    return true;
                 }
                 catch (FormatException)
                 {
                     MessageBox.ShowDialog("请输入一个正确的ARGB颜色");
                     textBox.Text = "#FFFFFFFF";
+                    return false;
                 }
             }
             else
             {
                 MessageBox.ShowDialog("请输入一个正确的ARGB颜色");
                 textBox.Text = "#FFFFFFFF";
+                return false;
             }
         }
 
@@ -183,6 +188,7 @@ namespace MiaoywwwTools.Tools.RandomDraw
             Border_GradeSettings.Background = (Brush)brushConverter.ConvertFromString(TextBox_GradeSettings_Color.Text);
             Border_NameSettings.Background = (Brush)brushConverter.ConvertFromString(TextBox_NameSettings_Color.Text);
         }
+
         // 设置重置
         private void Btn_OutPutSettingsReSet_Click(object sender, RoutedEventArgs e)
         {
@@ -192,21 +198,47 @@ namespace MiaoywwwTools.Tools.RandomDraw
             TextBox_GradeSettings_Size.Text = (100).ToString();
             ChangeSettingsBorderColor();
         }
-        public void SaveSettings(){
-            // 颜色
-            ColorContentLegality(TextBox_NameSettings_Color);
-            ColorContentLegality(TextBox_GradeSettings_Color);
-            ColorContentLegality(TextBox_BackGroundSettings_Color);
-            ChangeSettingsBorderColor();
-            Registry.SetValue(raDraw.keypath, "BackGroundColor", TextBox_BackGroundSettings_Color.Text);
-            Registry.SetValue(raDraw.keypath, "GradeColor", TextBox_GradeSettings_Color.Text);
-            Registry.SetValue(raDraw.keypath, "NameColor", TextBox_NameSettings_Color.Text);
 
-            // 字体大小
-            FontSizeContentLegality(TextBox_NameSettings_Size);
-            FontSizeContentLegality(TextBox_GradeSettings_Size);
-            Registry.SetValue(raDraw.keypath, "NameSize", TextBox_NameSettings_Size.Text);
-            Registry.SetValue(raDraw.keypath, "GradeSize", TextBox_GradeSettings_Size.Text);
+        public void SaveSettings()
+        {
+            TextBox[] ColortextBoxes = {
+                TextBox_NameSettings_Color,
+                TextBox_GradeSettings_Color,
+                TextBox_BackGroundSettings_Color
+            };
+            TextBox[] FonttextBoxes =
+            {
+                TextBox_NameSettings_Size,
+                TextBox_GradeSettings_Size
+            };
+            bool isLegal = true;
+            // 颜色
+            foreach(TextBox textBoxitem in ColortextBoxes)
+            {
+                if (!ColorContentLegality(textBoxitem))
+                {
+                    isLegal = false;
+                }
+            }
+            foreach(TextBox textBoxitem in FonttextBoxes)
+            {
+                if (!FontSizeContentLegality(textBoxitem))
+                {
+                    isLegal = false;
+                }
+            }
+            if (isLegal)
+            {
+                ChangeSettingsBorderColor();
+                Registry.SetValue(raDraw.keypath, "BackGroundColor", TextBox_BackGroundSettings_Color.Text);
+                Registry.SetValue(raDraw.keypath, "GradeColor", TextBox_GradeSettings_Color.Text);
+                Registry.SetValue(raDraw.keypath, "NameColor", TextBox_NameSettings_Color.Text);
+
+                // 字体大小
+                Registry.SetValue(raDraw.keypath, "NameSize", TextBox_NameSettings_Size.Text);
+                Registry.SetValue(raDraw.keypath, "GradeSize", TextBox_GradeSettings_Size.Text);
+                MessageBox.ShowDialog("保存成功！");
+            }
         }
 
         // 设置保存
@@ -222,7 +254,6 @@ namespace MiaoywwwTools.Tools.RandomDraw
             {
                 changeColorBorder.Background = ColorPicker_Main.SelectedBrush;
                 changeContextBox.Text = ColorPicker_Main.SelectedBrush.ToString();
-                SaveSettings();
             }
         }
 
