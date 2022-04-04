@@ -63,6 +63,7 @@
                         </Button.Background>
                     </Button>
                     <Label Content="概率计算" HorizontalAlignment="Left" Height="66" Width="110" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF0095F3" FontSize="16" FontWeight="Bold" />
+                    <Label Content="(图一乐" HorizontalAlignment="Left" Height="30" Width="70" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF0095F3" FontWeight="Bold" Margin="65,36,0,0" VerticalAlignment="Top" />
                 </Grid>
             </Border>
             <Border x:Name="Border_Content" BorderThickness="2,2,2,2" HorizontalAlignment="Center" Height="371" Margin="0,69,0,0" VerticalAlignment="Top" Width="790" Background="#FFC9DCF3" CornerRadius="10,10,10,10" BorderBrush="White">

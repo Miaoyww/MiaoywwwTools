@@ -42,11 +42,29 @@ namespace MiaoywwwTools.Tools.RandomDraw
             }
         }
 
+        private void Reproducible_Mode_Checked(object sender, RoutedEventArgs e)
+        {
+            Registry.SetValue(raDraw.keypath, "Mode-Re", "reproducible");
+            if (List_Mode.IsChecked is true)
+            {
+                List_Mode.IsChecked = false;
+            }
+        }
+
+        private void List_Mode_Checked(object sender, RoutedEventArgs e)
+        {
+            Registry.SetValue(raDraw.keypath, "Mode-Re", "list");
+            if (Reproducible_Mode.IsChecked is true)
+            {
+                Reproducible_Mode.IsChecked = false;
+            }
+        }
+
         private void Random_Mode_Checked(object sender, RoutedEventArgs e)
         {
+            Registry.SetValue(raDraw.keypath, "Mode", "random");
             if (Random_Mode.IsChecked is true)
             {
-                Registry.SetValue(raDraw.keypath, "Mode", "random");
                 Grade_Mode.IsChecked = false;
             }
         }
@@ -67,7 +85,7 @@ namespace MiaoywwwTools.Tools.RandomDraw
         {
             // 判断注册表是否有指定值
             // 无则创建
-            string[][] keylist = new string[6][];
+            string[][] keylist = new string[7][];
             for (int i = 0; i < keylist.Length; i++)
             {
                 keylist[i] = new string[2];
@@ -78,6 +96,7 @@ namespace MiaoywwwTools.Tools.RandomDraw
             keylist[3] = new string[] { "GradeColor", "#FFFFFFFF" };
             keylist[4] = new string[] { "GradeSize", "100" };
             keylist[5] = new string[] { "BackGroundColor", "#FF000000" };
+            keylist[6] = new string[] { "Mode-Re", "reproducible" };
             foreach (string[] item in keylist)
             {
                 object? keyvalue = Registry.GetValue(raDraw.keypath, item[0], null);
@@ -87,16 +106,24 @@ namespace MiaoywwwTools.Tools.RandomDraw
                 }
             }
             // 判断是否为True，是则控制Random_Mode为勾选状态
-            if (Registry.GetValue(raDraw.keypath, "Mode", false)?.ToString() == "random")
+            if (Registry.GetValue(raDraw.keypath, "Mode", null)?.ToString() == "random")
             {
                 Random_Mode.IsChecked = true;
             }
-            TextBox_NameSettings_Color.Text = Registry.GetValue(raDraw.keypath, "NameColor", false)?.ToString();
-            TextBox_GradeSettings_Color.Text = Registry.GetValue(raDraw.keypath, "GradeColor", false)?.ToString();
-            TextBox_BackGroundSettings_Color.Text = Registry.GetValue(raDraw.keypath, "BackGroundColor", false)?.ToString();
+            if (Registry.GetValue(raDraw.keypath, "Mode-Re", null)?.ToString() == "reproducible")
+            {
+                Reproducible_Mode.IsChecked = true;
+            }
+            else
+            {
+                List_Mode.IsChecked= true;
+            }
+            TextBox_NameSettings_Color.Text = Registry.GetValue(raDraw.keypath, "NameColor", null)?.ToString();
+            TextBox_GradeSettings_Color.Text = Registry.GetValue(raDraw.keypath, "GradeColor", null)?.ToString();
+            TextBox_BackGroundSettings_Color.Text = Registry.GetValue(raDraw.keypath, "BackGroundColor", null)?.ToString();
             ChangeSettingsBorderColor();
-            TextBox_NameSettings_Size.Text = Registry.GetValue(raDraw.keypath, "NameSize", false)?.ToString();
-            TextBox_GradeSettings_Size.Text = Registry.GetValue(raDraw.keypath, "GradeSize", false)?.ToString();
+            TextBox_NameSettings_Size.Text = Registry.GetValue(raDraw.keypath, "NameSize", null)?.ToString();
+            TextBox_GradeSettings_Size.Text = Registry.GetValue(raDraw.keypath, "GradeSize", null)?.ToString();
         }
 
         private void TopBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

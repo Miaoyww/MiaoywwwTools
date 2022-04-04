@@ -4,9 +4,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MiaoywwwTools" Height="549" Width="1045" AllowsTransparency="True" Background="#00000000" WindowStyle="None" Loaded="Window_Loaded" Closed="Window_Closed" Closing="Window_Closing">
+        Title="MiaoywwwTools" Height="549" Width="975" AllowsTransparency="True" Background="#00000000" WindowStyle="None" Loaded="Window_Loaded" Closed="Window_Closed" Closing="Window_Closing">
     <Window.Resources>
         <ResourceDictionary>
+            <ContextMenu x:Key="Image_Face_Menu">
+                <MenuItem Name="CleanUpFace" Click="CleanUpFace_Click" Header="清除头像" />
+            </ContextMenu>
             <Storyboard x:Key="HideWindow">
                 <DoubleAnimation Duration="0:0:0.2" From="1" To="0" Storyboard.TargetProperty="Opacity" FillBehavior="Stop" />
                 <DoubleAnimation Duration="0:0:0.2" From="1" To="0.9" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleX)" FillBehavior="Stop" Storyboard.TargetName="MainBorder" />
@@ -37,15 +40,16 @@
             <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
         </Border.Effect>
         <Grid x:Name="MainGrid">
+
             <Grid.RowDefinitions>
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Border x:Name="Border_Top" BorderBrush="#FF0084FF" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="10,10,10,10" Height="55" Width="946" MouseLeftButtonDown="Border_Top_MouseLeftButtonDown" BorderThickness="2,2,2,2" Background="White" Margin="79,10,0,0">
+            <Border x:Name="Border_Top" BorderBrush="#FF0084FF" HorizontalAlignment="Center" VerticalAlignment="Top" CornerRadius="10,10,10,10" Height="65" Width="946" MouseLeftButtonDown="Border_Top_MouseLeftButtonDown" BorderThickness="2,2,2,2" Background="White">
                 <Border.Effect>
                     <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
                 </Border.Effect>
                 <Grid>
-                    <Label Content="MiaoywwwTools" HorizontalAlignment="Left" Height="51" Width="224" BorderThickness="0,0,0,0" Background="{x:Null}" Foreground="#FF0084FF" FontSize="25" HorizontalContentAlignment="Left" />
+                    <Label Content="MiaoywwwTools" HorizontalAlignment="Left" Height="51" Width="238" BorderThickness="0,0,0,0" Background="{x:Null}" Foreground="#FF0084FF" FontSize="25" HorizontalContentAlignment="Left" FontWeight="Bold" />
                     <Button x:Name="Btn_Close" HorizontalAlignment="Left" Height="62" Margin="875,0,0,0" Width="63" BorderThickness="0,0,0,0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="Btn_Close_Click">
                         <Button.Background>
                             <ImageBrush ImageSource="/Resources/Images/close.png">
@@ -74,18 +78,8 @@
                             </ImageBrush>
                         </Button.Background>
                     </Button>
-                </Grid>
-            </Border>
-            <Border x:Name="Border_Content" Margin="79,70,10,0" CornerRadius="8,8,8,8" Background="#FFC2D4EA" BorderBrush="White" BorderThickness="2,2,2,2" Width="946" Height="469">
-                <ContentControl x:Name="NestPage" HorizontalAlignment="Center" Height="466" VerticalAlignment="Center" Width="942" BorderThickness="2,2,2,2" Foreground="{x:Null}" />
-            </Border>
-            <Border BorderThickness="2,2,2,2" HorizontalAlignment="Left" Height="529" Margin="10,0,0,0" VerticalAlignment="Bottom" Width="64" BorderBrush="#FF0084FF" Background="White" CornerRadius="10,10,10,10">
-                <Border.Effect>
-                    <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
-                </Border.Effect>
-                <Grid>
-                    <Border BorderBrush="#FF0084FF" BorderThickness="1" HorizontalAlignment="Left" Height="42" VerticalAlignment="Top" Width="44" CornerRadius="10,10,10,10" Margin="10,194,0,0">
-                        <Button x:Name="Btns_Home" Height="42" BorderThickness="0,0,0,0" HorizontalContentAlignment="Right" UseLayoutRounding="True" Click="Btns_Home_Click" FontSize="15" Width="44" Foreground="#FF0084FF">
+                    <Border BorderBrush="#FF0084FF" BorderThickness="1" HorizontalAlignment="Left" Height="42" VerticalAlignment="Center" Width="80" CornerRadius="10,10,10,10" Margin="334,0,0,0" Background="White">
+                        <Button x:Name="Btns_Home" Height="42" BorderThickness="0,0,0,0" HorizontalContentAlignment="Right" UseLayoutRounding="True" Click="Btns_Home_Click" FontSize="15" Width="80" Foreground="#FF0084FF">
                             <Button.Background>
                                 <ImageBrush Stretch="Uniform" ImageSource="/Resources/Images/home.png">
                                     <ImageBrush.RelativeTransform>
@@ -100,8 +94,8 @@
                             </Button.Background>
                         </Button>
                     </Border>
-                    <Border BorderBrush="#FF0084FF" BorderThickness="1" HorizontalAlignment="Center" Height="42" VerticalAlignment="Center" Width="44" CornerRadius="10,10,10,10">
-                        <Button x:Name="Btns_More" Content="" Width="44" Height="42" HorizontalContentAlignment="Right" Foreground="#FF0084FF" BorderThickness="0,0,0,0" Click="Btns_More_Click" FontSize="15">
+                    <Border BorderBrush="#FF0084FF" BorderThickness="1" HorizontalAlignment="Center" Height="42" VerticalAlignment="Center" Width="80" CornerRadius="10,10,10,10" Background="White">
+                        <Button x:Name="Btns_More" Content="" Width="80" Height="42" HorizontalContentAlignment="Right" Foreground="#FF0084FF" BorderThickness="0,0,0,0" Click="Btns_More_Click" FontSize="15">
                             <Button.Background>
                                 <ImageBrush Stretch="Uniform" ImageSource="/Resources/Images/more.png">
                                     <ImageBrush.RelativeTransform>
@@ -116,8 +110,8 @@
                             </Button.Background>
                         </Button>
                     </Border>
-                    <Border BorderBrush="#FF0084FF" BorderThickness="1" HorizontalAlignment="Center" Height="42" Margin="0,288,0,0" VerticalAlignment="Top" Width="44" CornerRadius="10,10,10,10">
-                        <Button x:Name="Btns_Settings" Content="" Width="44" Height="42" Foreground="#FF0084FF" BorderThickness="0,0,0,0" HorizontalContentAlignment="Right" UseLayoutRounding="True" FontSize="14">
+                    <Border BorderBrush="#FF0084FF" BorderThickness="1" HorizontalAlignment="Left" Height="42" Margin="528,0,0,0" VerticalAlignment="Center" Width="80" CornerRadius="10,10,10,10" Background="White">
+                        <Button x:Name="Btns_Settings" Content="" Width="80" Height="42" Foreground="#FF0084FF" BorderThickness="0,0,0,0" HorizontalContentAlignment="Right" UseLayoutRounding="True" FontSize="14">
                             <Button.Background>
                                 <ImageBrush Stretch="Uniform" ImageSource="/Resources/Images/settings.png">
                                     <ImageBrush.RelativeTransform>
@@ -133,6 +127,9 @@
                         </Button>
                     </Border>
                 </Grid>
+            </Border>
+            <Border x:Name="Border_Content" Margin="0,70,0,0" CornerRadius="8,8,8,8" Background="#FFC2D4EA" BorderBrush="White" BorderThickness="2,2,2,2" Width="946" Height="469" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <ContentControl x:Name="NestPage" HorizontalAlignment="Left" Height="466" VerticalAlignment="Center" Width="942" BorderThickness="2,2,2,2" Foreground="{x:Null}" Margin="2,0,0,0" />
             </Border>
         </Grid>
     </Border>

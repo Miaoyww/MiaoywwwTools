@@ -13,6 +13,7 @@
                 <Label x:Name="Label_Grade" Content="Grade" FontSize="100" Background="Transparent" Foreground="White" Height="154" Width="330" BorderBrush="{x:Null}" VerticalAlignment="Top" Canvas.Left="795" Canvas.Top="540" />
                 <Button x:Name="Btn_Close" Content="关闭" Height="100" Width="800" FontSize="45" Click="Btn_Close_Click" BorderBrush="White" Background="Transparent" Foreground="White" Canvas.Left="560" Canvas.Top="980" VerticalAlignment="Top" />
                 <Label x:Name="Label_Mode" Content="当前模式: 随机模式" Height="53" FontSize="30" BorderBrush="White" Canvas.Top="1027" VerticalAlignment="Top" />
+                <Label x:Name="Label_NextList" Content="下一列表" Height="53" FontSize="30" BorderBrush="White" Canvas.Top="969" VerticalAlignment="Top" Canvas.Left="-3" Opacity="0" />
             </Canvas>
         </Viewbox>
     </Grid>

@@ -85,8 +85,8 @@ namespace MiaoywwwTools.Tools.RandomDraw
             else
             {
                 RandomDrawLib.RaDraw raDraw = new();
-                bool real = raDraw.Read();  // 若文件不存在，返回false
-                if (real)
+                JObject read = raDraw.Read();  // 若文件不存在，返回false
+                if (read is not null)
                 {
                     Btn_Compute.Content = "停止";
                     Computing = true;
@@ -112,12 +112,12 @@ namespace MiaoywwwTools.Tools.RandomDraw
         public async void GetRandomResult(int RunTimes, bool RealTimeOutPut = false)
         {
             RandomDrawLib.RaDraw raDraw = new();
-            bool real = raDraw.Read();  // 若文件不存在，返回false
-            if (real)
+            JObject read = raDraw.Read();
+            if (read is not null)
             {
                 int arraylength = raDraw.GetStdataLentgh();
                 string[,] PersonList = new string[arraylength, 2];  // 数据
-                JObject jsonObject = raDraw.GetStdataContent();
+                JObject jsonObject = raDraw.Read();
                 // 将jsonObject中的数据转存到std中，并加入一个“重复到的次数”
                 for (int i = 0; i < arraylength; i++)
                 {
@@ -133,9 +133,9 @@ namespace MiaoywwwTools.Tools.RandomDraw
                         {
                             this.TextBox_RemanentTimes.Text = RunTimes.ToString();
                         }));
-                        raDraw.Read();
-                        string[] result = raDraw.GetRandomResult();
-                        PersonList[int.Parse(result[2]), 1] = (int.Parse(PersonList[int.Parse(result[2]), 1]) + 1).ToString();
+                        JObject reader = raDraw.Read();
+                        JObject result = raDraw.GetRandomResult(reader);
+                        PersonList[int.Parse(result["select"].ToString()), 1] = (int.Parse(PersonList[int.Parse(result["select"].ToString()), 1]) + 1).ToString();
                         PersonList = await SortData(PersonList, arraylength);
                         if (RealTimeOutPut is true)
                         {

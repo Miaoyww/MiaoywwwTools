@@ -23,6 +23,7 @@ namespace MiaoywwwTools
             winMain = this;
         }
 
+
         public static string PageName;     // 储存页面
 
         /// <summary>
@@ -120,6 +121,16 @@ namespace MiaoywwwTools
                     CloseWindow();
                 }
             }
+        }
+
+        private void CleanUpFace_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BorderFace_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

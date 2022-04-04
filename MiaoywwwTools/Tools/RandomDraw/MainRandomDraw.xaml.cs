@@ -5,6 +5,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using RandomDrawLib;
+using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 
 namespace MiaoywwwTools.Tools.RandomDraw
 {
@@ -25,9 +27,21 @@ namespace MiaoywwwTools.Tools.RandomDraw
         {
 
             BrushConverter brushConverter = new BrushConverter();
-            RandomDrawLib.RaDraw raDraw = new();
-            raDraw.Read();
-            string[] result = raDraw.GetRandomResult();
+            RaDraw raDraw = new();
+            JObject read = raDraw.Read();
+            List<object>? result = new List<object>();
+            JObject? randomResult = new();
+            if (Registry.GetValue(raDraw.keypath, "Mode-Re", null)?.ToString() == "list")
+            {
+                result = raDraw.GetListResult(read);
+                randomResult = (JObject)result[0];
+            }
+            else
+            {
+                result = raDraw.GetListResult(read);
+                result[1] = null;
+                randomResult = raDraw.GetRandomResult(read);
+            }
             if (result != null)
             {
                 Thread thread = new(() =>
@@ -43,8 +57,9 @@ namespace MiaoywwwTools.Tools.RandomDraw
                             backgroundColor,
                             nameFontSize,
                             gradeFontSize,
-                            result[0],
-                            result[1]);
+                            randomResult["name"].ToString(),
+                            randomResult["grade"].ToString(),
+                            (JObject)result[1]);
                         
                     }));
                 });
