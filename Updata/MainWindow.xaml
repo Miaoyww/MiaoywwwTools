@@ -1,0 +1,24 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Updata"
+        xmlns:hc="https://handyorg.github.io/handycontrol" x:Class="Updata.MainWindow"
+        mc:Ignorable="d"
+        Title="更新" Height="190" Width="340" Loaded="Window_Loaded">
+    <Grid>
+        <ProgressBar x:Name="pgbar" HorizontalAlignment="Center" Height="45" Margin="0,110,0,0" VerticalAlignment="Top" Width="320" Foreground="#FF2C74F3">
+        </ProgressBar>
+        <Label x:Name="Label_Content" Content="内容" Height="45" Margin="0,35,0,0" VerticalAlignment="Top" Width="320" RenderTransformOrigin="0.5,0.5" FontSize="20">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="-0.774"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.236"/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+    </Grid>
+</Window>

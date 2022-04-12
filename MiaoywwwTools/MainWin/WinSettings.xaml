@@ -1,0 +1,16 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Class="MiaoywwwTools.WinSettings"
+    mc:Ignorable="d" Width="942" Height="460" Title="WinSettings" Loaded="Page_Loaded">
+    <Border CornerRadius="10,10,10,10" Background="#FFC2D4EA">
+        <Grid Width="942" Height="465">
+            <Label Content="此页面暂未完善" HorizontalAlignment="Left" Height="60" Margin="10,10,0,0" VerticalAlignment="Top" Width="163" FontSize="18"/>
+            <Label Content="版本号" HorizontalAlignment="Left" Height="38" Margin="10,134,0,0" VerticalAlignment="Top" Width="105"/>
+            <Label Content="Ver" HorizontalAlignment="Left" Height="30" Margin="10,177,0,0" VerticalAlignment="Top" Width="219" HorizontalContentAlignment="Left"/>
+            <Button x:Name="Btn_CheckUpdata" Content="检查更新" HorizontalAlignment="Left" Margin="10,219,0,0" VerticalAlignment="Top" Height="60" Width="130" Click="Btn_CheckUpdata_Click"/>
+        </Grid>
+    </Border>
+</Page>

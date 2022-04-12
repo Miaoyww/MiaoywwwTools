@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Updata": {
+      "commandName": "Project",
+      "commandLineArgs": "https://github.com/Miaoywww/MiaoywwwTools/releases/download/Ver.0.4.1.0220404-Alpha/MiaoywwwTools.zip"
+    }
+  }
+}
