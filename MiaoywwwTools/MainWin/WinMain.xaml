@@ -7,9 +7,6 @@
         Title="MiaoywwwTools" Height="549" Width="975" AllowsTransparency="True" Background="#00000000" WindowStyle="None" Loaded="Window_Loaded" Closed="Window_Closed" Closing="Window_Closing">
     <Window.Resources>
         <ResourceDictionary>
-            <ContextMenu x:Key="Image_Face_Menu">
-                <MenuItem Name="CleanUpFace" Click="CleanUpFace_Click" Header="清除头像" />
-            </ContextMenu>
             <Storyboard x:Key="HideWindow">
                 <DoubleAnimation Duration="0:0:0.2" From="1" To="0" Storyboard.TargetProperty="Opacity" FillBehavior="Stop" />
                 <DoubleAnimation Duration="0:0:0.2" From="1" To="0.9" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleX)" FillBehavior="Stop" Storyboard.TargetName="MainBorder" />
@@ -111,7 +108,7 @@
                         </Button>
                     </Border>
                     <Border BorderBrush="#FF0084FF" BorderThickness="1" HorizontalAlignment="Left" Height="42" Margin="528,0,0,0" VerticalAlignment="Center" Width="80" CornerRadius="10,10,10,10" Background="White">
-                        <Button x:Name="Btns_Settings" Content="" Width="80" Height="42" Foreground="#FF0084FF" BorderThickness="0,0,0,0" HorizontalContentAlignment="Right" UseLayoutRounding="True" FontSize="14">
+                        <Button x:Name="Btns_Settings" Content="" Width="80" Height="42" Foreground="#FF0084FF" BorderThickness="0,0,0,0" HorizontalContentAlignment="Right" UseLayoutRounding="True" FontSize="14" Click="Btns_Settings_Click">
                             <Button.Background>
                                 <ImageBrush Stretch="Uniform" ImageSource="/Resources/Images/settings.png">
                                     <ImageBrush.RelativeTransform>

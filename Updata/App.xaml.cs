@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Updata
+namespace updata
 {
     /// <summary>
     /// Interaction logic for App.xaml
@@ -21,9 +21,15 @@ namespace Updata
             }
             else
             {
-                GlobalV.downloadurl = e.Args[0];
+                try
+                {
+                    GlobalV.unpack = Convert.ToBoolean(e.Args[0]);
+                } catch (Exception ex)
+                {
+                    GlobalV.downloadurl = e.Args[0];
+                }
+                
             }
         }
-
     }
 }

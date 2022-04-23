@@ -55,4 +55,10 @@
     </Resource>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="version.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

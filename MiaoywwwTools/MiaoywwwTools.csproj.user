@@ -12,6 +12,9 @@
     <Compile Update="MainWin\EasterEgg.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="MainWin\WinSettings.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Tools\RandomDraw\Compute.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -42,6 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWin\EasterEgg.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MainWin\WinSettings.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Resources\MiaoRes.xaml">

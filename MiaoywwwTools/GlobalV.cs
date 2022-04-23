@@ -17,5 +17,7 @@ namespace MiaoywwwTools
         public static bool FaceChanged; // Home的头像是否已经修改
         public static bool CleanUpFace;    // 清除Home的头像
         public static bool AppRestart;  // 重启
+        public static string AppVersion_ver;
+        public static string AppVersion_time;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
@@ -7,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Updata
+namespace updata
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -18,6 +19,10 @@ namespace Updata
         {
             InitializeComponent();
         }
+
+        public string keypath = @"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\Updata";
+        public string temppath = @$"{Path.GetTempPath()}MiaoywwwTools\updata\";
+        public string uuid = Guid.NewGuid().ToString("N");
 
         private void Download()
         {
@@ -32,48 +37,73 @@ namespace Updata
                 pgbar.Maximum = response.ContentLength;
             }));
 
+            Registry.SetValue(keypath, "updataFileUUID", uuid);
             //下载远程文件
             ThreadPool.QueueUserWorkItem((obj) =>
             {
-                Stream netStream = response.GetResponseStream();
-                Stream fileStream = new FileStream("./downloadtemp.zip", FileMode.Create);
-                byte[] read = new byte[1024];
-                long progressBarValue = 0;
-                int realReadLen = netStream.Read(read, 0, read.Length);
-                while (realReadLen > 0)
+                try
                 {
-                    fileStream.Write(read, 0, realReadLen);
-                    progressBarValue += realReadLen;
-                    this.Dispatcher.BeginInvoke(new Action(delegate
+                    string downloadurl = $@"{temppath}{uuid}.zip";
+                    Stream netStream = response.GetResponseStream();
+                    Stream fileStream = new FileStream(downloadurl, FileMode.Create);
+                    byte[] read = new byte[1024];
+                    long progressBarValue = 0;
+                    int realReadLen = netStream.Read(read, 0, read.Length);
+                    while (realReadLen > 0)
                     {
-                        this.pgbar.Value = progressBarValue;
-                    }));
+                        fileStream.Write(read, 0, realReadLen);
+                        progressBarValue += realReadLen;
+                        this.Dispatcher.BeginInvoke(new Action(delegate
+                        {
+                            this.pgbar.Value = progressBarValue;
+                        }));
 
-                    realReadLen = netStream.Read(read, 0, read.Length);
+                        realReadLen = netStream.Read(read, 0, read.Length);
+                    }
+                    netStream.Close();
+                    fileStream.Close();
                 }
-                netStream.Close();
-                fileStream.Close();
-                GlobalV.downloadfinsh = true;
-            }, null);
-            
+                catch (Exception ex)
+                {
+                    MessageBox.Show("下载失败,请重试");
+                }
+                
+
+                string[] filelist =
+                {
+                    "HandyControl.dll",
+                    "updata.deps.json",
+                    "updata.dll",
+                    "updata.exe",
+                    "updata.pdb",
+                    "updata.runtimeconfig.json"
+                };
+                if (!Directory.Exists(temppath))
+                {
+                    Directory.CreateDirectory(temppath);
+                }
+                foreach (string filename in filelist)
+                {
+                    File.Copy("./" + filename, temppath + filename, true);
+                }
+                ProcessStartInfo process = new ProcessStartInfo();
+                process.FileName = temppath + "updata.exe";
+                process.Arguments = "true";
+                Process.Start(process);
+                Registry.SetValue(keypath, "unpackPath", Environment.CurrentDirectory + @"\");
+                Environment.Exit(0);
+            });
         }
 
         private void UnpackZip()
         {
-            while (true)
-            {
-                if (GlobalV.downloadfinsh)
-                {
-                    this.Dispatcher.BeginInvoke(new Action(delegate
-                    {
-                        Label_Content.Content = "解压中";
-                    }));
-                    ZipFile.ExtractToDirectory("./downloadtemp.zip", "./", true);
-                    Process.Start(Environment.CurrentDirectory + @"\MiaoywwwTools.exe");
-                    Environment.Exit(0);
-                }
-            }
+            string zippath = @$"{temppath}{Registry.GetValue(keypath, "updataFileUUID", null)}.zip";
+            string unpackpath = $"{Registry.GetValue(keypath, "unpackPath", null)}";
+            ZipFile.ExtractToDirectory(zippath, unpackpath, true);
             
+            Process.Start(unpackpath + @"\MiaoywwwTools.exe");
+            File.Delete(zippath);
+            Environment.Exit(0);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -81,9 +111,16 @@ namespace Updata
             if (GlobalV.downloadurl is not "")
             {
                 Label_Content.Content = "下载中";
-                Task download = new Task(Download);
+                Thread download = new Thread(Download);
+                download.IsBackground = true;
                 download.Start();
-                Task unpack = new Task(UnpackZip);
+            }
+            if (GlobalV.unpack is not false)
+            {
+                Label_Content.Content = "解压中";
+                pgbar.Value = 100;
+                Thread unpack = new Thread(UnpackZip);
+                unpack.IsBackground = true;
                 unpack.Start();
             }
         }

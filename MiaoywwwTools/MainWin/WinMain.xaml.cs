@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -63,6 +66,10 @@ namespace MiaoywwwTools
             ChangePage("MiaoywwwTools.WinMore");
         }
 
+        private void Btns_Settings_Click(object sender, RoutedEventArgs e)
+        {
+            ChangePage("MiaoywwwTools.WinSettings");
+        }
         public void CloseWindow()
         {
             var story = (Storyboard)this.Resources["HideWindow"];
@@ -83,6 +90,15 @@ namespace MiaoywwwTools
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             ChangePage("MiaoywwwTools.WinHome");
+            try { 
+                StreamReader reader = File.OpenText(@"./version.json");
+                JObject jsonContent = (JObject)JToken.ReadFrom(new JsonTextReader(reader));
+                GlobalV.AppVersion_ver = jsonContent["MiaoywwwTools"]["version"].ToString();
+                GlobalV.AppVersion_time = jsonContent["MiaoywwwTools"]["time"].ToString();
+            }catch(Exception ex)
+            {
+                MessageBox.ShowDialog($"读取版本信息错误, {ex}");
+            }
         }
 
         private void Btn_Mini_Click(object sender, RoutedEventArgs e)
@@ -107,7 +123,7 @@ namespace MiaoywwwTools
                 try
                 {
                     ProcessStartInfo process = new ProcessStartInfo();
-                    process.FileName = Environment.CurrentDirectory + @"\RestartApp.exe";
+                    process.FileName = Environment.CurrentDirectory + @"\restart.exe";
                     process.Arguments = "MiaoywwwTools";
                     Process.Start(process);
                 }
@@ -121,16 +137,6 @@ namespace MiaoywwwTools
                     CloseWindow();
                 }
             }
-        }
-
-        private void CleanUpFace_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BorderFace_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
         }
     }
 }
