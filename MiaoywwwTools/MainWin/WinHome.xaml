@@ -37,7 +37,7 @@
                             </Image.Clip>
                         </Image>
                     </Border>
-                    <Label x:Name="Label_Name" Content="这是你哦！" Height="65" Margin="0,84,0,0" VerticalAlignment="Top" Width="250" FontSize="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF0084FF" FontWeight="Bold" />
+                    <Label x:Name="Label_Name" Content="这是你哦！" Height="65" Margin="0,84,0,0" VerticalAlignment="Top" Width="232" FontSize="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF0084FF" FontWeight="Normal" />
                 </Grid>
             </Border>
             <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5,5,5,5" Background="White" Margin="244,299,10,10">
@@ -80,13 +80,8 @@
                 <Border.Effect>
                     <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.8" Direction="0" />
                 </Border.Effect>
-                <Grid HorizontalAlignment="Center" Height="135" VerticalAlignment="Center" Width="678">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="170*" />
-                        <ColumnDefinition Width="169*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Content="现在软件的功能与外观均未完成，不代表最终品质~" Margin="43,10,0,0" FontSize="25" FontWeight="Bold" Background="{x:Null}" HorizontalAlignment="Left" Grid.ColumnSpan="2" Height="45" VerticalAlignment="Top" />
-                    <Label Content="UI暂参考PCL2制作，后续会进行更改" Margin="43,60,0,0" FontSize="25" FontWeight="Bold" Background="{x:Null}" HorizontalAlignment="Center" Grid.ColumnSpan="2" Height="45" VerticalAlignment="Center" />
+                <Grid HorizontalAlignment="Center" Height="135" VerticalAlignment="Center" Width="690">
+                    <Label x:Name="Label_Date" Content="你好啊！现在是" FontSize="25" FontWeight="Bold" Background="{x:Null}" Height="135" HorizontalAlignment="Stretch" />
                 </Grid>
             </Border>
         </Grid>

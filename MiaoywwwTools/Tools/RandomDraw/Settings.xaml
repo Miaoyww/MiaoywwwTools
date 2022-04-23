@@ -92,27 +92,19 @@
                         <hc:ColorPicker x:Name="ColorPicker_Main" HorizontalAlignment="Left"  Width="225" Confirmed="ColorPicker_Confirmed" Canceled="ColorPicker_Main_Canceled"/>
                     </Border>
 
-                    <Border BorderBrush="White" Background="#FFEFEFEF" BorderThickness="2,2,2,2" Margin="193,10,286,272" CornerRadius="5,5,5,5">
+                    <Border BorderBrush="White" Background="#FFEFEFEF" BorderThickness="2,2,2,2" Margin="10,10,421,272" CornerRadius="5,5,5,5">
                         <Border.Effect>
                             <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
                         </Border.Effect>
-                        <Grid x:Name="Gird_RandomMode" HorizontalAlignment="Left" Height="65" VerticalAlignment="Top" Width="182">
+                        <Grid x:Name="Gird_RandomMode" HorizontalAlignment="Left" Height="65" VerticalAlignment="Top" Width="228">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Label Content="点名模式" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Top" Foreground="Black" />
-                            <CheckBox x:Name="Reproducible_Mode" Content="可重复模式" HorizontalAlignment="Left" Height="24" Margin="75,8,0,0" Width="90" VerticalAlignment="Top" FontSize="13" Checked="Reproducible_Mode_Checked" />
-                            <CheckBox x:Name="List_Mode" Content="列表模式" HorizontalAlignment="Left" Height="25" Margin="76,37,0,0" Width="89" VerticalAlignment="Top" Checked="List_Mode_Checked" FontSize="13" />
-                        </Grid>
-                    </Border>
-                    <Border BorderBrush="White" Background="#FFEFEFEF" BorderThickness="2,2,2,2" Margin="10,10,473,272" CornerRadius="5,5,5,5">
-                        <Border.Effect>
-                            <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
-                        </Border.Effect>
-                        <Grid x:Name="Gird_RandomSettings" HorizontalAlignment="Left" Height="65" VerticalAlignment="Top" Width="178">
-                            <Label Content="点名顺序" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Top" Foreground="Black" Width="78" BorderThickness="1,1,1,1" />
-                            <CheckBox x:Name="Random_Mode" Content="随机模式" HorizontalAlignment="Left" Height="24" Margin="83,8,0,0" Width="90" VerticalAlignment="Top" Checked="Random_Mode_Checked" FontSize="13" />
-                            <CheckBox x:Name="Grade_Mode" Content="成绩模式" HorizontalAlignment="Left" Height="25" Margin="83,37,0,0" Width="90" VerticalAlignment="Top" Checked="Grade_Mode_Checked" FontSize="13" />
+                            <Label Content="点名模式" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" Foreground="Black" />
+                            <ComboBox x:Name="Cbox_RandomMode" HorizontalAlignment="Left" Margin="98,13,0,0" VerticalAlignment="Top" Width="120">
+                                <ComboBoxItem x:Name="cbiRandomMode_Reproducible" Content="可重复模式" Selected="cbiRandomMode_Reproducible_Selected"/>
+                                <ComboBoxItem x:Name="cbiRandomMode_List" Content="列表模式" Selected="cbiRandomMode_List_Selected"/>
+                            </ComboBox>
                         </Grid>
                     </Border>
                     <Border BorderBrush="White" Background="#FFEFEFEF" BorderThickness="2" Margin="10,80,261,11" CornerRadius="5,5,5,5">
