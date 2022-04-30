@@ -2,12 +2,11 @@
 using System;
 using System.IO;
 using System.Net;
-using System.Threading;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
-using System.Windows.Threading;
 
 namespace MiaoywwwTools
 {
@@ -21,10 +20,6 @@ namespace MiaoywwwTools
         public WinHome()
         {
             InitializeComponent();
-            timer.Tick += new EventHandler(Timer_Tick);
-            timer.Interval = TimeSpan.FromSeconds(0.1); //设置刷新的间隔时间
-            timer.Start();
-            Label_Date.Content = $"你好啊!现在是{DateTime.Now}";
             winHome = this;
         }
 
@@ -206,6 +201,7 @@ namespace MiaoywwwTools
                     WinMain.winMain.CloseWindow();
                 }
             }
+            
         }
 
         // 头像Image点击事件
@@ -218,21 +214,6 @@ namespace MiaoywwwTools
         private void CleanUpFace_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             ChangeFace("cleanup");
-        }
-
-        private DispatcherTimer timer = new DispatcherTimer();
-
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            Thread changeTime = new(() =>
-            {
-                Dispatcher.BeginInvoke(new Action(() =>
-                {
-                    Label_Date.Content = $"你好啊!现在是{DateTime.Now}";
-                }));
-            });
-            changeTime.IsBackground = true;
-            changeTime.Start();
         }
 
         // 页面加载时

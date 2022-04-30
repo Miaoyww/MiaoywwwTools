@@ -46,7 +46,7 @@
                     <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
                 </Border.Effect>
                 <Grid>
-                    <Label Content="MiaoywwwTools" HorizontalAlignment="Left" Height="51" Width="238" BorderThickness="0,0,0,0" Background="{x:Null}" Foreground="#FF0084FF" FontSize="25" HorizontalContentAlignment="Left" FontWeight="Normal" />
+                    <Label Content="MiaoywwwTools" HorizontalAlignment="Left" Height="51" Width="238" BorderThickness="0,0,0,0" Background="{x:Null}" Foreground="#FF0084FF" FontSize="25" HorizontalContentAlignment="Left" FontWeight="Bold" />
                     <Button x:Name="Btn_Close" HorizontalAlignment="Left" Height="62" Margin="875,0,0,0" Width="63" BorderThickness="0,0,0,0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="Btn_Close_Click">
                         <Button.Background>
                             <ImageBrush ImageSource="/Resources/Images/close.png">

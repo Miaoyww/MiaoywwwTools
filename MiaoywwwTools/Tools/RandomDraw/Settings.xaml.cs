@@ -42,30 +42,61 @@ namespace MiaoywwwTools.Tools.RandomDraw
             }
         }
 
-        private void cbiRandomMode_List_Selected(object sender, RoutedEventArgs e)
-        {
-            Registry.SetValue(raDraw.keypath, "Mode-Re", "list");
-        }
-        private void cbiRandomMode_Reproducible_Selected(object sender, RoutedEventArgs e)
+        private void Reproducible_Mode_Checked(object sender, RoutedEventArgs e)
         {
             Registry.SetValue(raDraw.keypath, "Mode-Re", "reproducible");
+            if (List_Mode.IsChecked is true)
+            {
+                List_Mode.IsChecked = false;
+            }
+        }
+
+        private void List_Mode_Checked(object sender, RoutedEventArgs e)
+        {
+            Registry.SetValue(raDraw.keypath, "Mode-Re", "list");
+            if (Reproducible_Mode.IsChecked is true)
+            {
+                Reproducible_Mode.IsChecked = false;
+            }
+        }
+
+        private void Random_Mode_Checked(object sender, RoutedEventArgs e)
+        {
+            Registry.SetValue(raDraw.keypath, "Mode", "random");
+            if (Random_Mode.IsChecked is true)
+            {
+                Grade_Mode.IsChecked = false;
+            }
+        }
+
+        private void Grade_Mode_Checked(object sender, RoutedEventArgs e)
+        {
+            /*
+            if (Random_Mode.IsChecked == true)
+            {
+                Random_Mode.IsChecked = false;
+            }
+            */
+            MessageBox.ShowDialog("功能暂未开放");
+            Grade_Mode.IsChecked = false;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // 判断注册表是否有指定值
             // 无则创建
-            string[][] keylist = new string[6][];
+            string[][] keylist = new string[7][];
             for (int i = 0; i < keylist.Length; i++)
             {
                 keylist[i] = new string[2];
             }
-            keylist[0] = new string[] { "NameColor", "#FFFFFFFF" };
-            keylist[1] = new string[] { "NameSize", "340" };
-            keylist[2] = new string[] { "GradeColor", "#FFFFFFFF" };
-            keylist[3] = new string[] { "GradeSize", "100" };
-            keylist[4] = new string[] { "BackGroundColor", "#FF000000" };
-            keylist[5] = new string[] { "Mode-Re", "reproducible" };
+            keylist[0] = new string[] { "Mode", "random" };
+            keylist[1] = new string[] { "NameColor", "#FFFFFFFF" };
+            keylist[2] = new string[] { "NameSize", "340" };
+            keylist[3] = new string[] { "GradeColor", "#FFFFFFFF" };
+            keylist[4] = new string[] { "GradeSize", "100" };
+            keylist[5] = new string[] { "BackGroundColor", "#FF000000" };
+            keylist[6] = new string[] { "Mode-Re", "reproducible" };
             foreach (string[] item in keylist)
             {
                 object? keyvalue = Registry.GetValue(raDraw.keypath, item[0], null);
@@ -75,13 +106,17 @@ namespace MiaoywwwTools.Tools.RandomDraw
                 }
             }
             // 判断是否为True，是则控制Random_Mode为勾选状态
-            if (Registry.GetValue(raDraw.keypath, "Mode-Re", null)?.ToString() == "list")
+            if (Registry.GetValue(raDraw.keypath, "Mode", null)?.ToString() == "random")
             {
-                Cbox_RandomMode.SelectedIndex = 1;
+                Random_Mode.IsChecked = true;
             }
             if (Registry.GetValue(raDraw.keypath, "Mode-Re", null)?.ToString() == "reproducible")
             {
-                Cbox_RandomMode.SelectedIndex = 0;
+                Reproducible_Mode.IsChecked = true;
+            }
+            else
+            {
+                List_Mode.IsChecked= true;
             }
             TextBox_NameSettings_Color.Text = Registry.GetValue(raDraw.keypath, "NameColor", null)?.ToString();
             TextBox_GradeSettings_Color.Text = Registry.GetValue(raDraw.keypath, "GradeColor", null)?.ToString();
