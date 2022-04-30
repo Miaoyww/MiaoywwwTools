@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace RestartApp
+namespace restart
 {
     class Program
     {
