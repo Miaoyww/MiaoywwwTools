@@ -21,7 +21,7 @@ namespace MiaoywwwTools
             {
                 Environment.Exit(0);
             }
-            if(e.Args.Length >= 1)
+            if (e.Args.Length >= 1)
             {
                 if (e.Args[0] == "Updataed")
                 {

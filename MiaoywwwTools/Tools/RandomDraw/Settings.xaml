@@ -14,13 +14,13 @@
             </ContextMenu>
             <Storyboard x:Key="HideWindow">
                 <DoubleAnimation Duration="0:0:0.2" From="1" To="0" Storyboard.TargetProperty="Opacity" FillBehavior="Stop" />
-                <DoubleAnimation Duration="0:0:0.2" From="1" To="0.9" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleX)" FillBehavior="Stop" Storyboard.TargetName="MainBorder" />
-                <DoubleAnimation Duration="0:0:0.2" From="1" To="0.9" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleY)" FillBehavior="Stop" Storyboard.TargetName="MainBorder" />
+                <DoubleAnimation Duration="0:0:0.2" From="1" To="0.9" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleX)" FillBehavior="Stop" Storyboard.TargetName="MainGrid" />
+                <DoubleAnimation Duration="0:0:0.2" From="1" To="0.9" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleY)" FillBehavior="Stop" Storyboard.TargetName="MainGrid" />
             </Storyboard>
             <Storyboard x:Key="ShowWindow">
                 <DoubleAnimation Duration="0:0:0.2" From="0" To="1" Storyboard.TargetProperty="Opacity" FillBehavior="Stop" />
-                <DoubleAnimation Duration="0:0:0.2" From="0.9" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleX)" FillBehavior="Stop" Storyboard.TargetName="MainBorder" />
-                <DoubleAnimation Duration="0:0:0.2" From="0.9" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleY)" FillBehavior="Stop" Storyboard.TargetName="MainBorder" />
+                <DoubleAnimation Duration="0:0:0.2" From="0.9" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleX)" FillBehavior="Stop" Storyboard.TargetName="MainGrid" />
+                <DoubleAnimation Duration="0:0:0.2" From="0.9" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleY)" FillBehavior="Stop" Storyboard.TargetName="MainGrid" />
             </Storyboard>
             <Storyboard x:Key="HideGird">
                 <DoubleAnimation Duration="0:0:0.2" From="1" To="0" Storyboard.TargetProperty="Opacity" FillBehavior="Stop" />
@@ -45,23 +45,26 @@
             <BeginStoryboard Storyboard="{StaticResource ShowWindow}" />
         </EventTrigger>
     </Window.Triggers>
-    <Border x:Name="MainBorder" RenderTransformOrigin="0.5,0.5" Margin="0,5,5,-10" Background="Transparent" CornerRadius="10,10,10,10" Height="445">
-        <Border.RenderTransform>
+    <Grid x:Name="MainGrid" Background="Transparent">
+        <Grid.RenderTransform>
             <TransformGroup>
                 <ScaleTransform  ScaleX="1" ScaleY="1" />
                 <SkewTransform />
                 <RotateTransform />
                 <TranslateTransform />
             </TransformGroup>
-        </Border.RenderTransform>
-        <Border.Effect>
-            <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.8" Direction="0" />
-        </Border.Effect>
-        <Grid x:Name="MainGrid" Background="Transparent" Margin="-5,0,-5,10">
+        </Grid.RenderTransform>
+        <Border x:Name="MainBorder" RenderTransformOrigin="0.5,0.5" Margin="0,5,5,-10" Background="Transparent" CornerRadius="10,10,10,10" Height="445">
+            <Border.Effect>
+                <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.8" Direction="0" />
+            </Border.Effect>
+        </Border>
+        <Grid Margin="-5,0,-5,10">
             <Border x:Name="TopBorder" RenderTransformOrigin="0.5,0.5" BorderBrush="#FF0095F3" BorderThickness="2,2,2,2" Height="69" VerticalAlignment="Top" CornerRadius="10,10,10,10" Background="White" MouseLeftButtonDown="TopBorder_MouseLeftButtonDown" Margin="10,0,12,0">
                 <Border.Effect>
                     <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
                 </Border.Effect>
+
                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="70">
                     <Button x:Name="Btn_Close" HorizontalAlignment="Right" Height="66" Width="70" BorderBrush="{x:Null}" Click="Btn_Close_Click" VerticalAlignment="Center">
                         <Button.Background>
@@ -80,79 +83,96 @@
                     <Label Content="点名器设置" HorizontalAlignment="Left" Height="70" Width="113" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF0095F3" FontSize="16" FontWeight="Bold" />
                 </Grid>
             </Border>
-            <Border BorderBrush="White" BorderThickness="2,2,2,2" HorizontalAlignment="Center" Height="351" Margin="0,74,0,0" VerticalAlignment="Top" Width="665" Background="#FFC8DBF2" CornerRadius="10,10,10,10">
-                <Border.Effect>
-                    <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
-                </Border.Effect>
+            <Border Margin="0,74,0,0" Height="351" Width="665" CornerRadius="10,10,10,10" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FFC8DBF2">
                 <Grid>
-                    <Border Margin="426,0,0,0">
+                    <Border BorderBrush="White" BorderThickness="2,2,2,2"  CornerRadius="10,10,10,10">
                         <Border.Effect>
                             <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
                         </Border.Effect>
-                        <hc:ColorPicker x:Name="ColorPicker_Main" HorizontalAlignment="Left"  Width="225" Confirmed="ColorPicker_Confirmed" Canceled="ColorPicker_Main_Canceled"/>
                     </Border>
-
-                    <Border BorderBrush="White" Background="#FFEFEFEF" BorderThickness="2,2,2,2" Margin="10,10,421,272" CornerRadius="5,5,5,5">
-                        <Border.Effect>
-                            <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
-                        </Border.Effect>
-                        <Grid x:Name="Gird_RandomMode" HorizontalAlignment="Left" Height="65" VerticalAlignment="Top" Width="228">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Label Content="点名模式" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" Foreground="Black" />
-                            <ComboBox x:Name="Cbox_RandomMode" HorizontalAlignment="Left" Margin="98,13,0,0" VerticalAlignment="Top" Width="120">
-                                <ComboBoxItem x:Name="cbiRandomMode_Reproducible" Content="可重复模式" Selected="cbiRandomMode_Reproducible_Selected"/>
-                                <ComboBoxItem x:Name="cbiRandomMode_List" Content="列表模式" Selected="cbiRandomMode_List_Selected"/>
-                            </ComboBox>
+                    <Grid>
+                        <Grid Margin="426,0,0,0">
+                            <Border>
+                                <Border.Effect>
+                                    <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
+                                </Border.Effect>
+                            </Border>
+                            <hc:ColorPicker x:Name="ColorPicker_Main" HorizontalAlignment="Left"  Width="225" Confirmed="ColorPicker_Confirmed" Canceled="ColorPicker_Main_Canceled" />
                         </Grid>
-                    </Border>
-                    <Border BorderBrush="White" Background="#FFEFEFEF" BorderThickness="2" Margin="10,80,261,11" CornerRadius="5,5,5,5">
-                        <Border.Effect>
-                            <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
-                        </Border.Effect>
-                        <Grid x:Name="Gird_ShowSettings" HorizontalAlignment="Left" Width="390">
-                            <Label Content="输出设置" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="Black" FontSize="20" />
-                            <Border x:Name="Border_GradeSettings" Background="#FF3DA2FF" Margin="10,156,0,0" Width="250" CornerRadius="10,10,10,10" Height="94" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Grid Margin="10,10,421,272">
+                            <Border BorderBrush="White" Background="#FFEFEFEF" BorderThickness="2,2,2,2"  CornerRadius="5,5,5,5">
                                 <Border.Effect>
-                                    <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.8" Direction="0" />
+                                    <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
                                 </Border.Effect>
-                                <Grid>
-                                    <Label Content="数字设置" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" Foreground="Black" Height="34" FontSize="15" Width="82" />
-                                    <TextBox x:Name="TextBox_GradeSettings_Size" Margin="61,52,0,0" Width="79" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" Text="100" />
-                                    <Label Content="大小" HorizontalAlignment="Left" Margin="10,51,0,0" Foreground="Black" Height="33" Width="46" VerticalAlignment="Top" />
-                                    <TextBox x:Name="TextBox_GradeSettings_Color" Margin="145,52,0,0" Width="91" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" Text="#FFFFFFFF" />
-                                    <Button x:Name="Btn_SelectGrade" Content="选择颜色" HorizontalAlignment="Left" Height="34" Margin="145,13,0,0" VerticalAlignment="Top" Width="91" BorderBrush="#FF737373" FontWeight="Bold" Click="Btn_SelectGrade_Click"/>
-                                </Grid>
                             </Border>
-                            <Border x:Name="Border_NameSettings" Background="#FF3DA2FF" Margin="10,57,0,0" Width="250" CornerRadius="10,10,10,10" Height="94" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Border.Effect>
-                                    <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.8" Direction="0" />
-                                </Border.Effect>
-                                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="94" Width="270">
-                                    <Label Content="名称设置" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="Black" Height="34" FontSize="15" Width="82" />
-                                    <TextBox x:Name="TextBox_NameSettings_Size" Margin="61,52,0,0" Width="79" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" Text="340" />
-                                    <Label Content="大小" HorizontalAlignment="Left" Margin="10,51,0,0" Foreground="Black" Height="33" Width="46" VerticalAlignment="Top" />
-                                    <TextBox x:Name="TextBox_NameSettings_Color" Margin="145,52,0,0" Width="89" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" Text="#FFFFFFFF" />
-                                    <Button x:Name="Btn_SelectName" Content="选择颜色" HorizontalAlignment="Left" Height="33" Margin="144,11,0,0" VerticalAlignment="Top" Width="92" BorderBrush="#FF737373" FontWeight="Bold" Click="Btn_SelectName_Click" Background="White"/>
-                                </Grid>
-                            </Border>
-                            <Border x:Name="Border_BackGroundSettings" Margin="265,57,0,0" Width="117" CornerRadius="10,10,10,10" Height="193" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FF3DA2FF">
-                                <Border.Effect>
-                                    <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.8" Direction="0" />
-                                </Border.Effect>
-                                <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="192" Width="116">
-                                    <TextBox x:Name="TextBox_BackGroundSettings_Color"  Width="96" Height="32" HorizontalAlignment="Center" VerticalAlignment="Top" Text="#FF000000" Margin="0,150,0,0" />
-                                    <Button x:Name="Btn_SelectBackGround" Content="选择颜色" Margin="0,115,0,0" VerticalAlignment="Top" Width="96" BorderBrush="#FF737373" FontWeight="Bold" Height="30" Click="Btn_SelectBackGround_Click"/>
-                                    <Label Content="背景设置" Margin="0,10,0,0" VerticalAlignment="Top" Foreground="Black" Height="34" FontSize="15" Width="82" />
-                                    <Button x:Name="Btn_OutPutSettingsReSet" Content="重置" Margin="17,-48,0,0" VerticalAlignment="Top" Width="96" BorderBrush="#FF737373" FontWeight="Bold" Height="30" Click="Btn_OutPutSettingsReSet_Click" HorizontalAlignment="Left"/>
-                                    <Button x:Name="Btn_OutPutSettingsSave" Content="保存" Margin="-84,-48,0,0" VerticalAlignment="Top" Width="96" BorderBrush="#FF737373" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Click="Btn_OutPutSettingsSave_Click"/>
-                                </Grid>
-                            </Border>
+                            <Grid x:Name="Gird_RandomMode" HorizontalAlignment="Left" Height="65" VerticalAlignment="Top" Width="228">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Label Content="点名模式" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" Foreground="Black" />
+                                <ComboBox x:Name="Cbox_RandomMode" HorizontalAlignment="Left" Margin="98,13,0,0" VerticalAlignment="Top" Width="120">
+                                    <ComboBoxItem x:Name="cbiRandomMode_Reproducible" Content="可重复模式" Selected="cbiRandomMode_Reproducible_Selected" />
+                                    <ComboBoxItem x:Name="cbiRandomMode_List" Content="列表模式" Selected="cbiRandomMode_List_Selected" />
+                                </ComboBox>
+                            </Grid>
                         </Grid>
-                    </Border>
+                        <Grid Margin="10,80,261,11">
+                            <Grid>
+                                <Border BorderBrush="White" Background="#FFEFEFEF" BorderThickness="2"  CornerRadius="5,5,5,5">
+                                    <Border.Effect>
+                                        <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
+                                    </Border.Effect>
+                                </Border>
+                                <Grid x:Name="Gird_ShowSettings" HorizontalAlignment="Left" Width="390">
+                                    <Label Content="输出设置" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="Black" FontSize="20" />
+                                    <Grid Margin="10,156,0,0" Width="250" Height="94" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                        <Border x:Name="Border_GradeSettings" Background="#FF3DA2FF"  CornerRadius="10,10,10,10">
+                                            <Border.Effect>
+                                                <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.8" Direction="0" />
+                                            </Border.Effect>
+                                        </Border>
+                                        <Grid>
+                                            <Label Content="数字设置" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" Foreground="Black" Height="34" FontSize="15" Width="82" />
+                                            <TextBox x:Name="TextBox_GradeSettings_Size" Margin="61,52,0,0" Width="79" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" Text="100" />
+                                            <Label Content="大小" HorizontalAlignment="Left" Margin="10,51,0,0" Foreground="Black" Height="33" Width="46" VerticalAlignment="Top" />
+                                            <TextBox x:Name="TextBox_GradeSettings_Color" Margin="145,52,0,0" Width="91" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" Text="#FFFFFFFF" />
+                                            <Button x:Name="Btn_SelectGrade" Content="选择颜色" HorizontalAlignment="Left" Height="34" Margin="145,13,0,0" VerticalAlignment="Top" Width="91" BorderBrush="#FF737373" FontWeight="Bold" Click="Btn_SelectGrade_Click" />
+                                        </Grid>
+                                    </Grid>
+                                    <Grid Margin="10,57,0,0" Width="250" Height="94" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                        <Border x:Name="Border_NameSettings" Background="#FF3DA2FF"  CornerRadius="10,10,10,10">
+                                            <Border.Effect>
+                                                <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.8" Direction="0" />
+                                            </Border.Effect>
+                                        </Border>
+                                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="94" Width="270">
+                                            <Label Content="名称设置" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="Black" Height="34" FontSize="15" Width="82" />
+                                            <TextBox x:Name="TextBox_NameSettings_Size" Margin="61,52,0,0" Width="79" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" Text="340" />
+                                            <Label Content="大小" HorizontalAlignment="Left" Margin="10,51,0,0" Foreground="Black" Height="33" Width="46" VerticalAlignment="Top" />
+                                            <TextBox x:Name="TextBox_NameSettings_Color" Margin="145,52,0,0" Width="89" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" Text="#FFFFFFFF" />
+                                            <Button x:Name="Btn_SelectName" Content="选择颜色" HorizontalAlignment="Left" Height="33" Margin="144,11,0,0" VerticalAlignment="Top" Width="92" BorderBrush="#FF737373" FontWeight="Bold" Click="Btn_SelectName_Click" Background="White" />
+                                        </Grid>
+                                    </Grid>
+                                    <Grid Margin="265,57,0,0" Width="117" Height="193" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                        <Border x:Name="Border_BackGroundSettings"  CornerRadius="10,10,10,10"  Background="#FF3DA2FF">
+                                            <Border.Effect>
+                                                <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.8" Direction="0" />
+                                            </Border.Effect>
+                                        </Border>
+                                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="192" Width="116">
+                                            <TextBox x:Name="TextBox_BackGroundSettings_Color"  Width="96" Height="32" HorizontalAlignment="Center" VerticalAlignment="Top" Text="#FF000000" Margin="0,150,0,0" />
+                                            <Button x:Name="Btn_SelectBackGround" Content="选择颜色" Margin="0,115,0,0" VerticalAlignment="Top" Width="96" BorderBrush="#FF737373" FontWeight="Bold" Height="30" Click="Btn_SelectBackGround_Click" />
+                                            <Label Content="背景设置" Margin="0,10,0,0" VerticalAlignment="Top" Foreground="Black" Height="34" FontSize="15" Width="82" />
+                                            <Button x:Name="Btn_OutPutSettingsReSet" Content="重置" Margin="17,-48,0,0" VerticalAlignment="Top" Width="96" BorderBrush="#FF737373" FontWeight="Bold" Height="30" Click="Btn_OutPutSettingsReSet_Click" HorizontalAlignment="Left" />
+                                            <Button x:Name="Btn_OutPutSettingsSave" Content="保存" Margin="-84,-48,0,0" VerticalAlignment="Top" Width="96" BorderBrush="#FF737373" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Click="Btn_OutPutSettingsSave_Click" />
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
                 </Grid>
             </Border>
         </Grid>
-    </Border>
+    </Grid>
 </Window>

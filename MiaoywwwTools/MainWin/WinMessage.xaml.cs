@@ -15,6 +15,7 @@ namespace MiaoywwwTools
         /// </summary>
         public bool IsYes { get; set; }
     }
+
     public class MessageBoxEventArgs : EventArgs
     {
         /// <summary>
@@ -22,6 +23,7 @@ namespace MiaoywwwTools
         /// </summary>
         public MessageResult Result { get; set; }
     }
+
     /// <summary>
     /// MessageBox.xaml 的交互逻辑
     /// </summary>
@@ -34,11 +36,14 @@ namespace MiaoywwwTools
             get { return TextBlock_MessageBody.Text; }
             set { TextBlock_MessageBody.Text = value; }
         }
-        bool _isLegal = false;
+
+        private bool _isLegal = false;
+
         public MessageBox()
         {
             InitializeComponent();
         }
+
         public static void Show(string context, EventHandler<MessageBoxEventArgs> result)
         {
             var mb = new MessageBox();
@@ -46,17 +51,20 @@ namespace MiaoywwwTools
             mb.Result += result;
             mb.Show();
         }
+
         public static MessageResult ShowDialog(string context)
         {
             var mb = new MessageBox();
             mb.Context = context;
             MessageResult r = null;
-            mb.Result += (s, e) => {
+            mb.Result += (s, e) =>
+            {
                 r = e.Result;
             };
             mb.ShowDialog();
             return r;
         }
+
         private void CloseWindow()
         {
             var story = (Storyboard)this.Resources["HideWindow"];
@@ -71,11 +79,12 @@ namespace MiaoywwwTools
         {
             _isLegal = true;
             CloseWindow();
-            Result?.Invoke(this, new MessageBoxEventArgs() 
-            { 
-                Result = new MessageResult() { 
+            Result?.Invoke(this, new MessageBoxEventArgs()
+            {
+                Result = new MessageResult()
+                {
                     IsYes = true
-                } 
+                }
             });
         }
 

@@ -15,9 +15,6 @@
     <Compile Update="MainWin\WinSettings.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Tools\RandomDraw\Compute.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Tools\RandomDraw\ShowResult.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -51,9 +48,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="resources\MiaoRes.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Tools\RandomDraw\Compute.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Tools\RandomDraw\ShowResult.xaml">

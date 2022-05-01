@@ -1,5 +1,4 @@
-﻿using HandyControl.Controls;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -25,6 +24,7 @@ namespace MiaoywwwTools
         public bool getdone = false;
         public JObject? jsonContent;
         public int SourceSelected;
+
         private void Btn_CheckUpdata_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             Btn_CheckUpdata.IsEnabled = false;

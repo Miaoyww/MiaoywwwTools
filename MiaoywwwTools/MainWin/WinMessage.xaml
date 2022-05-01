@@ -36,32 +36,42 @@
             <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="10" Opacity="0.5" Direction="0" />
         </Border.Effect>
         <Grid x:Name="MainGrid" Background="Transparent">
-            <Border x:Name="Border_Top" BorderBrush="#FF0095F3" BorderThickness="2,2,2,2" Height="55" VerticalAlignment="Top" CornerRadius="10,10,10,10" Background="White" MouseLeftButtonDown="Border_Top_MouseLeftButtonDown">
-                <Border.Effect>
-                    <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
-                </Border.Effect>
-                <Label Content="MiaoywwwTools" HorizontalContentAlignment="Left" FontSize="18" Foreground="#FF0095F3" Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-            </Border>
-            <Border x:Name="Border_Content" Margin="0,58,0,0" Background="White" CornerRadius="10,10,10,10" BorderBrush="#FF989898" BorderThickness="2,2,2,2">
-                <Border.Effect>
-                    <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
-                </Border.Effect>
-                <Grid HorizontalAlignment="Center" Height="195" VerticalAlignment="Center" Width="465">
-                    <TextBlock x:Name="TextBlock_MessageBody" Text="Body" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" TextWrapping="NoWrap" Block.TextAlignment="Center" Height="24" Width="466" AllowDrop="True" Foreground="#FF5A5A5A" Margin="0,55,0,0" />
-                    <Border Margin="50,131,305,10" Background="#FFD8D8D8" BorderBrush="#00000000" CornerRadius="5,5,5,5" Width="110" Height="54">
-                        <Border.Effect>
-                            <DropShadowEffect Color="#FFABABAB" ShadowDepth="0" BlurRadius="10" Opacity="0.4" Direction="0" />
-                        </Border.Effect>
-                        <Button x:Name="Btn_No" Content="取消" Click="Btn_No_Click" Background="Transparent" FontWeight="Bold"  Foreground="DimGray" BorderBrush="{x:Null}" BorderThickness="0,0,1,0" FontSize="15" Height="54" Width="110" />
-                    </Border>
-                    <Border Margin="305,130,50,10" CornerRadius="5,5,5,5" Background="#FF0095F3">
-                        <Border.Effect>
-                            <DropShadowEffect Color="#FFABABAB" ShadowDepth="0" BlurRadius="10" Opacity="0.4" Direction="0" />
-                        </Border.Effect>
-                        <Button x:Name="Btn_Yes" Content="确认" Click="Btn_Yes_Click" Foreground="White" FontWeight="Bold" BorderThickness="0,0,0,0" Background="Transparent" FontSize="15" Height="56" Width="110" />
-                    </Border>
+            <Grid Height="55" VerticalAlignment="Top" >
+                <Border x:Name="Border_Top" BorderBrush="#FF0095F3" BorderThickness="2,2,2,2" CornerRadius="10,10,10,10" Background="White" MouseLeftButtonDown="Border_Top_MouseLeftButtonDown">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
+                    </Border.Effect>
+                </Border>
+                <Label Content="MiaoywwwTools" HorizontalContentAlignment="Left" FontSize="18" Foreground="#FF0095F3" Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Microsoft YaHei UI" FontWeight="Normal" />
+            </Grid>
+            <Grid>
+                <Border x:Name="Border_Content" Margin="0,58,0,0" Background="White" CornerRadius="10,10,10,10" BorderBrush="#FF989898" BorderThickness="2,2,2,2">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
+                    </Border.Effect>
+                </Border>
+                <Grid HorizontalAlignment="Center" Height="197" VerticalAlignment="Top" Width="465" Margin="0,58,0,0">
+                    <TextBlock x:Name="TextBlock_MessageBody" Text="Body" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" TextWrapping="NoWrap" Block.TextAlignment="Center" Height="24" Width="466" AllowDrop="True" Foreground="#FF5A5A5A" Margin="0,55,0,0" FontFamily="Microsoft YaHei UI" />
+                    <Grid Margin="10,133,345,10" Width="110" Height="54">
+                        <Border Background="#FFD8D8D8" BorderBrush="#00000000" CornerRadius="5,5,5,5" >
+                            <Border.Effect>
+                                <DropShadowEffect Color="#FFABABAB" ShadowDepth="0" BlurRadius="10" Opacity="0.4" Direction="0" />
+                            </Border.Effect>
+                        </Border>
+                        <Button x:Name="Btn_No" Content="取消" Click="Btn_No_Click" Background="Transparent" FontWeight="Bold"  Foreground="DimGray" BorderBrush="{x:Null}" BorderThickness="0,0,1,0" FontSize="15" Height="54" Width="110" FontFamily="Microsoft JhengHei UI" />
+                    </Grid>
+
+
+                    <Grid Margin="345,131,10,10">
+                        <Border CornerRadius="5,5,5,5" Background="#FF0095F3">
+                            <Border.Effect>
+                                <DropShadowEffect Color="#FFABABAB" ShadowDepth="0" BlurRadius="10" Opacity="0.4" Direction="0" />
+                            </Border.Effect>
+                        </Border>
+                        <Button x:Name="Btn_Yes" Content="确认" Click="Btn_Yes_Click" Foreground="White" FontWeight="Bold" BorderThickness="0,0,0,0" Background="Transparent" FontSize="15" Height="56" Width="110" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Microsoft JhengHei UI" />
+                    </Grid>
                 </Grid>
-            </Border>
+            </Grid>
         </Grid>
     </Border>
 </Window>

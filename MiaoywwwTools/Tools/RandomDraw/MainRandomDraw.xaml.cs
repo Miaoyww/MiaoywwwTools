@@ -1,12 +1,12 @@
 ﻿using Microsoft.Win32;
+using Newtonsoft.Json.Linq;
+using RandomDrawLib;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using RandomDrawLib;
-using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
 
 namespace MiaoywwwTools.Tools.RandomDraw
 {
@@ -22,10 +22,11 @@ namespace MiaoywwwTools.Tools.RandomDraw
             InitializeComponent();
             trr = this;
         }
+
         public RaDraw raDraw = new();
+
         private void Btn_Start_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
             BrushConverter brushConverter = new BrushConverter();
             RaDraw raDraw = new();
             JObject read = raDraw.Read();
@@ -46,7 +47,8 @@ namespace MiaoywwwTools.Tools.RandomDraw
             {
                 Thread thread = new(() =>
                 {
-                    Application.Current.Dispatcher.Invoke(new Action(() => {
+                    Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
                         Brush nameColor = (Brush)brushConverter.ConvertFromString(Registry.GetValue(raDraw.keypath, "NameColor", null).ToString());
                         Brush gradeColor = (Brush)brushConverter.ConvertFromString(Registry.GetValue(raDraw.keypath, "GradeColor", null).ToString());
                         Brush backgroundColor = (Brush)brushConverter.ConvertFromString(Registry.GetValue(raDraw.keypath, "BackGroundColor", null).ToString());
@@ -60,7 +62,6 @@ namespace MiaoywwwTools.Tools.RandomDraw
                             randomResult["name"].ToString(),
                             randomResult["grade"].ToString(),
                             (JObject)result[1]);
-                        
                     }));
                 });
                 thread.IsBackground = true;
@@ -74,14 +75,5 @@ namespace MiaoywwwTools.Tools.RandomDraw
             settings.ShowDialog();
         }
 
-        private void Btn_ComputeProbability_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            Thread thread = new(() =>
-            {
-                Application.Current.Dispatcher.Invoke(new Action(() => { Compute.Show(); }));
-            });
-            thread.IsBackground = true;
-            thread.Start();
-        }
     }
 }

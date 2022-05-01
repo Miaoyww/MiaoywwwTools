@@ -20,32 +20,41 @@
     </Page.Resources>
     <Border CornerRadius="10,10,10,10" Background="#FFF3F3F3">
         <Grid x:Name="MainGrid" RenderTransformOrigin="0.5,0.5" Loaded="MainGrid_Loaded" Margin="0,0,-2,0">
-            <Label x:Name="Label_Title" Content="MiaoywwwTools" Margin="244,10,0,0" VerticalAlignment="Top" Height="34" Width="690" FontSize="20" Background="Transparent" Foreground="#FF0084FF" MouseLeftButtonDown="Label_Title_MouseLeftButtonDown" HorizontalAlignment="Left" BorderBrush="Transparent" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" BorderThickness="0,0,0,0" />
-            <Label x:Name="Label_Emotion" Height="55" Margin="514,87,0,0" VerticalAlignment="Top" Width="124" Background="{x:Null}" Foreground="#FF0084FF" FontSize="15" FontWeight="Bold" BorderThickness="0,0,0,0" HorizontalAlignment="Left" Opacity="0" />
-            <Border Background="#FFF5F7FB" CornerRadius="10" Margin="10,10,705,10">
-                <Border.Effect>
-                    <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
-                </Border.Effect>
-                <Grid HorizontalAlignment="Center" Height="470" VerticalAlignment="Center" Width="251" >
-                    <Border Margin="44,154,45,154">
-                        <Border.Effect>
-                            <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
-                        </Border.Effect>
-                        <Image x:Name="Image_Face" Source="/Resources/Images/MiaoywwwFace.png" Cursor="Hand" MouseLeftButtonDown="Image_Face_MouseLeftButtonDown" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" Height="160" ContextMenu="{StaticResource Image_Face_Menu}">
-                            <Image.Clip>
-                                <RectangleGeometry RadiusX="35" RadiusY="35" Rect="0,0,160,160" />
-                            </Image.Clip>
-                        </Image>
-                    </Border>
-                    <Label x:Name="Label_Name" Content="这是你哦！" Height="65" Margin="0,84,0,0" VerticalAlignment="Top" Width="232" FontSize="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF0084FF" FontWeight="Normal" />
+            <Label x:Name="Label_Title" Content="MiaoywwwTools" Margin="244,10,0,0" VerticalAlignment="Top" Height="38" Width="690" FontSize="20" Background="Transparent" Foreground="#FF0084FF" MouseLeftButtonDown="Label_Title_MouseLeftButtonDown" HorizontalAlignment="Left" BorderBrush="Transparent" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" FontWeight="Normal" FontFamily="Microsoft YaHei UI" BorderThickness="0,0,0,0" />
+            <Label x:Name="Label_OneSayFrom" Content="-Miaomiaoywww" Margin="244,48,0,0" VerticalAlignment="Top" Height="39" Width="690" FontSize="20" Background="Transparent" Foreground="#FF0084FF" MouseLeftButtonDown="Label_Title_MouseLeftButtonDown" HorizontalAlignment="Left" BorderBrush="Transparent" VerticalContentAlignment="Top" HorizontalContentAlignment="Right" FontWeight="Normal" FontFamily="Microsoft YaHei UI" BorderThickness="0,0,0,0" />
+            <Label x:Name="Label_Emotion" Height="55" Margin="514,87,0,0" VerticalAlignment="Top" Width="124" Background="{x:Null}" Foreground="#FF0084FF" FontSize="15" FontWeight="Bold" BorderThickness="0,0,0,0" HorizontalAlignment="Left" Opacity="0" FontFamily="Microsoft JhengHei UI" />
+            <!-- 这里使我发现一个恶心的BUG，在Border中添加Effect会影响到其内容 -->
+            <Grid>
+                <Border Background="#FFF5F7FB" CornerRadius="10" Margin="10,10,705,10">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
+                    </Border.Effect>
+                </Border>
+                <Grid HorizontalAlignment="Left" Height="470" VerticalAlignment="Top" Width="229" Margin="10,10,0,0">
+                    <Image x:Name="Image_Face" SnapsToDevicePixels="True" Source="/Resources/Images/MiaoywwwFace.png" Cursor="Hand" MouseLeftButtonDown="Image_Face_MouseLeftButtonDown" HorizontalAlignment="Center" VerticalAlignment="Top" Width="160" Height="160" ContextMenu="{StaticResource Image_Face_Menu}" Margin="0,159,0,0">
+                        <Image.Clip>
+                            <RectangleGeometry RadiusX="35" RadiusY="35" Rect="0,0,160,160" />
+                        </Image.Clip>
+                    </Image>
+                    <Label x:Name="Label_Name" Content="这是你哦！" Height="65" Margin="0,89,0,0" VerticalAlignment="Top" Width="232" FontSize="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF0084FF" FontWeight="Normal" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" />
                 </Grid>
-            </Border>
-            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5,5,5,5" Background="White" Margin="244,299,10,10">
-                <Border.Effect>
-                    <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.8" Direction="0" />
-                </Border.Effect>
-                <Grid HorizontalAlignment="Center" Height="161" VerticalAlignment="Center" Width="678">
-                    <Button x:Name="BtnGoTo_Bilibili" Content="BiliBili" Height="66" Margin="518,85,0,0" Width="150" Foreground="#FF004DFF" FontSize="20" BorderThickness="1,1,1,1" HorizontalContentAlignment="Right" BorderBrush="Black" HorizontalAlignment="Left" VerticalAlignment="Top" Click="BtnGoTo_Bilibili_Click">
+            </Grid>
+            <Grid Margin="244,142,10,193">
+                <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5,5,5,5" Background="White" Margin="0,0,0,1" RenderTransformOrigin="0.5,0.5">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.8" Direction="0" />
+                    </Border.Effect>
+                </Border>
+                <Label x:Name="Label_Date" UseLayoutRounding="True" ContentStringFormat="Display"  Content="你好啊！现在是{time}" FontSize="25" FontWeight="Bold" Background="{x:Null}" Height="125" HorizontalAlignment="Stretch" FontFamily="Microsoft YaHei UI" Foreground="Black" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" />
+            </Grid>
+            <Grid>
+                <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5,5,5,5" Background="White" Margin="244,299,10,10">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.8" Direction="0" />
+                    </Border.Effect>
+                </Border>
+                <Grid HorizontalAlignment="Left" Height="151" VerticalAlignment="Top" Width="690" Margin="244,299,0,0">
+                    <Button x:Name="BtnGoTo_Bilibili" Content="BiliBili" Height="66" Margin="530,75,0,0" Width="150" Foreground="#FF004DFF" FontSize="20" BorderThickness="1,1,1,1" HorizontalContentAlignment="Right" BorderBrush="Black" HorizontalAlignment="Left" VerticalAlignment="Top" Click="BtnGoTo_Bilibili_Click" FontFamily="Microsoft YaHei UI">
                         <Button.Background>
                             <ImageBrush Stretch="Uniform" ImageSource="/Resources/Images/bilibili.png">
                                 <ImageBrush.RelativeTransform>
@@ -59,7 +68,7 @@
                             </ImageBrush>
                         </Button.Background>
                     </Button>
-                    <Button x:Name="BtnGoTo_Github" Content="GitHub" Height="66" Margin="0,85,518,0" Width="150" Foreground="#FF004DFF" FontSize="20" BorderThickness="1,1,1,1" HorizontalContentAlignment="Right" BorderBrush="Black" HorizontalAlignment="Right" VerticalAlignment="Top" Click="BtnGoTo_Github_Click">
+                    <Button x:Name="BtnGoTo_Github" Content="GitHub" Height="66" Margin="0,75,530,0" Width="150" Foreground="#FF004DFF" FontSize="20" BorderThickness="1,1,1,1" HorizontalContentAlignment="Right" BorderBrush="Black" HorizontalAlignment="Right" VerticalAlignment="Top" Click="BtnGoTo_Github_Click" FontFamily="Microsoft YaHei UI">
                         <Button.Background>
                             <ImageBrush Stretch="Uniform" ImageSource="/Resources/Images/github.png">
                                 <ImageBrush.RelativeTransform>
@@ -73,18 +82,9 @@
                             </ImageBrush>
                         </Button.Background>
                     </Button>
-                    <Label Content="你可以在以下地方找到我" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="27" FontWeight="Normal" Background="{x:Null}" />
+                    <Label Content="你可以在以下地方找到我" UseLayoutRounding="True" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="25" FontWeight="Bold" Background="{x:Null}" FontFamily="Microsoft YaHei UI" Foreground="Black" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" />
                 </Grid>
-            </Border>
-            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5,5,5,5" Background="White" Margin="244,142,10,193">
-                <Border.Effect>
-                    <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.8" Direction="0" />
-                </Border.Effect>
-                <Grid HorizontalAlignment="Center" Height="135" VerticalAlignment="Center" Width="690">
-                    <Label x:Name="Label_Date" Content="你好啊！现在是{time}" FontSize="27" FontWeight="Normal" Background="{x:Null}" Height="135" HorizontalAlignment="Stretch" />
-                </Grid>
-            </Border>
-            <Label x:Name="Label_OneSayFrom" Content="-Miaomiaoywww" Margin="244,48,0,0" VerticalAlignment="Top" Height="34" Width="690" FontSize="20" Background="Transparent" Foreground="#FF0084FF" MouseLeftButtonDown="Label_Title_MouseLeftButtonDown" HorizontalAlignment="Left" BorderBrush="Transparent" VerticalContentAlignment="Top" HorizontalContentAlignment="Right" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" BorderThickness="0,0,0,0" />
+            </Grid>
         </Grid>
     </Border>
 </Page>

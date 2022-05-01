@@ -26,7 +26,6 @@ namespace MiaoywwwTools
             winMain = this;
         }
 
-
         public static string PageName;     // 储存页面
 
         /// <summary>
@@ -70,6 +69,7 @@ namespace MiaoywwwTools
         {
             ChangePage("MiaoywwwTools.WinSettings");
         }
+
         public void CloseWindow()
         {
             var story = (Storyboard)this.Resources["HideWindow"];
@@ -90,12 +90,14 @@ namespace MiaoywwwTools
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             ChangePage("MiaoywwwTools.WinHome");
-            try { 
+            try
+            {
                 StreamReader reader = File.OpenText(@"./version.json");
                 JObject jsonContent = (JObject)JToken.ReadFrom(new JsonTextReader(reader));
                 GlobalV.AppVersion_ver = jsonContent["MiaoywwwTools"]["version"].ToString();
                 GlobalV.AppVersion_time = jsonContent["MiaoywwwTools"]["time"].ToString();
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.ShowDialog($"读取版本信息错误, {ex}");
             }

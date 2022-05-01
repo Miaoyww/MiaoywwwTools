@@ -1,7 +1,6 @@
 ﻿using Microsoft.Win32;
 using RandomDrawLib;
 using System;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -46,6 +45,7 @@ namespace MiaoywwwTools.Tools.RandomDraw
         {
             Registry.SetValue(raDraw.keypath, "Mode-Re", "list");
         }
+
         private void cbiRandomMode_Reproducible_Selected(object sender, RoutedEventArgs e)
         {
             Registry.SetValue(raDraw.keypath, "Mode-Re", "reproducible");
@@ -205,14 +205,14 @@ namespace MiaoywwwTools.Tools.RandomDraw
             };
             bool isLegal = true;
             // 颜色
-            foreach(TextBox textBoxitem in ColortextBoxes)
+            foreach (TextBox textBoxitem in ColortextBoxes)
             {
                 if (!ColorContentLegality(textBoxitem))
                 {
                     isLegal = false;
                 }
             }
-            foreach(TextBox textBoxitem in FonttextBoxes)
+            foreach (TextBox textBoxitem in FonttextBoxes)
             {
                 if (!FontSizeContentLegality(textBoxitem))
                 {

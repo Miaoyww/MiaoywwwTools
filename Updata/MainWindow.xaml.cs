@@ -5,7 +5,6 @@ using System.IO;
 using System.IO.Compression;
 using System.Net;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace updata
@@ -62,14 +61,7 @@ namespace updata
                     }
                     netStream.Close();
                     fileStream.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"下载失败，因为\n{ex}");
-                }
-                
-
-                string[] filelist =
+                    string[] filelist =
                 {
                     "HandyControl.dll",
                     "updata.deps.json",
@@ -78,20 +70,29 @@ namespace updata
                     "updata.pdb",
                     "updata.runtimeconfig.json"
                 };
-                if (!Directory.Exists(temppath))
-                {
-                    Directory.CreateDirectory(temppath);
+                    if (!Directory.Exists(temppath))
+                    {
+                        Directory.CreateDirectory(temppath);
+                    }
+                    foreach (string filename in filelist)
+                    {
+                        File.Copy(Environment.CurrentDirectory + @"\" + filename, temppath + filename, true);
+                    }
+                    ProcessStartInfo process = new ProcessStartInfo();
+                    process.FileName = temppath + "updata.exe";
+                    process.Arguments = "true";
+                    Process.Start(process);
+                    Registry.SetValue(keypath, "unpackPath", Environment.CurrentDirectory + @"\");
+                    Environment.Exit(0);
                 }
-                foreach (string filename in filelist)
+                catch (Exception ex)
                 {
-                    File.Copy(Environment.CurrentDirectory + @"\" + filename, temppath + filename, true);
+                    MessageBox.Show($"更新失败，因为\n{ex}");
+                    ProcessStartInfo process = new ProcessStartInfo();
+                    string unpackpath = $"{Registry.GetValue(keypath, "unpackPath", null)}";
+                    process.FileName = unpackpath + @"\MiaoywwwTools.exe";
+                    Process.Start(process);
                 }
-                ProcessStartInfo process = new ProcessStartInfo();
-                process.FileName = temppath + "updata.exe";
-                process.Arguments = "true";
-                Process.Start(process);
-                Registry.SetValue(keypath, "unpackPath", Environment.CurrentDirectory + @"\");
-                Environment.Exit(0);
             });
         }
 

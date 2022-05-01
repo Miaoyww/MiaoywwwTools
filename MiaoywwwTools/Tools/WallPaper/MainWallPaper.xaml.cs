@@ -3,7 +3,6 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
 using System.Net;
-using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -136,7 +135,7 @@ namespace MiaoywwwTools.Tools.WallPaper
                 myStreamReader.Close();
                 myResponseStream.Close();
                 JObject jObject = JObject.Parse(retString);
-                string downloadUrl = String.Format("https://cn.bing.com/{0}", jObject["images"][0]["url"].ToString()) ;
+                string downloadUrl = String.Format("https://cn.bing.com/{0}", jObject["images"][0]["url"].ToString());
                 string hsh = jObject["images"][0]["hsh"].ToString();
 
                 HttpWebRequest requestD = WebRequest.Create(downloadUrl) as HttpWebRequest;

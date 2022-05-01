@@ -21,7 +21,6 @@ namespace RandomDrawLib
             }
         }
 
-
         public JObject Read()
         {
             // 哦这该死的设定
@@ -48,7 +47,7 @@ namespace RandomDrawLib
         public List<object> GetListResult(JObject jsonObject)
         {
             JObject result = GetRandomResult(jsonObject);
-            if(result != null)
+            if (result != null)
             {
                 List<object> array = new List<object>();
                 jsonObject.Remove(result["select"].ToString());
@@ -60,7 +59,6 @@ namespace RandomDrawLib
             {
                 return null;
             }
-
         }
 
         public JObject? GetRandomResult(JObject jsonObject)

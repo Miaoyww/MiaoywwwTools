@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json.Linq;
-using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
@@ -37,7 +36,7 @@ namespace MiaoywwwTools.Tools.RandomDraw
             showResult.ChangeFontSize(nameFontSize, gradeFontSize);
             showResult.Label_Name.Content = name;
             showResult.Label_Grade.Content = grade;
-            if(jobject is not null)
+            if (jobject is not null)
             {
                 showResult.jObject = jobject;
             }
@@ -49,7 +48,7 @@ namespace MiaoywwwTools.Tools.RandomDraw
             if (e.Key == Key.Enter)
             {
                 RandomDrawLib.RaDraw raDraw = new RandomDrawLib.RaDraw();
-                if(jObject is not null)
+                if (jObject is not null)
                 {
                     JObject randomResult = new();
                     List<object> result = new();
@@ -80,7 +79,6 @@ namespace MiaoywwwTools.Tools.RandomDraw
                     Label_Name.Content = result["name"]?.ToString();
                     Label_Grade.Content = result["grade"]?.ToString();
                 }
-
             }
         }
 
