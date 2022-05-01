@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
+using System.IO;
 using System.Windows;
 
 namespace MiaoywwwTools
@@ -22,6 +25,17 @@ namespace MiaoywwwTools
             {
                 if (e.Args[0] == "Updataed")
                 {
+                    try
+                    {
+                        StreamReader reader = File.OpenText(@"./version.json");
+                        JObject jsonContent = (JObject)JToken.ReadFrom(new JsonTextReader(reader));
+                        GlobalV.AppVersion_ver = jsonContent["MiaoywwwTools"]["version"].ToString();
+                        GlobalV.AppVersion_time = jsonContent["MiaoywwwTools"]["time"].ToString();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.ShowDialog($"读取版本信息错误, {ex}");
+                    }
                     MessageBox.ShowDialog($"更新完成！当前版本{GlobalV.AppVersion_ver}");
                 }
             }

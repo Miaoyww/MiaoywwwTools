@@ -28,6 +28,10 @@ namespace MiaoywwwTools
             timer.Interval = TimeSpan.FromSeconds(0.1); //设置刷新的间隔时间
             timer.Start();
             Label_Date.Content = $"你好啊!现在是{DateTime.Now}";
+            if (Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\", "HitokotoType", null) is null)
+            {
+                Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\", "HitokotoType", "random");
+            }
             timer_onesay.Tick += new EventHandler(TimerOneSay_Tick);
             timer_onesay.Interval = TimeSpan.FromSeconds(10); //设置刷新的间隔时间
             timer_onesay.Start();
