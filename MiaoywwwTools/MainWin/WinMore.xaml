@@ -5,7 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Class="MiaoywwwTools.WinMore"
     mc:Ignorable="d" Width="942" Height="460" Title="WinMore">
-    <Border CornerRadius="10,10,10,10" Background="#FFC2D4EA">
+    <Border CornerRadius="10,10,10,10" Background="#FFF3F3F3">
         <Grid Width="942" Height="465">
             <Border Background="#FFF5F7FB" CornerRadius="10" Margin="10,10,703,15" Width="229" Height="440">
                 <Border.Effect>
@@ -25,7 +25,7 @@
                 </Grid>
             </Border>
 
-            <Border CornerRadius="8,8,8,8" Background="#FFC2D4EA" BorderThickness="1" HorizontalAlignment="Left" Height="445" VerticalAlignment="Center" Width="678" Margin="252,0,0,0">
+            <Border CornerRadius="8,8,8,8" Background="#FFF3F3F3" BorderThickness="1" HorizontalAlignment="Left" Height="445" VerticalAlignment="Center" Width="678" Margin="252,0,0,0">
                 <ContentControl x:Name="NestPage" Content="" HorizontalAlignment="Center" Width="678" Margin="0,-1,0,-1" />
             </Border>
         </Grid>

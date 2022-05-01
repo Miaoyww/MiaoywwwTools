@@ -48,17 +48,17 @@
                 </Border.Effect>
                 <Grid HorizontalAlignment="Center" Height="195" VerticalAlignment="Center" Width="465">
                     <TextBlock x:Name="TextBlock_MessageBody" Text="Body" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" TextWrapping="NoWrap" Block.TextAlignment="Center" Height="24" Width="466" AllowDrop="True" Foreground="#FF5A5A5A" Margin="0,55,0,0" />
-                    <Border Margin="50,131,305,10" Background="#FFD8D8D8" BorderBrush="White" CornerRadius="5,5,5,5" Width="110" Height="54">
+                    <Border Margin="50,131,305,10" Background="#FFD8D8D8" BorderBrush="#00000000" CornerRadius="5,5,5,5" Width="110" Height="54">
                         <Border.Effect>
-                            <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="10" Opacity="0.4" Direction="0" />
+                            <DropShadowEffect Color="#FFABABAB" ShadowDepth="0" BlurRadius="10" Opacity="0.4" Direction="0" />
                         </Border.Effect>
-                        <Button x:Name="Btn_No" Content="取消" Click="Btn_No_Click" Background="Transparent" FontWeight="Bold"  Foreground="DimGray" BorderBrush="{x:Null}" BorderThickness="0,0,1,0" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Button x:Name="Btn_No" Content="取消" Click="Btn_No_Click" Background="Transparent" FontWeight="Bold"  Foreground="DimGray" BorderBrush="{x:Null}" BorderThickness="0,0,1,0" FontSize="15" Height="54" Width="110" />
                     </Border>
                     <Border Margin="305,130,50,10" CornerRadius="5,5,5,5" Background="#FF0095F3">
                         <Border.Effect>
-                            <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="10" Opacity="0.4" Direction="0" />
+                            <DropShadowEffect Color="#FFABABAB" ShadowDepth="0" BlurRadius="10" Opacity="0.4" Direction="0" />
                         </Border.Effect>
-                        <Button x:Name="Btn_Yes" Content="确认" Click="Btn_Yes_Click" Foreground="White" FontWeight="Bold" BorderThickness="0,0,0,0" Background="Transparent" FontSize="15" />
+                        <Button x:Name="Btn_Yes" Content="确认" Click="Btn_Yes_Click" Foreground="White" FontWeight="Bold" BorderThickness="0,0,0,0" Background="Transparent" FontSize="15" Height="56" Width="110" />
                     </Border>
                 </Grid>
             </Border>

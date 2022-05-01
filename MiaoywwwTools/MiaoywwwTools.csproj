@@ -7,34 +7,49 @@
     <UseWPF>true</UseWPF>
     <Authors>$(AssemblyName)</Authors>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <BaseOutputPath>..\</BaseOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\Data\stdata.json" />
-    <None Remove="Resources\Images\bilibili.png" />
-    <None Remove="Resources\Images\close.png" />
-    <None Remove="Resources\Images\github.png" />
-    <None Remove="Resources\Images\home.png" />
-    <None Remove="Resources\Images\Hutao.gif" />
-    <None Remove="Resources\Images\icon_home.ico" />
-    <None Remove="Resources\Images\icon_more.ico" />
-    <None Remove="Resources\Images\icon_settings.ico" />
-    <None Remove="Resources\Images\MiaoywwwFace.png" />
-    <None Remove="Resources\Images\mini.png" />
-    <None Remove="Resources\Images\more.png" />
-    <None Remove="Resources\Images\settings.png" />
+    <None Remove="resources\Data\stdata.json" />
+    <None Remove="resources\Images\bilibili.png" />
+    <None Remove="resources\Images\close.png" />
+    <None Remove="resources\Images\github.png" />
+    <None Remove="resources\Images\home.png" />
+    <None Remove="resources\Images\Hutao.gif" />
+    <None Remove="resources\Images\icon_home.ico" />
+    <None Remove="resources\Images\icon_more.ico" />
+    <None Remove="resources\Images\icon_settings.ico" />
+    <None Remove="resources\Images\MiaoywwwFace.png" />
+    <None Remove="resources\Images\mini.png" />
+    <None Remove="resources\Images\more.png" />
+    <None Remove="resources\Images\settings.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Resources\Data\stdata.json">
+    <Content Include="resources\Data\stdata.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Resources\Images\close.png" />
-    <Resource Include="Resources\Images\home.png" />
-    <Resource Include="Resources\Images\MiaoywwwFace.png" />
-    <Resource Include="Resources\Images\mini.png" />
-    <Resource Include="Resources\Images\more.png" />
-    <Resource Include="Resources\Images\settings.png" />
+    <Content Include="version.json" />
+    <Resource Include="resources\Images\icons\hitokoto.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="resources\Images\icons\paint_palette.png" />
+    <Resource Include="resources\Images\icons\info.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="resources\Images\icons\None.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="resources\Images\icons\updata.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="resources\Images\close.png" />
+    <Resource Include="resources\Images\home.png" />
+    <Resource Include="resources\Images\MiaoywwwFace.png" />
+    <Resource Include="resources\Images\mini.png" />
+    <Resource Include="resources\Images\more.png" />
+    <Resource Include="resources\Images\settings.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,13 +59,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\Images\bilibili.png">
+    <Resource Include="resources\Images\bilibili.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\Images\github.png">
+    <Resource Include="resources\Images\github.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\Images\Hutao.gif">
+    <Resource Include="resources\Images\Hutao.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

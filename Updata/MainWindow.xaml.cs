@@ -65,7 +65,7 @@ namespace updata
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("下载失败,请重试");
+                    MessageBox.Show($"下载失败，因为\n{ex}");
                 }
                 
 
@@ -84,7 +84,7 @@ namespace updata
                 }
                 foreach (string filename in filelist)
                 {
-                    File.Copy("./" + filename, temppath + filename, true);
+                    File.Copy(Environment.CurrentDirectory + @"\" + filename, temppath + filename, true);
                 }
                 ProcessStartInfo process = new ProcessStartInfo();
                 process.FileName = temppath + "updata.exe";
@@ -100,8 +100,10 @@ namespace updata
             string zippath = @$"{temppath}{Registry.GetValue(keypath, "updataFileUUID", null)}.zip";
             string unpackpath = $"{Registry.GetValue(keypath, "unpackPath", null)}";
             ZipFile.ExtractToDirectory(zippath, unpackpath, true);
-            
-            Process.Start(unpackpath + @"\MiaoywwwTools.exe");
+            ProcessStartInfo process = new ProcessStartInfo();
+            process.FileName = unpackpath + @"\MiaoywwwTools.exe";
+            process.Arguments = "Updataed";
+            Process.Start(process);
             File.Delete(zippath);
             Environment.Exit(0);
         }

@@ -2,9 +2,11 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+	  <UseCommonOutputDirectory>true</UseCommonOutputDirectory>
+	  <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <BaseOutputPath>..\</BaseOutputPath>
   </PropertyGroup>
 
   <ItemGroup>

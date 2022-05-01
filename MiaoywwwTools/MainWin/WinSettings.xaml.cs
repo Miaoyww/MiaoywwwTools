@@ -1,7 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using HandyControl.Controls;
+using Microsoft.Win32;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Threading;
@@ -27,6 +28,8 @@ namespace MiaoywwwTools
         private void Btn_CheckUpdata_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             Btn_CheckUpdata.IsEnabled = false;
+            ldCircle_CheckUpdata.IsEnabled = true;
+            ldCircle_CheckUpdata.Visibility = System.Windows.Visibility.Visible;
             string api_version;
             string api_download;
             SourceSelected = Cbox_Source.SelectedIndex;
@@ -53,7 +56,8 @@ namespace MiaoywwwTools
 
                 if (int.Parse(GlobalV.AppVersion_time) < time)
                 {
-                    Dispatcher.BeginInvoke(() => {
+                    Dispatcher.BeginInvoke(() =>
+                    {
                         var messageBox = MessageBox.ShowDialog($"检测到新版本{ver},是否更新?");
                         if (messageBox.IsYes)
                         {
@@ -62,11 +66,10 @@ namespace MiaoywwwTools
                             httpClientD.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)");
                             var download = httpClientD.GetStringAsync(api_download).Result;
                             JObject jsonContentD;
-                            if(SourceSelected == 0)
+                            if (SourceSelected == 0)
                             {
                                 JArray jsonArrayD = JArray.Parse(download);
                                 jsonContentD = JObject.Parse(jsonArrayD[0].ToString());
-
                             }
                             else
                             {
@@ -88,18 +91,32 @@ namespace MiaoywwwTools
                         Dispatcher.BeginInvoke(() => { MessageBox.ShowDialog("当前已经是最新版本了"); });
                     }
                 }
-                this.Dispatcher.BeginInvoke(() => {
+                this.Dispatcher.BeginInvoke(() =>
+                {
                     Btn_CheckUpdata.IsEnabled = true;
+                    ldCircle_CheckUpdata.IsEnabled = false;
+                    ldCircle_CheckUpdata.Visibility = System.Windows.Visibility.Hidden;
                 });
             });
             check.IsBackground = true;
             check.Start();
-
         }
 
-            private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
-            {
-                Label_Version.Content = GlobalV.AppVersion_ver;
-            }
+        private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Label_Version.Content = $"By Miaomiaoywww 2022 -Version {GlobalV.AppVersion_ver}";
+            string rgValue = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\", "Hitokoto", "random").ToString();
+            Cbox_Hitokoto.SelectedIndex = int.Parse(GlobalV.Hitokoto_To_Index[rgValue].ToString());
+        }
+
+        private void Btn_GoToHitokoto_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Process.Start("explorer.exe", "https://hitokoto.cn/");
+        }
+
+        private void Cbox_Hitokoto_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\", "Hitokoto", GlobalV.Index_To_Hitokoto[Cbox_Hitokoto.SelectedIndex.ToString()]);
         }
     }
+}

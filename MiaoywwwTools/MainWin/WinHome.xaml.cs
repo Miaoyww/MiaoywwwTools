@@ -1,12 +1,16 @@
 ﻿using Microsoft.Win32;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
 using System.Net;
-using System.Windows;
+using System.Net.Http;
+using System.Threading;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace MiaoywwwTools
 {
@@ -20,12 +24,37 @@ namespace MiaoywwwTools
         public WinHome()
         {
             InitializeComponent();
+            timer.Tick += new EventHandler(Timer_Tick);
+            timer.Interval = TimeSpan.FromSeconds(0.1); //设置刷新的间隔时间
+            timer.Start();
+            Label_Date.Content = $"你好啊!现在是{DateTime.Now}";
+            timer_onesay.Tick += new EventHandler(TimerOneSay_Tick);
+            timer_onesay.Interval = TimeSpan.FromSeconds(10); //设置刷新的间隔时间
+            timer_onesay.Start();
+            string HitokotoLastContent = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\",
+                "HitokotoLastContent", "MiaoywwwTools").ToString();
+            string HitokotoLastFrom = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\",
+                "HitokotoLastFrom", "Miaomiaoywww").ToString();
+            string HitokotoLastFromWho = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\",
+                "HitokotoLastFromWho", "").ToString();
+            Label_Title.Content = HitokotoLastContent;
+            Label_OneSayFrom.Content = "-" + HitokotoLastFrom;
             winHome = this;
         }
 
         public int lastTitleClickTimes;
         public int nowTitleClickTimes;
         public bool animationCompleted = true;
+
+        public JObject HttpGetJson(string url)
+        {
+            HttpClient httpClientV = new HttpClient();
+            httpClientV.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)");
+            var downloadV = httpClientV.GetStringAsync(url).Result;
+
+            JObject jsonContentV = (JObject)JsonConvert.DeserializeObject(downloadV);
+            return jsonContentV;
+        }
 
         // Miaomiaoywww的头像下载 **需要更改
         public static void DownloadFile(string url, string path)
@@ -201,7 +230,6 @@ namespace MiaoywwwTools
                     WinMain.winMain.CloseWindow();
                 }
             }
-            
         }
 
         // 头像Image点击事件
@@ -214,6 +242,73 @@ namespace MiaoywwwTools
         private void CleanUpFace_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             ChangeFace("cleanup");
+        }
+
+        private DispatcherTimer timer = new DispatcherTimer();
+        private DispatcherTimer timer_onesay = new DispatcherTimer();
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            Thread changeTime = new(() =>
+            {
+                Dispatcher.Invoke(new Action(() =>
+                {
+                    Label_Date.Content = $"你好啊!现在是{DateTime.Now}";
+                }));
+            });
+            changeTime.IsBackground = true;
+            changeTime.Start();
+        }
+
+        public JObject HitokotoJson;
+        public string HitokotoContent;
+        public string HitokotoFrom;
+        public string HitokotoFromWho;
+
+        private void TimerOneSay_Tick(object sender, EventArgs e)
+        {
+            Thread changeTime = new(() =>
+            {
+                try
+                {
+                    string HitokotoType = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\", "Hitokoto", "random").ToString();
+                    if (HitokotoType == "random")
+                    {
+                        HitokotoJson = HttpGetJson("https://v1.hitokoto.cn/");
+                    }
+                    else
+                    {
+                        HitokotoJson = HttpGetJson($"https://v1.hitokoto.cn/?c={HitokotoType}");
+                    }
+                    HitokotoContent = HitokotoJson["hitokoto"].ToString();
+                    HitokotoFrom = HitokotoJson["from"].ToString();
+                    HitokotoFromWho = HitokotoJson["from_who"].ToString();
+                    Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\",
+                        "HitokotoLastContent", HitokotoContent);
+                    Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\",
+                        "HitokotoLastFrom", HitokotoFrom);
+                    Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\",
+                        "HitokotoLastFromWho", HitokotoFromWho);
+                }
+                catch (Exception)
+                {
+                }
+                Dispatcher.Invoke(new Action(() =>
+                {
+                    Label_Title.Content = $"{HitokotoContent}";
+                    if (HitokotoFromWho is not "")
+                    {
+                        Label_OneSayFrom.Content = $"-{HitokotoFrom} / {HitokotoFromWho}";
+                    }
+                    else
+                    {
+                        Label_OneSayFrom.Content = $"-{HitokotoFrom}";
+                    }
+                }));
+                Thread.Sleep(0);
+            });
+            changeTime.IsBackground = true;
+            changeTime.Start();
         }
 
         // 页面加载时
