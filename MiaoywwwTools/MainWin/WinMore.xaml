@@ -4,22 +4,22 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Class="MiaoywwwTools.WinMore"
-    mc:Ignorable="d" Width="942" Height="460" Title="WinMore">
+    mc:Ignorable="d"  Width="985" Height="565" Background="Transparent" Title="WinMore">
     <Border CornerRadius="10,10,10,10" Background="#FFF3F3F3">
-        <Grid Width="942" Height="465">
-            <Grid Margin="10,10,703,15" Width="229" Height="440">
+        <Grid>
+            <Grid Margin="10,10,724,10">
                 <Border Background="#FFF5F7FB" CornerRadius="10" >
                     <Border.Effect>
                         <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
                     </Border.Effect>
                 </Border>
                 <Grid>
-                    <Button x:Name="Btn_RandomDraw" Content="点名器" Height="48" Width="207" BorderBrush="#FF868686" Foreground="White" FontSize="20" FontWeight="Bold" Click="Btn_RandomDraw_Click" Margin="0,172,0,0" VerticalAlignment="Top">
+                    <Button x:Name="Btn_RandomDraw" Content="点名器" Height="48" Width="207" BorderBrush="#FF868686" Foreground="White" FontSize="20" FontWeight="Bold" Click="Btn_RandomDraw_Click" Margin="0,220,0,0" VerticalAlignment="Top">
                         <Button.Background>
                             <SolidColorBrush Color="Black" Opacity="0.7" />
                         </Button.Background>
                     </Button>
-                    <Button x:Name="Btn_WallPaper" Content="壁纸" Height="48" Width="207" BorderBrush="#FF868686" Foreground="White" FontSize="20" FontWeight="Bold" Click="Btn_WallPaper_Click" Margin="0,225,0,0" VerticalAlignment="Top">
+                    <Button x:Name="Btn_WallPaper" Content="壁纸" Height="48" Width="207" BorderBrush="#FF868686" Foreground="White" FontSize="20" FontWeight="Bold" Click="Btn_WallPaper_Click" Margin="0,272,0,0" VerticalAlignment="Top">
                         <Button.Background>
                             <SolidColorBrush Color="#FF00A7FF" Opacity="0.7" />
                         </Button.Background>
@@ -27,8 +27,8 @@
                 </Grid>
             </Grid>
 
-            <Border CornerRadius="8,8,8,8" Background="#FFF3F3F3" BorderThickness="1" HorizontalAlignment="Left" Height="445" VerticalAlignment="Center" Width="678" Margin="252,0,0,0">
-                <ContentControl x:Name="NestPage" Content="" HorizontalAlignment="Center" Width="678" Margin="0,-1,0,-1" />
+            <Border CornerRadius="8,8,8,8" HorizontalAlignment="Left" Height="545" VerticalAlignment="Center" Width="709" Margin="266,0,0,0">
+                <ContentControl x:Name="NestPage" Content="" HorizontalAlignment="Center" Width="710" Margin="0,-1,0,-1" />
             </Border>
         </Grid>
     </Border>

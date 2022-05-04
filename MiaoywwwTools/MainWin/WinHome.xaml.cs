@@ -9,7 +9,6 @@ using System.Threading;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
 namespace MiaoywwwTools
@@ -24,10 +23,6 @@ namespace MiaoywwwTools
         public WinHome()
         {
             InitializeComponent();
-            timer.Tick += new EventHandler(Timer_Tick);
-            timer.Interval = TimeSpan.FromSeconds(0.1); //设置刷新的间隔时间
-            timer.Start();
-            Label_Date.Content = $"你好啊!现在是{DateTime.Now}";
             if (Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\", "HitokotoType", null) is null)
             {
                 Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\", "HitokotoType", "random");
@@ -41,8 +36,8 @@ namespace MiaoywwwTools
                 "HitokotoLastFrom", "Miaomiaoywww").ToString();
             string HitokotoLastFromWho = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\",
                 "HitokotoLastFromWho", "").ToString();
-            Label_Title.Content = HitokotoLastContent;
-            Label_OneSayFrom.Content = "-" + HitokotoLastFrom;
+            Label_HitokotoContent.Content = HitokotoLastContent;
+            Label_HitokotoFrom.Content = "-" + HitokotoLastFrom;
             winHome = this;
         }
 
@@ -248,21 +243,7 @@ namespace MiaoywwwTools
             ChangeFace("cleanup");
         }
 
-        private DispatcherTimer timer = new DispatcherTimer();
         private DispatcherTimer timer_onesay = new DispatcherTimer();
-
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            Thread changeTime = new(() =>
-            {
-                Dispatcher.Invoke(new Action(() =>
-                {
-                    Label_Date.Content = $"你好啊!现在是{DateTime.Now}";
-                }));
-            });
-            changeTime.IsBackground = true;
-            changeTime.Start();
-        }
 
         public JObject HitokotoJson;
         public string HitokotoContent;
@@ -299,14 +280,14 @@ namespace MiaoywwwTools
                 }
                 Dispatcher.Invoke(new Action(() =>
                 {
-                    Label_Title.Content = $"{HitokotoContent}";
+                    Label_HitokotoContent.Content = $"{HitokotoContent}";
                     if (HitokotoFromWho is not "")
                     {
-                        Label_OneSayFrom.Content = $"-{HitokotoFrom} / {HitokotoFromWho}";
+                        Label_HitokotoFrom.Content = $"-{HitokotoFrom} / {HitokotoFromWho}";
                     }
                     else
                     {
-                        Label_OneSayFrom.Content = $"-{HitokotoFrom}";
+                        Label_HitokotoFrom.Content = $"-{HitokotoFrom}";
                     }
                 }));
                 Thread.Sleep(0);
@@ -318,69 +299,7 @@ namespace MiaoywwwTools
         // 页面加载时
         private void MainGrid_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (Registry.GetValue(keypath, "FaceCleanUp", null) == null)
-            {
-                Registry.SetValue(keypath, "FaceCleanUp", "false");
-            }
-            // 清除头像
-            if (Registry.GetValue(keypath, "FaceCleanUp", false).ToString() == "true")
-            {
-                if (!File.Exists(MiaoywwwfacePath))
-                {
-                    //无则下载
-                    DownloadFile("http://q1.qlogo.cn/g?b=qq&nk=375629202&s=640", MiaoywwwfacePath);
-                }
-                if (File.Exists(userfacetempPath))
-                {
-                    File.Delete(userfacetempPath);
-                }
-                if (File.Exists(userfacePath))
-                {
-                    File.Delete(userfacePath);
-                }
-                Image_Face.Source = new BitmapImage(new Uri(MiaoywwwfacePath));
-                Label_Name.Content = "MiaoMiaoywww";
-                Registry.SetValue(keypath, "FaceCleanUp", "false");
-            }
-            // 判断是否有用户temp头像
-            if (File.Exists(userfacetempPath))
-            {
-                File.Delete(userfacePath);
-                File.Move(userfacetempPath, userfacePath);
-            }
-            // 判断是否有用户头像
-            if (File.Exists(userfacePath))
-            {
-                Image_Face.Source = new BitmapImage(new Uri(userfacePath));
-                Label_Name.Content = "这是你哦！";
-            }
-            else // 无则使用Miaomiaoywww的头像
-            {
-                // 判断是否有
-                if (File.Exists(MiaoywwwfacePath))
-                {
-                    Image_Face.Source = new BitmapImage(new Uri(MiaoywwwfacePath));
-                    Label_Name.Content = "MiaoMiaoywww";
-                }
-                else // 无则下载
-                {
-                    DownloadFile("http://q1.qlogo.cn/g?b=qq&nk=375629202&s=640", MiaoywwwfacePath);
-                    Image_Face.Source = new BitmapImage(new Uri(MiaoywwwfacePath));
-                    Label_Name.Content = "Miaomiaoywww";
-                }
-            }
-        }
 
-        // to Github
-        private void BtnGoTo_Github_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("explorer.exe", "https://github.com/Miaoywww");
-        }
-
-        // to Bilibili
-        private void BtnGoTo_Bilibili_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("explorer.exe", "https://space.bilibili.com/435970102");
         }
     }
 }

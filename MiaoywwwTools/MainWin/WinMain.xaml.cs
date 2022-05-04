@@ -49,9 +49,17 @@ namespace MiaoywwwTools
         }
 
         // DragMove 窗口移动
-        private void Border_Top_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void Top_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            DragMove();
+            try
+            {
+                DragMove();
+            }
+            catch (System.InvalidOperationException)
+            {
+
+            }
+
         }
 
         // 导航栏
@@ -90,17 +98,6 @@ namespace MiaoywwwTools
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             ChangePage("MiaoywwwTools.WinHome");
-            try
-            {
-                StreamReader reader = File.OpenText(@"./version.json");
-                JObject jsonContent = (JObject)JToken.ReadFrom(new JsonTextReader(reader));
-                GlobalV.AppVersion_ver = jsonContent["MiaoywwwTools"]["version"].ToString();
-                GlobalV.AppVersion_time = jsonContent["MiaoywwwTools"]["time"].ToString();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.ShowDialog($"读取版本信息错误, {ex}");
-            }
         }
 
         private void Btn_Mini_Click(object sender, RoutedEventArgs e)
