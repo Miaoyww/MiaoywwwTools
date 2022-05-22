@@ -5,7 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Class="MiaoywwwTools.WinMore"
     mc:Ignorable="d"  Width="985" Height="565" Background="Transparent" Title="WinMore">
-    <Border CornerRadius="10,10,10,10" Background="#FFF3F3F3">
+    <Border CornerRadius="10,10,10,10" Background="Transparent">
         <Grid>
             <Grid Margin="10,10,724,10">
                 <Border Background="#FFF5F7FB" CornerRadius="10" >

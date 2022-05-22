@@ -144,5 +144,19 @@ namespace MiaoywwwTools
                 }
             }
         }
+
+        private void Btns_next_Click(object sender, RoutedEventArgs e)
+        {
+            int maxpage = MainCarousel.Items.Count;
+            int nowpage = MainCarousel.PageIndex;
+            if(nowpage + 1 > maxpage)
+            {
+                MainCarousel.PageIndex = 0;
+            }
+            else
+            {
+                MainCarousel.PageIndex++;
+            }
+        }
     }
 }

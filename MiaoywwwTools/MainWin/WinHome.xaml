@@ -2,7 +2,7 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:hc="https://handyorg.github.io/handycontrol"
       mc:Ignorable="d"
       Title="Home" Width="985" Height="565" Background="Transparent">
     <Page.Resources>
@@ -16,20 +16,7 @@
         </ResourceDictionary>
     </Page.Resources>
     <Border CornerRadius="0,5,5,0">
-        <Border.Background>
-            <ImageBrush ImageSource="/resources/Images/wallpaper/90765657_p0.png" Stretch="None">
-                <ImageBrush.RelativeTransform>
-                    <TransformGroup>
-                        <ScaleTransform CenterY="0.5" CenterX="0.5" />
-                        <SkewTransform CenterX="0.5" CenterY="0.5" />
-                        <RotateTransform CenterX="0.5" CenterY="0.5" />
-                        <TranslateTransform Y="0" />
-                    </TransformGroup>
-                </ImageBrush.RelativeTransform>
-            </ImageBrush>
-        </Border.Background>
-        <Grid x:Name="MainGrid" RenderTransformOrigin="0.5,0.5" Loaded="MainGrid_Loaded" Margin="0,0,-2,0">
-            
+        <Grid x:Name="MainGrid" Loaded="MainGrid_Loaded" Margin="0,0,-2,0">
             <Label x:Name="Label_Emotion" Height="37" Margin="0,134,0,0" VerticalAlignment="Top" Width="120" Background="{x:Null}" Foreground="#FF212121" FontSize="15" FontWeight="Bold" BorderThickness="0,0,0,0" FontFamily="Microsoft JhengHei UI" Opacity="0" BorderBrush="#FF3E3E3E" />
             <Grid HorizontalAlignment="Center" Height="75" Margin="0,54,0,0" VerticalAlignment="Top" Width="967">
                 <Border Background="#FFF9F9F9" CornerRadius="8,8,8,8">

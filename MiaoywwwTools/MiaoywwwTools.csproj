@@ -30,7 +30,11 @@
     <Content Include="resources\Data\stdata.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="resources\Images\wallpaper\90765657_p0.png" />
+    <Resource Include="resources\Images\icons\arrow-right.png" />
+    <Resource Include="resources\Images\wallpaper\96331655.png" />
+    <Resource Include="resources\Images\wallpaper\90765657.png" />
+    <Resource Include="resources\Images\wallpaper\98322266.jpg" />
+    <Resource Include="resources\Images\wallpaper\98466568.jpg" />
     <Resource Include="resources\Images\user.png" />
     <Content Include="version.json" />
     <Resource Include="resources\Images\icons\update.png">

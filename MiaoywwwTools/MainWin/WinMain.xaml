@@ -44,9 +44,9 @@
                     <hc:Divider LineStroke="#FFBEBEBE" LineStrokeThickness="2" Margin="6,550,6,10" VerticalContentAlignment="Center" />
                     <Grid HorizontalAlignment="Center" Height="35" VerticalAlignment="Top" Width="34" Margin="0,10,0,0">
                         <Border Background="#FFEBEBEB" CornerRadius="8,8,8,8" />
-                        <Button x:Name="Btns_menu" Height="36" BorderThickness="0,0,0,0" HorizontalContentAlignment="Right" UseLayoutRounding="True" Click="Btns_Home_Click" FontSize="15" Width="36" Foreground="#FF0084FF">
+                        <Button x:Name="Btns_next" Height="36" BorderThickness="0,0,0,0" HorizontalContentAlignment="Right" UseLayoutRounding="True" FontSize="15" Width="36" Foreground="#FF0084FF" Click="Btns_next_Click">
                             <Button.Background>
-                                <ImageBrush Stretch="Uniform" ImageSource="/resources/Images/menu.png">
+                                <ImageBrush Stretch="Uniform" ImageSource="/resources/Images/icons/arrow-right.png">
                                     <ImageBrush.RelativeTransform>
                                         <TransformGroup>
                                             <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.5" ScaleY="0.5" />
@@ -111,12 +111,33 @@
             </Grid>
             <Border Margin="50,0,0,0" Background="#FFFCFCFC" CornerRadius="0,10,10,0" >
                 <Grid x:Name="MainContent">
+                    <hc:Carousel Name="MainCarousel" AutoRun="True" Interval="00:01:00" PageIndex="3">
+                        <hc:Carousel.PageButtonStyle>
+                            <Style/>
+                        </hc:Carousel.PageButtonStyle>
+                        <hc:SimplePanel>
+                            <Image Source="/resources/Images/wallpaper/98322266.jpg"  Width="986" Height="581" Stretch="UniformToFill"/>
+                            <TextBlock Text="ArtWork ID:98322266 By:banishment" Style="{StaticResource TextBlockDefault}" FontSize="10" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="34" Width="304"/>
+                        </hc:SimplePanel>
+                        <hc:SimplePanel>
+                            <Image Source="/resources/Images/wallpaper/98466568.jpg" Width="986" Height="581" Stretch="UniformToFill"/>
+                            <TextBlock Text="ArtWork ID:98466568 By:ポ～ン（出水ぽすか）" Style="{StaticResource TextBlockDefault}" FontSize="10" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="321"/>
+                        </hc:SimplePanel>
+                        <hc:SimplePanel>
+                            <Image Source="/resources/Images/wallpaper/90765657.png" Width="986" Height="581" Stretch="UniformToFill" StretchDirection="Both"/>
+                            <TextBlock Text="ArtWork ID:90765657 By:mocha＠2日目西1ひ52a" Style="{StaticResource TextBlockDefault}" FontSize="10" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="299"/>
+                        </hc:SimplePanel>
+                        <hc:SimplePanel>
+                            <Image Source="/resources/Images/wallpaper/96331655.png" Width="986" Height="569" Stretch="Fill" StretchDirection="Both"/>
+                            <TextBlock Text="ArtWork ID:96331655 By:Recneps-SAIS" Style="{StaticResource TextBlockDefault}" FontSize="10" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="321"/>
+                        </hc:SimplePanel>
+                    </hc:Carousel>
                     <ContentControl x:Name="NestPage">
                     </ContentControl>
                 </Grid>
             </Border>
         </Grid>
-        <Grid x:Name="TopMenu" MouseLeftButtonDown="WindowMove_MouseLeftButtonDown" HorizontalAlignment="Left" Width="986" Margin="49,0,0,520" Background="#02FFFFFF">
+        <Grid x:Name="TopMenu" MouseLeftButtonDown="WindowMove_MouseLeftButtonDown" HorizontalAlignment="Left" Width="985" Margin="50,0,0,520" Background="#02FFFFFF">
             <Grid x:Name="Control" Margin="890,0,0,0">
                 <Border Background="#FFF9F9F9" CornerRadius="8,8,8,8">
                     <Border.Effect>

@@ -43,6 +43,10 @@ namespace update
                 try
                 {
                     string downloadurl = $@"{temppath}{uuid}.zip";
+                    if (!Directory.Exists(temppath))
+                    {
+                        Directory.CreateDirectory(temppath);
+                    }
                     Stream netStream = response.GetResponseStream();
                     Stream fileStream = new FileStream(downloadurl, FileMode.Create);
                     byte[] read = new byte[1024];
@@ -62,17 +66,17 @@ namespace update
                     netStream.Close();
                     fileStream.Close();
                     string[] filelist =
-                {
+                     {
                     "HandyControl.dll",
                     "update.deps.json",
                     "update.dll",
                     "update.exe",
                     "update.pdb",
-                    "update.runtimeconfig.json"
-                };
-                    if (!Directory.Exists(temppath))
-                    {
-                        Directory.CreateDirectory(temppath);
+                    "update.runtimeconfig.json", 
+                    @"resources\Data\stdata.json"
+                     };
+                    if (!Directory.Exists(@$"{temppath}\resources\Data")){
+                        Directory.CreateDirectory(@$"{temppath}\resources\Data");
                     }
                     foreach (string filename in filelist)
                     {
