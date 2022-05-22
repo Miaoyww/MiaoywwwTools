@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Win32;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Diagnostics;
@@ -49,7 +50,7 @@ namespace MiaoywwwTools
         }
 
         // DragMove 窗口移动
-        private void Top_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void WindowMove_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             try
             {
@@ -98,6 +99,12 @@ namespace MiaoywwwTools
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             ChangePage("MiaoywwwTools.WinHome");
+            string CheckUpdateOnStart = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\", "CheckUpdateOnStart", false).ToString();
+            if (CheckUpdateOnStart is "True")
+            {
+                WinSettings check = new();
+                check.CheckUpdate();
+            }
         }
 
         private void Btn_Mini_Click(object sender, RoutedEventArgs e)

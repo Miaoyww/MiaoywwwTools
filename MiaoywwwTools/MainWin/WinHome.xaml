@@ -7,9 +7,6 @@
       Title="Home" Width="985" Height="565" Background="Transparent">
     <Page.Resources>
         <ResourceDictionary>
-            <ContextMenu x:Key="Image_Face_Menu">
-                <MenuItem Name="CleanUpFace" Click="CleanUpFace_Click" Header="清除头像" />
-            </ContextMenu>
             <Storyboard x:Key="HideLabel">
                 <DoubleAnimation Duration="0:0:2" From="1" To="0" Storyboard.TargetProperty="Opacity" FillBehavior="Stop" Completed="HideLabel_Completed" />
             </Storyboard>

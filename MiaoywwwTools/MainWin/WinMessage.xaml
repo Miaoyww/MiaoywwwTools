@@ -3,7 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" Height="265" Width="470" AllowsTransparency="True" Background="Transparent" WindowStyle="None" Closing="Window_Closing">
+        mc:Ignorable="d" Height="235" Width="470" AllowsTransparency="True" Background="Transparent" WindowStyle="None" Closing="Window_Closing">
     <Window.Resources>
         <ResourceDictionary>
             <Storyboard x:Key="HideWindow">
@@ -23,7 +23,7 @@
             <BeginStoryboard Storyboard="{StaticResource ShowWindow}" />
         </EventTrigger>
     </Window.Triggers>
-    <Border x:Name="MainBorder" RenderTransformOrigin="0.5,0.5" Margin="5,5,0,5" Background="#00000000" CornerRadius="10">
+    <Border x:Name="MainBorder" RenderTransformOrigin="0.5,0.5" Margin="5,5,0,5" Background="#00000000" CornerRadius="10" MouseLeftButtonDown="MainBorder_MouseLeftButtonDown">
         <Border.RenderTransform>
             <TransformGroup>
                 <ScaleTransform  ScaleX="1" ScaleY="1" />
@@ -36,23 +36,16 @@
             <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="10" Opacity="0.5" Direction="0" />
         </Border.Effect>
         <Grid x:Name="MainGrid" Background="Transparent">
-            <Grid Height="55" VerticalAlignment="Top" >
-                <Border x:Name="Border_Top" BorderBrush="#FF0095F3" BorderThickness="2,2,2,2" CornerRadius="10,10,10,10" Background="White" MouseLeftButtonDown="Border_Top_MouseLeftButtonDown">
-                    <Border.Effect>
-                        <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
-                    </Border.Effect>
-                </Border>
-                <Label Content="MiaoywwwTools" HorizontalContentAlignment="Left" FontSize="18" Foreground="#FF0095F3" Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Microsoft YaHei UI" FontWeight="Normal" />
-            </Grid>
+            <Grid Height="55" VerticalAlignment="Top" />
             <Grid>
-                <Border x:Name="Border_Content" Margin="0,58,0,0" Background="White" CornerRadius="10,10,10,10" BorderBrush="#FF989898" BorderThickness="2,2,2,2">
+                <Border x:Name="Border_Content" Background="White" CornerRadius="10,10,10,10" BorderBrush="#FF989898" BorderThickness="2,2,2,2">
                     <Border.Effect>
                         <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
                     </Border.Effect>
                 </Border>
-                <Grid HorizontalAlignment="Center" Height="197" VerticalAlignment="Top" Width="465" Margin="0,58,0,0">
-                    <TextBlock x:Name="TextBlock_MessageBody" Text="Body" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" TextWrapping="NoWrap" Block.TextAlignment="Center" Height="24" Width="466" AllowDrop="True" Foreground="#FF5A5A5A" Margin="0,55,0,0" FontFamily="Microsoft YaHei UI" />
-                    <Grid Margin="10,133,345,10" Width="110" Height="54">
+                <Grid HorizontalAlignment="Center" Height="225" VerticalAlignment="Center" Width="465">
+                    <TextBlock x:Name="TextBlock_MessageBody" Text="Body" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" TextWrapping="NoWrap" Block.TextAlignment="Center" Height="24" Width="466" AllowDrop="True" Foreground="#FF5A5A5A" Margin="0,80,0,0" FontFamily="Microsoft YaHei UI" />
+                    <Grid Margin="10,161,345,10" Width="110" Height="54">
                         <Border Background="#FFD8D8D8" BorderBrush="#00000000" CornerRadius="5,5,5,5" >
                             <Border.Effect>
                                 <DropShadowEffect Color="#FFABABAB" ShadowDepth="0" BlurRadius="10" Opacity="0.4" Direction="0" />
@@ -62,13 +55,13 @@
                     </Grid>
 
 
-                    <Grid Margin="345,131,10,10">
+                    <Grid Margin="345,161,10,10">
                         <Border CornerRadius="5,5,5,5" Background="#FF0095F3">
                             <Border.Effect>
                                 <DropShadowEffect Color="#FFABABAB" ShadowDepth="0" BlurRadius="10" Opacity="0.4" Direction="0" />
                             </Border.Effect>
                         </Border>
-                        <Button x:Name="Btn_Yes" Content="确认" Click="Btn_Yes_Click" Foreground="White" FontWeight="Bold" BorderThickness="0,0,0,0" Background="Transparent" FontSize="15" Height="56" Width="110" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Microsoft JhengHei UI" />
+                        <Button x:Name="Btn_Yes" Content="确认" Click="Btn_Yes_Click" Foreground="White" FontWeight="Bold" BorderThickness="0,0,0,0" Background="Transparent" FontSize="15" Height="54" Width="110" FontFamily="Microsoft JhengHei UI" />
                     </Grid>
                 </Grid>
             </Grid>

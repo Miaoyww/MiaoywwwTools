@@ -94,10 +94,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="HandyControl\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="resources\Images\menu.png" />
   </ItemGroup>
 

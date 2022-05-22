@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Threading;
@@ -25,31 +24,11 @@ namespace MiaoywwwTools
         public bool getdone = false;
         public JObject? jsonContent;
         public int SourceSelected;
-
-        private void Btn_Checkupdate_Click(object sender, System.Windows.RoutedEventArgs e)
+        private bool ThreadOver = false;
+        public void CheckUpdate()
         {
-            Btn_Checkupdate.IsEnabled = false;
-            ldCircle_Checkupdate.IsEnabled = true;
-            ldCircle_Checkupdate.Visibility = System.Windows.Visibility.Visible;
-            string api_version;
-            string api_download;
-            SourceSelected = Cbox_Source.SelectedIndex;
-
-            if (SourceSelected == 0)
-            {
-                api_version = "https://api.github.com/repos/Miaoywww/MiaoywwwTools/contents/MiaoywwwTools/version.json";
-                api_download = "https://api.github.com/repos/Miaoywww/MiaoywwwTools/releases";
-                Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\", "UpdateWay", "github");
-            }
-            else
-            {
-                api_version = "https://gitee.com/miaoywww/MiaoywwwTools/raw/main/MiaoywwwTools/version.json";
-                api_download = "https://gitee.com/api/v5/repos/Miaoywww/MiaoywwwTools/releases/latest";
-                Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\", "UpdateWay", "gitee");
-            }
-            Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\", "UpdateApiVersion", api_version);
-            Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\", "UpdateApiDownload", api_download);
-
+            string? api_version = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\", "UpdateApiVersion", null).ToString();
+            string? api_download = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\", "UpdateApiDownload", null).ToString();
             Thread check = new Thread(() =>
             {
                 HttpClient httpClientV = new HttpClient();
@@ -98,12 +77,7 @@ namespace MiaoywwwTools
                         Dispatcher.BeginInvoke(() => { MessageBox.ShowDialog("当前已经是最新版本了"); });
                     }
                 }
-                this.Dispatcher.BeginInvoke(() =>
-                {
-                    Btn_Checkupdate.IsEnabled = true;
-                    ldCircle_Checkupdate.IsEnabled = false;
-                    ldCircle_Checkupdate.Visibility = System.Windows.Visibility.Hidden;
-                });
+                ThreadOver = true;
             })
             {
                 IsBackground = true
@@ -111,7 +85,52 @@ namespace MiaoywwwTools
             check.Start();
         }
 
-        
+        private void Btn_Checkupdate_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Btn_Checkupdate.IsEnabled = false;
+            ldCircle_Checkupdate.IsEnabled = true;
+            ldCircle_Checkupdate.Visibility = System.Windows.Visibility.Visible;
+            string api_version;
+            string api_download;
+            SourceSelected = Cbox_Source.SelectedIndex;
+
+            if (SourceSelected == 0)
+            {
+                api_version = "https://api.github.com/repos/Miaoywww/MiaoywwwTools/contents/MiaoywwwTools/version.json";
+                api_download = "https://api.github.com/repos/Miaoywww/MiaoywwwTools/releases";
+                Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\", "UpdateWay", "github");
+            }
+            else
+            {
+                api_version = "https://gitee.com/miaoywww/MiaoywwwTools/raw/main/MiaoywwwTools/version.json";
+                api_download = "https://gitee.com/api/v5/repos/Miaoywww/MiaoywwwTools/releases/latest";
+                Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\", "UpdateWay", "gitee");
+            }
+            Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\", "UpdateApiVersion", api_version);
+            Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\", "UpdateApiDownload", api_download);
+            CheckUpdate();
+            Thread checkover = new Thread(() =>
+            {
+                while (true)
+                {
+                    if(ThreadOver is true)
+                    {
+                        this.Dispatcher.BeginInvoke(() =>
+                        {
+                            Btn_Checkupdate.IsEnabled = true;
+                            ldCircle_Checkupdate.IsEnabled = false;
+                            ldCircle_Checkupdate.Visibility = System.Windows.Visibility.Hidden;
+                        });
+                        ThreadOver = false;
+                        break;
+                    }
+                }
+            });
+            checkover.IsBackground = true;
+            checkover.Start();
+
+        }
+
         private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             Label_Version.Content = $"By Miaomiaoywww 2022 -Version {GlobalV.AppVersion_ver}";
@@ -132,14 +151,7 @@ namespace MiaoywwwTools
 
         private void cbox_CheckUpdateOnStart_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if ((bool)cbox_CheckUpdateOnStart.IsChecked)
-            {
-                Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\", "CheckUpdateOnStart", "true");
-            }
-            else
-            {
-                Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\", "CheckUpdateOnStart", "false");
-            }
+            Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\", "CheckUpdateOnStart", cbox_CheckUpdateOnStart.IsChecked.ToString());
         }
     }
 }

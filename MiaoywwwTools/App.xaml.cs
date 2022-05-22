@@ -25,24 +25,28 @@ namespace MiaoywwwTools
             {
                 Environment.Exit(0);
             }
-            if (e.Args.Length >= 1)
+
+            try
             {
-                if (e.Args[0] == "updateed")
+                StreamReader reader = File.OpenText(@"./version.json");
+                JObject jsonContent = (JObject)JToken.ReadFrom(new JsonTextReader(reader));
+                GlobalV.AppVersion_ver = jsonContent["MiaoywwwTools"]["version"].ToString();
+                GlobalV.AppVersion_time = jsonContent["MiaoywwwTools"]["time"].ToString();
+                if (e.Args.Length >= 1)
                 {
-                    try
+                    if (e.Args[0] == "updateed")
                     {
-                        StreamReader reader = File.OpenText(@"./version.json");
-                        JObject jsonContent = (JObject)JToken.ReadFrom(new JsonTextReader(reader));
-                        GlobalV.AppVersion_ver = jsonContent["MiaoywwwTools"]["version"].ToString();
-                        GlobalV.AppVersion_time = jsonContent["MiaoywwwTools"]["time"].ToString();
+
+                        MessageBox.ShowDialog($"更新完成！当前版本{GlobalV.AppVersion_ver}");
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.ShowDialog($"读取版本信息错误, {ex}");
-                    }
-                    MessageBox.ShowDialog($"更新完成！当前版本{GlobalV.AppVersion_ver}");
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.ShowDialog($"读取版本信息错误, {ex}");
+            }
+
+
             if (bool.Parse(Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\", "CheckUpdateOnStart", "false").ToString()))
             {
                 Thread check = new(() =>

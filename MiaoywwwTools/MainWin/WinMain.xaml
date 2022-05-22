@@ -22,13 +22,13 @@
             <BeginStoryboard Storyboard="{StaticResource ShowWindow}" />
         </EventTrigger>
     </Window.Triggers>
-    <Grid x:Name="MainGrid" MouseLeftButtonDown="Top_MouseLeftButtonDown">
+    <Grid x:Name="MainGrid">
         <Border  CornerRadius="0,5,5,0" Background="#FFFCFCFC" Margin="50,0,0,0">
             <Border.Effect>
                 <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
             </Border.Effect>
         </Border>
-        <Border CornerRadius="5,0,0,5"  Background="#FFD8D8D8" Margin="0,0,985,0" Width="50">
+        <Border CornerRadius="5,0,0,5"  Background="#FFD8D8D8" Margin="0,0,985,0" Width="50" MouseLeftButtonDown="WindowMove_MouseLeftButtonDown">
             <Border.Effect>
                 <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
             </Border.Effect>
@@ -116,7 +116,7 @@
                 </Grid>
             </Border>
         </Grid>
-        <Grid x:Name="TopMenu" MouseLeftButtonDown="Top_MouseLeftButtonDown" HorizontalAlignment="Left" Width="986" Margin="49,0,0,520" Background="#02FFFFFF">
+        <Grid x:Name="TopMenu" MouseLeftButtonDown="WindowMove_MouseLeftButtonDown" HorizontalAlignment="Left" Width="986" Margin="49,0,0,520" Background="#02FFFFFF">
             <Grid x:Name="Control" Margin="890,0,0,0">
                 <Border Background="#FFF9F9F9" CornerRadius="8,8,8,8">
                     <Border.Effect>

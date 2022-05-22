@@ -33,9 +33,6 @@
     <Compile Update="MainWin\WinMain.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="MainWin\WinMessage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="MainWin\WinMore.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -66,9 +63,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWin\WinMain.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="MainWin\WinMessage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWin\WinMore.xaml">

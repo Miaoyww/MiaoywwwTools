@@ -114,7 +114,7 @@ namespace MiaoywwwTools
             }
         }
 
-        private void Border_Top_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void MainBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
         }
