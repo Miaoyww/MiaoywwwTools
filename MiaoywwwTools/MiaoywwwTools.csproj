@@ -20,7 +20,6 @@
     <None Remove="resources\Images\icon_home.ico" />
     <None Remove="resources\Images\icon_more.ico" />
     <None Remove="resources\Images\icon_settings.ico" />
-    <None Remove="resources\Images\MiaoywwwFace.png" />
     <None Remove="resources\Images\mini.png" />
     <None Remove="resources\Images\more.png" />
     <None Remove="resources\Images\settings.png" />
@@ -56,9 +55,6 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="resources\Images\home.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="resources\Images\MiaoywwwFace.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="resources\Images\mini.png">

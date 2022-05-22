@@ -2,7 +2,7 @@
   "profiles": {
     "update": {
       "commandName": "Project",
-      "commandLineArgs": "https://gitee.com/miaoywww/MiaoywwwTools/attach_files/1027026/download"
+      "commandLineArgs": "https://github.com/Miaoywww/MiaoywwwTools/releases/download/Ver.0.5.8.0.35.0220504-Alpha/MiaoywwwTools.zip"
     }
   }
 }

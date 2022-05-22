@@ -72,10 +72,11 @@ namespace update
                     "update.dll",
                     "update.exe",
                     "update.pdb",
-                    "update.runtimeconfig.json", 
+                    "update.runtimeconfig.json",
                     @"resources\Data\stdata.json"
                      };
-                    if (!Directory.Exists(@$"{temppath}\resources\Data")){
+                    if (!Directory.Exists(@$"{temppath}\resources\Data"))
+                    {
                         Directory.CreateDirectory(@$"{temppath}\resources\Data");
                     }
                     foreach (string filename in filelist)
@@ -102,15 +103,27 @@ namespace update
 
         private void UnpackZip()
         {
-            string zippath = @$"{temppath}{Registry.GetValue(keypath, "updateFileUUID", null)}.zip";
-            string unpackpath = $"{Registry.GetValue(keypath, "unpackPath", null)}";
-            ZipFile.ExtractToDirectory(zippath, unpackpath, true);
-            ProcessStartInfo process = new ProcessStartInfo();
-            process.FileName = unpackpath + @"\MiaoywwwTools.exe";
-            process.Arguments = "updateed";
-            Process.Start(process);
-            File.Delete(zippath);
-            Environment.Exit(0);
+            try
+            {
+                string zippath = @$"{temppath}{Registry.GetValue(keypath, "updateFileUUID", null)}.zip";
+                string unpackpath = $"{Registry.GetValue(keypath, "unpackPath", null)}";
+                ZipFile.ExtractToDirectory(zippath, unpackpath, true);
+                ProcessStartInfo process = new ProcessStartInfo();
+                process.FileName = unpackpath + @"\MiaoywwwTools.exe";
+                process.Arguments = "updateed";
+                Process.Start(process);
+                // File.Copy(@".\resources\Data\stdata.json", @$"{unpackpath}\resources\Data\stdata.json", true);
+                File.Delete(zippath);
+                Environment.Exit(0);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"更新失败，因为\n{ex}");
+                ProcessStartInfo process = new ProcessStartInfo();
+                string unpackpath = $"{Registry.GetValue(keypath, "unpackPath", null)}";
+                process.FileName = unpackpath + @"\MiaoywwwTools.exe";
+                Process.Start(process);
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
