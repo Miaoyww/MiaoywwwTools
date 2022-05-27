@@ -112,24 +112,21 @@
             <Border Margin="50,0,0,0" Background="#FFFCFCFC" CornerRadius="0,10,10,0" >
                 <Grid x:Name="MainContent">
                     <hc:Carousel Name="MainCarousel" AutoRun="True" Interval="00:01:00" PageIndex="3">
-                        <hc:Carousel.PageButtonStyle>
-                            <Style/>
-                        </hc:Carousel.PageButtonStyle>
                         <hc:SimplePanel>
                             <Image Source="/resources/Images/wallpaper/98322266.jpg"  Width="986" Height="581" Stretch="UniformToFill"/>
-                            <TextBlock Text="ArtWork ID:98322266 By:banishment" Style="{StaticResource TextBlockDefault}" FontSize="10" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="34" Width="304"/>
+                            <TextBlock Text="ArtWork ID:98322266 By:banishment" FontSize="10" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="34" Width="304"/>
                         </hc:SimplePanel>
                         <hc:SimplePanel>
                             <Image Source="/resources/Images/wallpaper/98466568.jpg" Width="986" Height="581" Stretch="UniformToFill"/>
-                            <TextBlock Text="ArtWork ID:98466568 By:ポ～ン（出水ぽすか）" Style="{StaticResource TextBlockDefault}" FontSize="10" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="321"/>
+                            <TextBlock Text="ArtWork ID:98466568 By:ポ～ン（出水ぽすか）" FontSize="10" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="321"/>
                         </hc:SimplePanel>
                         <hc:SimplePanel>
                             <Image Source="/resources/Images/wallpaper/90765657.png" Width="986" Height="581" Stretch="UniformToFill" StretchDirection="Both"/>
-                            <TextBlock Text="ArtWork ID:90765657 By:mocha＠2日目西1ひ52a" Style="{StaticResource TextBlockDefault}" FontSize="10" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="299"/>
+                            <TextBlock Text="ArtWork ID:90765657 By:mocha＠2日目西1ひ52a" FontSize="10" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="299"/>
                         </hc:SimplePanel>
                         <hc:SimplePanel>
                             <Image Source="/resources/Images/wallpaper/96331655.png" Width="986" Height="569" Stretch="Fill" StretchDirection="Both"/>
-                            <TextBlock Text="ArtWork ID:96331655 By:Recneps-SAIS" Style="{StaticResource TextBlockDefault}" FontSize="10" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="321"/>
+                            <TextBlock Text="ArtWork ID:96331655 By:Recneps-SAIS" FontSize="10" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="321"/>
                         </hc:SimplePanel>
                     </hc:Carousel>
                     <ContentControl x:Name="NestPage">
