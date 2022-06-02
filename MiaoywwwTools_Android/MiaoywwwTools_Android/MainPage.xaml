@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MiaoywwwTools_Android.MainPage">
+
+    <Grid>
+        <StackLayout Margin="10">
+            <Label  HorizontalOptions="Center" FontSize="25" Text="MiaoywwwTools &#10;      (不完全体)"/>
+        </StackLayout>
+        <StackLayout Margin="100">
+            <Label x:Name="HitokotoContent" HorizontalOptions="Start" FontSize="25" Text="MiaoywwwTools"/>
+            <Label x:Name="HitokotoFrom" HorizontalOptions="End" FontSize="15" Text="-Miaomiaoywww"/>
+        </StackLayout>
+        <!--<Image Aspect="AspectFill" Source="@drawable/wallpaper.png"  />-->
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+            <StackLayout Orientation="Horizontal">
+                <Button CornerRadius="5" Font="Microsoft Yahei Ui" FontAttributes="Bold" FontSize="19" Text="手动更换!" Clicked="Button_Clicked"/>
+                <Button CornerRadius="5" Font="Microsoft Yahei Ui" FontAttributes="Bold" FontSize="19" Text="自动更换!" Clicked="AutoHi_Clicked"/>
+            </StackLayout>
+            <Slider x:Name="TimeIntervalS" BackgroundColor="#FFFFFF" Value="10" Minimum="0" Maximum="60" ValueChanged="Slider_ValueChanged" />
+            <Entry x:Name="TimeInterval" HorizontalOptions="Center" Text="10" />
+        </StackLayout>
+        
+    </Grid>
+
+</ContentPage>

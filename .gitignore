@@ -11,6 +11,7 @@
 /update/obj/
 /Debug/
 /Release
-#可能会造成隐私泄露,建议您不要上传此文件
-/MiaoywwwTools/Resources/Data/stdata.json
-
+/MiaoywwwTools_Android/MiaoywwwTools_Android/bin/
+/MiaoywwwTools_Android/MiaoywwwTools_Android/obj/
+/MiaoywwwTools_Android/MiaoywwwTools_Android.Android/bin/
+/MiaoywwwTools_Android/MiaoywwwTools_Android.Android/obj/
