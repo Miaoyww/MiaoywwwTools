@@ -5,37 +5,16 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
       Height="445" Width="678"
-      Title="WallPaper" Background="Transparent">
-    <Border BorderThickness="1" Background="White" Width="674" Margin="2,10,2,6" CornerRadius="5,5,5,5">
-        <Grid Loaded="Grid_Loaded" Margin="0,-1,0,17" >
-            <Label Content="由于不完善，暂不开放" HorizontalAlignment="Left" Margin="369,174,0,0" VerticalAlignment="Top" Height="49" Width="232" Foreground="Black" FontSize="18" FontWeight="Bold" BorderBrush="Transparent" Background="Transparent"/>
-            <Grid IsEnabled="False">
-                <Grid.Effect>
-                    <BlurEffect Radius="5"></BlurEffect>
-                </Grid.Effect>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Label x:Name="Label_Title" Content="壁纸" VerticalAlignment="Top" Height="75" Width="672" Background="{x:Null}" Foreground="Black" FontSize="36" FontWeight="Bold" BorderBrush="Black" />
-                <Button x:Name="Btn_App" Content="选择壁纸" HorizontalAlignment="Left" Height="50" Margin="547,166,0,0" Width="115" VerticalAlignment="Top" Click="Btn_App_Click" />
-                <Border Margin="10,80,311,22" CornerRadius="10,10,10,10" Background="#FF00A7FF">
-                    <Border.Effect>
-                        <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.8" Direction="0" />
-                    </Border.Effect>
-                    <Grid>
-                        <Label Content="壁纸对齐方式" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,245,269" />
-                        <ComboBox x:Name="ComboBox_WallpaperShape" Margin="111,10,70,269" SelectedIndex="0" FontSize="15" FontWeight="Normal" HorizontalContentAlignment="Center" SelectionChanged="ComboBox_WallpaperShape_SelectionChanged">
-                            <ComboBoxItem Content="居中" />
-                            <ComboBoxItem Content="平铺" />
-                            <ComboBoxItem Content="拉伸" />
-                            <ComboBoxItem Content="适应" />
-                            <ComboBoxItem Content="填充" />
-                        </ComboBox>
-                        <Label Content="功能完善中" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,78,135,185" FontSize="20" />
-                    </Grid>
-                </Border>
-                <Button x:Name="Btn_BingApp" Content="必应每日壁纸" HorizontalAlignment="Left" Height="50" Margin="547,262,0,0" Width="115" VerticalAlignment="Top" Click="Btn_BingApp_Click" />
-            </Grid>
-        </Grid>
-    </Border>
+      Title="WallPaper" Background="White">
+    <Grid Loaded="Grid_Loaded" Margin="1,0,5,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <CheckBox x:Name="cboxStartOn" Content="开机启动" HorizontalAlignment="Left" Height="34" Margin="553,355,0,0" VerticalAlignment="Top" Width="113" RenderTransformOrigin="0.404,0.5" Click="cboxStartOn_Click"/>
+        <Label x:Name="labTitle" Content="动态壁纸" VerticalAlignment="Top" Height="75" Width="672" Background="{x:Null}" Foreground="Black" FontSize="36" FontWeight="Bold" BorderBrush="Black" />
+        <Button x:Name="btnApply" Content="应用" HorizontalAlignment="Left" Height="42" Margin="553,393,0,0" VerticalAlignment="Top" Width="109" Click="btnApply_Click"/>
+        <Button x:Name="btnChoose" Content="选择文件" Height="50" Width="110" Click="btnChoose_Click"/>
+        <TextBox x:Name="tboxFileInfomation" HorizontalAlignment="Center" Height="26" Margin="0,252,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="216"/>
+        <TextBox x:Name="tboxDate" HorizontalAlignment="Center" Height="26" Margin="0,287,0,0" TextWrapping="Wrap" Text="Type a Date here" VerticalAlignment="Top" Width="216"/>
+    </Grid>
 </Page>

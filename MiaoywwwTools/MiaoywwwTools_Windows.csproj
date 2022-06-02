@@ -8,6 +8,13 @@
     <Authors>$(AssemblyName)</Authors>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <BaseOutputPath>..\</BaseOutputPath>
+    <AssemblyName>MiaoywwwTools</AssemblyName>
+    <UseWindowsForms>True</UseWindowsForms>
+    <RootNamespace>MiaoywwwTools</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>True</Optimize>
   </PropertyGroup>
 
   <ItemGroup>
