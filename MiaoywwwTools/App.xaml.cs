@@ -1,6 +1,4 @@
-﻿using HandyControl.Controls;
-using Microsoft.Toolkit.Uwp.Notifications;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -52,7 +50,7 @@ namespace MiaoywwwTools
                 Thread check = new(() =>
                 {
                     // Requires Microsoft.Toolkit.Uwp.Notifications NuGet package version 7.0 or greater
-                    
+
                 });
             }
             base.OnStartup(e);

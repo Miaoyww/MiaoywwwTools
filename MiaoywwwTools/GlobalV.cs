@@ -13,7 +13,7 @@ namespace MiaoywwwTools
         public static bool AppRestart;  // 重启
         public static string AppVersion_ver;
         public static string AppVersion_time;
-
+        public static bool Started = false;
         public static JObject? Index_To_Hitokoto = new()
         {
             { "0", "random" },

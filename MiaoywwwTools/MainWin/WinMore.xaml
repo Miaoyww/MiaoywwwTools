@@ -26,10 +26,7 @@
                     </Button>
                 </Grid>
             </Grid>
-
-            <Border CornerRadius="8,8,8,8" HorizontalAlignment="Left" Height="545" VerticalAlignment="Center" Width="709" Margin="266,0,0,0">
-                <ContentControl x:Name="NestPage" Content="" HorizontalAlignment="Center" Width="710" Margin="0,-1,0,-1" />
-            </Border>
+            <ContentControl x:Name="NestPage" Content="" HorizontalAlignment="Left" Width="700" Margin="275,10,0,10" />
         </Grid>
     </Border>
 </Page>

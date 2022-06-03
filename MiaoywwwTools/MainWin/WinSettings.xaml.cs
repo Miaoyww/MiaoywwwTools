@@ -113,7 +113,7 @@ namespace MiaoywwwTools
             {
                 while (true)
                 {
-                    if(ThreadOver is true)
+                    if (ThreadOver is true)
                     {
                         this.Dispatcher.BeginInvoke(() =>
                         {

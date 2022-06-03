@@ -1,9 +1,7 @@
-﻿using Microsoft.Win32;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using MiaoywwwTools.Tools.WallPaper;
+using Microsoft.Win32;
 using System;
 using System.Diagnostics;
-using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -20,6 +18,7 @@ namespace MiaoywwwTools
     public partial class WinMain : Window
     {
         public static WinMain? winMain;
+        public BackGround backGround;
 
         public WinMain()
         {
@@ -149,7 +148,7 @@ namespace MiaoywwwTools
         {
             int maxpage = MainCarousel.Items.Count;
             int nowpage = MainCarousel.PageIndex;
-            if(nowpage + 1 > maxpage)
+            if (nowpage + 1 > maxpage)
             {
                 MainCarousel.PageIndex = 0;
             }

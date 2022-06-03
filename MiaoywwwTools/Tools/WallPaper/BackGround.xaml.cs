@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Threading;
+using static MiaoywwwTools.Tools.WallPaper.MainWallPaper;
 
 namespace MiaoywwwTools.Tools.WallPaper
 {
@@ -13,16 +14,50 @@ namespace MiaoywwwTools.Tools.WallPaper
     {
         private IntPtr programHandle;
         private DispatcherTimer timerTick = new DispatcherTimer();
-        private String whattosay;
-        private string when;
-        public BackGround(string content, string date)
+        private DispatcherTimer timerKillself = new DispatcherTimer();
+
+        public BackGround()
         {
             InitializeComponent();
             SendMsgToProgman();
-            whattosay = content;
-            when = date;
-            Tick();
+            ChangeWord();
+            ChangeVideo();
+        }
 
+        public void ChangeWord()
+        {
+            if ((bool)Settings.UseWord)
+            {
+                labContent.Foreground = Settings.WordColor;
+                Tick();
+                timerTick.Tick += new EventHandler(timerTick_Tick);
+                timerTick.Interval = TimeSpan.FromSeconds(10); //设置刷新的间隔时间
+                timerTick.Start();
+            }
+        }
+
+        public void ChangeVideo()
+        {
+            if ((bool)Settings.UseVideo)
+            {
+                medMain.Source = Settings.VideoUri;
+                medMain.Volume = (double)Settings.VideoVolume / 100;
+                medMain.Play();
+            }
+        }
+
+        private void medMain_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            if ((bool)Settings.VideoLoop)
+            {
+                medMain.Position = TimeSpan.Zero;
+                medMain.Play();
+
+            }
+            else
+            {
+                medMain.Visibility = Visibility.Hidden;
+            }
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
@@ -32,16 +67,32 @@ namespace MiaoywwwTools.Tools.WallPaper
             this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
             this.Left = 0;
             this.Top = 0;
-            timerTick.Tick += new EventHandler(timerTick_Tick);
-            timerTick.Interval = TimeSpan.FromSeconds(10); //设置刷新的间隔时间
-            timerTick.Start();
         }
+
         private void Tick()
         {
-            DateTime dt1 = Convert.ToDateTime(when);
-            TimeSpan timeSpan = dt1.Subtract(DateTime.Now);
-            labContent.Content = String.Format($"{whattosay}",timeSpan.Days + 1);
+            DateTime dt1;
+            DateTime dt2;
+            if (Settings.WordDate1 == "Now")
+            {
+                dt1 = Convert.ToDateTime(DateTime.Now);
+            }
+            else
+            {
+                dt1 = Convert.ToDateTime(Settings.WordDate1);
+            }
+            if (Settings.WordDate2 == "Now")
+            {
+                dt2 = Convert.ToDateTime(DateTime.Now);
+            }
+            else
+            {
+                dt2 = Convert.ToDateTime(Settings.WordDate2);
+            }
+            TimeSpan timeSpan = dt1.Subtract(dt2);
+            labContent.Content = string.Format($"{Settings.WordContent}", timeSpan.Days + 1);
         }
+
         private void timerTick_Tick(object sender, EventArgs e)
         {
             Tick();

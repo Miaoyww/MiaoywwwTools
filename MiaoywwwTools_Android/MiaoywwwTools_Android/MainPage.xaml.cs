@@ -33,7 +33,8 @@ namespace MiaoywwwTools_Android
             {
                 CancellationTokenSource cts = this.cancellation; // safe copy
                 Device.StartTimer(this.timespan,
-                    () => {
+                    () =>
+                    {
                         if (cts.IsCancellationRequested) return false;
                         this.callback.Invoke();
                         return true; // or true for periodic behavior
@@ -118,8 +119,8 @@ namespace MiaoywwwTools_Android
 
         private async void Slider_ValueChanged(object sender, ValueChangedEventArgs e)
         {
-                int interval = (int)TimeIntervalS.Value;
-                TimeInterval.Text = interval.ToString();
+            int interval = (int)TimeIntervalS.Value;
+            TimeInterval.Text = interval.ToString();
         }
     }
 }

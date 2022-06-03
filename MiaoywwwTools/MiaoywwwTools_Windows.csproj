@@ -14,7 +14,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <Optimize>True</Optimize>
+    <Optimize>False</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Optimize>False</Optimize>
   </PropertyGroup>
 
   <ItemGroup>
@@ -36,6 +40,12 @@
     <Content Include="resources\Data\stdata.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="resources\Images\icons\indeterminate_checkbox.png" />
+    <Resource Include="resources\Images\icons\t.png" />
+    <Resource Include="resources\Images\icons\video_file.png" />
+    <Resource Include="resources\Images\icons\sound.png" />
+    <Resource Include="resources\Images\icons\color_mode.png" />
+    <Resource Include="resources\Images\icons\settings.png" />
     <Resource Include="resources\Images\icons\arrow-right.png" />
     <Resource Include="resources\Images\wallpaper\96331655.png" />
     <Resource Include="resources\Images\wallpaper\90765657.png" />

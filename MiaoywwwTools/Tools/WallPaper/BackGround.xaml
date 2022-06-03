@@ -12,6 +12,7 @@
         <Grid>
             <Viewbox Stretch=" fill">
                 <Canvas Width="1920" Height="1080">
+                    <MediaElement x:Name="medMain" MediaEnded="medMain_MediaEnded" UnloadedBehavior="Manual" Stretch="UniformToFill"/>
                     <Label x:Name="labContent" Background="Transparent" Height="1098" Width="1920" Content="content" FontSize="80" Canvas.Top="-3" VerticalAlignment="Top" FontWeight="Normal" />
                 </Canvas>
             </Viewbox>
