@@ -40,6 +40,7 @@
     <Content Include="resources\Data\stdata.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="resources\Images\icons\typography.png" />
     <Resource Include="resources\Images\icons\indeterminate_checkbox.png" />
     <Resource Include="resources\Images\icons\t.png" />
     <Resource Include="resources\Images\icons\video_file.png" />

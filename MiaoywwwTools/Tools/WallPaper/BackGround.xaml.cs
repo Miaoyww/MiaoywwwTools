@@ -14,7 +14,7 @@ namespace MiaoywwwTools.Tools.WallPaper
     {
         private IntPtr programHandle;
         private DispatcherTimer timerTick = new DispatcherTimer();
-        private DispatcherTimer timerKillself = new DispatcherTimer();
+        private DispatcherTimer timerGetSettings = new DispatcherTimer();
 
         public BackGround()
         {
@@ -34,6 +34,10 @@ namespace MiaoywwwTools.Tools.WallPaper
                 timerTick.Interval = TimeSpan.FromSeconds(10); //设置刷新的间隔时间
                 timerTick.Start();
             }
+            else
+            {
+                labContent.Content = "";
+            }
         }
 
         public void ChangeVideo()
@@ -41,8 +45,8 @@ namespace MiaoywwwTools.Tools.WallPaper
             if ((bool)Settings.UseVideo)
             {
                 medMain.Source = Settings.VideoUri;
+                medMain.Visibility = Visibility.Visible;
                 medMain.Volume = (double)Settings.VideoVolume / 100;
-                medMain.Play();
             }
         }
 
@@ -67,6 +71,11 @@ namespace MiaoywwwTools.Tools.WallPaper
             this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
             this.Left = 0;
             this.Top = 0;
+            GetSettings();
+            timerGetSettings.Tick += new EventHandler(timerGetSettings_Tick);
+            timerGetSettings.Interval = TimeSpan.FromSeconds(0.5); //设置刷新的间隔时间
+            timerGetSettings.Start();
+
         }
 
         private void Tick()
@@ -93,9 +102,18 @@ namespace MiaoywwwTools.Tools.WallPaper
             labContent.Content = string.Format($"{Settings.WordContent}", timeSpan.Days + 1);
         }
 
+        private void GetSettings()
+        {
+            labContent.FontSize = (double)Settings.FontSize;
+        }
         private void timerTick_Tick(object sender, EventArgs e)
         {
             Tick();
+        }
+
+        private void timerGetSettings_Tick(object sender, EventArgs e)
+        {
+            GetSettings();
         }
 
         /// <summary>
