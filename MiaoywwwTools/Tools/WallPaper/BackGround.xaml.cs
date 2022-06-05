@@ -21,7 +21,10 @@ namespace MiaoywwwTools.Tools.WallPaper
             InitializeComponent();
             SendMsgToProgman();
             ChangeWord();
-            ChangeVideo();
+            ChangeVideo(false);
+            timerTick.Tick += new EventHandler(timerTick_Tick);
+            timerTick.Interval = TimeSpan.FromSeconds(10); //设置刷新的间隔时间
+            timerTick.Start();
         }
 
         public void ChangeWord()
@@ -30,23 +33,24 @@ namespace MiaoywwwTools.Tools.WallPaper
             {
                 labContent.Foreground = Settings.WordColor;
                 Tick();
-                timerTick.Tick += new EventHandler(timerTick_Tick);
-                timerTick.Interval = TimeSpan.FromSeconds(10); //设置刷新的间隔时间
-                timerTick.Start();
             }
             else
             {
-                labContent.Content = "";
+                    labContent.Content = "";
             }
         }
 
-        public void ChangeVideo()
+        public void ChangeVideo(bool play)
         {
             if ((bool)Settings.UseVideo)
             {
                 medMain.Source = Settings.VideoUri;
                 medMain.Visibility = Visibility.Visible;
                 medMain.Volume = (double)Settings.VideoVolume / 100;
+                if (play)
+                {
+                    medMain.Play();
+                }
             }
         }
 

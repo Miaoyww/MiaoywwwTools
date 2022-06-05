@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 
 namespace MiaoywwwTools
@@ -24,6 +25,63 @@ namespace MiaoywwwTools
         {
             InitializeComponent();
             winMain = this;
+            WlpChangeSettings();
+            backGround = new();
+        }
+
+        public bool WlpChangeSettings()
+        {
+            string wlpKeypath = @"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\Tools\WallPaper";
+
+            Settings.UseVideo = bool.Parse(Registry.GetValue(wlpKeypath, "VideoSettings_UseVideo", "False").ToString());
+            Settings.UseWord = bool.Parse(Registry.GetValue(wlpKeypath, "WordSettings_UseWord", null).ToString());
+
+            Settings.VideoVolume = double.Parse(Registry.GetValue(wlpKeypath, "VideoSettings_VideoVolume", "100.0").ToString());
+            Settings.VideoLoop = bool.Parse(Registry.GetValue(wlpKeypath, "VideoSettings_VideoLoop", "False").ToString());
+
+            try
+            {
+                Settings.VideoUri = new Uri(Registry.GetValue(wlpKeypath, "VideoSettings_VideoFilePath", null).ToString());
+            }
+            catch (UriFormatException)
+            {
+                Settings.VideoUri = null;
+            }
+
+            string tboxDate1_Text = Registry.GetValue(wlpKeypath, "WordSettings_Date1", null).ToString();
+            string tboxDate2_Text = Registry.GetValue(wlpKeypath, "WordSettings_Date2", null).ToString();
+            Settings.WordContent = Registry.GetValue(wlpKeypath, "WordSettings_WordContent", "").ToString();
+            Settings.FontSize = double.Parse(Registry.GetValue(wlpKeypath, "WordSettings_FontSize", null).ToString());
+            try
+            {
+                if (tboxDate1_Text != "Now")
+                {
+                    DateTime dt1 = Convert.ToDateTime(tboxDate1_Text);
+                }
+                if (tboxDate2_Text != "Now")
+                {
+                    DateTime dt2 = Convert.ToDateTime(tboxDate2_Text);
+                }
+                Settings.WordDate1 = tboxDate1_Text;
+                Settings.WordDate2 = tboxDate2_Text;
+            }
+            catch (FormatException)
+            {
+                MessageBox.ShowDialog("请输入一个正确的日期,如2022-6-14");
+                return false;
+            } 
+
+            BrushConverter brushConverter = new BrushConverter();
+            try
+            {
+                Settings.WordColor = (Brush)brushConverter.ConvertFromString(Registry.GetValue(wlpKeypath, "WordSettings_WordColor", null).ToString());
+            }
+            catch (Exception)
+            {
+                Settings.WordColor = (Brush)brushConverter.ConvertFromString("#FFFFFFFF");
+                Registry.SetValue(wlpKeypath, "WordSettings_WordColor", "#FFFFFFFF");
+            }
+            return true;
         }
 
         public static string PageName;     // 储存页面
@@ -57,9 +115,7 @@ namespace MiaoywwwTools
             }
             catch (System.InvalidOperationException)
             {
-
             }
-
         }
 
         // 导航栏

@@ -1,11 +1,10 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.IO;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using MiaoywwwTools;
-using System.Threading;
 
 namespace MiaoywwwTools.Tools.WallPaper
 {
@@ -16,27 +15,10 @@ namespace MiaoywwwTools.Tools.WallPaper
     {
         public string keypath = @"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\Tools\WallPaper";
         private Uri? Source;
-        
 
         public MainWallPaper()
         {
             InitializeComponent();
-        }
-
-        internal class Settings
-        {
-            public static bool? UseVideo;
-            public static bool? UseWord;
-
-            public static bool? VideoLoop;
-            public static Uri? VideoUri;
-            public static double? VideoVolume;
-
-            public static Brush? WordColor;
-            public static string? WordContent;
-            public static double? FontSize;
-            public static string? WordDate1;
-            public static string? WordDate2;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -70,6 +52,38 @@ namespace MiaoywwwTools.Tools.WallPaper
                 }
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
+                    WordSettings_tboxWordContent.Text = Settings.WordContent;
+                    WordSettings_tboxDate1.Text = Settings.WordDate1;
+                    WordSettings_tboxDate2.Text = Settings.WordDate2;
+                    WordSettings_tboxWordColor.Text = Settings.WordColor.ToString();
+                    
+                    WordSettings_tboxFontSize.Text = Settings.FontSize.ToString();
+                    WordSettings_cboxUseWord.IsChecked = Settings.UseWord;
+
+                    VideoSettings_tboxVideoFileName.Text = Registry.GetValue(keypath, "VideoSettings_VideoName", "None").ToString();
+                    VideoSettings_labVideoVolume.Content = Settings.VideoVolume.ToString();
+                    VideoSettings_cboxVideoLoop.IsChecked = Settings.VideoLoop;
+                    VideoSettings_cboxUseVideo.IsChecked = Settings.UseVideo;
+                    cboxStartOn.IsChecked = bool.Parse(Registry.GetValue(keypath, "StartOnBoot", "False").ToString());
+                    try
+                    {
+                        Source = new Uri(Registry.GetValue(keypath, "VideoSettings_VideoFilePath", null).ToString());
+                    }
+                    catch (UriFormatException)
+                    {
+                        Source = null;
+                    }
+                    VideoSettings_sliderVideoVolume.Value = double.Parse(Registry.GetValue(keypath, "VideoSettings_VideoVolume", "100.0").ToString());
+                    Settings.VideoUri = Source;
+                    if (GlobalV.Started)
+                    {
+                        btnStart.Content = "重设";
+                    }
+                    else
+                    {
+                        btnStart.Content = "开始";
+                    }
+                    /*
                     WordSettings_tboxWordContent.Text = Registry.GetValue(keypath, "WordSettings_WordContent", "").ToString();
                     WordSettings_tboxDate1.Text = Registry.GetValue(keypath, "WordSettings_Date1", null).ToString();
                     WordSettings_tboxDate2.Text = Registry.GetValue(keypath, "WordSettings_Date2", null).ToString();
@@ -82,7 +96,14 @@ namespace MiaoywwwTools.Tools.WallPaper
                     VideoSettings_cboxVideoLoop.IsChecked = bool.Parse(Registry.GetValue(keypath, "VideoSettings_VideoLoop", "False").ToString());
                     VideoSettings_cboxUseVideo.IsChecked = bool.Parse(Registry.GetValue(keypath, "VideoSettings_UseVideo", "False").ToString());
                     cboxStartOn.IsChecked = bool.Parse(Registry.GetValue(keypath, "StartOnBoot", "False").ToString());
-                    Source = new Uri(Registry.GetValue(keypath, "VideoSettings_VideoFilePath", null).ToString());
+                    try
+                    {
+                        Source = new Uri(Registry.GetValue(keypath, "VideoSettings_VideoFilePath", null).ToString());
+                    }
+                    catch (UriFormatException)
+                    {
+                        Source = null;
+                    }
                     VideoSettings_sliderVideoVolume.Value = double.Parse(Registry.GetValue(keypath, "VideoSettings_VideoVolume", "100.0").ToString());
                     Settings.VideoUri = Source;
                     if (GlobalV.Started)
@@ -93,9 +114,8 @@ namespace MiaoywwwTools.Tools.WallPaper
                     {
                         btnStart.Content = "开始";
                     }
-                    ChangeSettings();
-                    WinMain.winMain.backGround = new();
-                    WinMain.winMain.backGround.medMain.Stop();
+                    WinMain.winMain.WlpChangeSettings();
+                    */
                 }));
             });
             thread.IsBackground = true;
@@ -104,7 +124,7 @@ namespace MiaoywwwTools.Tools.WallPaper
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            ChangeSettings();
+            WinMain.winMain.WlpChangeSettings();
             bool isallow = true;
             if ((bool)VideoSettings_cboxUseVideo.IsChecked)
             {
@@ -115,17 +135,17 @@ namespace MiaoywwwTools.Tools.WallPaper
                 }
             }
 
-
             if (isallow)
             {
                 if (!GlobalV.Started)
                 {
-                    if (ChangeSettings())
+                    if (WinMain.winMain.WlpChangeSettings()
+)
                     {
-                        WinMain.winMain.backGround.ChangeVideo();
+                        WinMain.winMain.backGround.medMain.Position = TimeSpan.Zero;
+                        WinMain.winMain.backGround.ChangeVideo(true);
                         WinMain.winMain.backGround.ChangeWord();
                         WinMain.winMain.backGround.Show();
-                        WinMain.winMain.backGround.medMain.Position = TimeSpan.Zero;
                         GlobalV.Started = true;
                         btnStart.Content = "重设";
                     }
@@ -155,45 +175,10 @@ namespace MiaoywwwTools.Tools.WallPaper
             Registry.SetValue(keypath, "VideoSettings_VideoLoop", VideoSettings_cboxVideoLoop.IsChecked.ToString());
             Registry.SetValue(keypath, "VideoSettings_UseVideo", VideoSettings_cboxUseVideo.IsChecked.ToString());
             Registry.SetValue(keypath, "StartOnBoot", cboxStartOn.IsChecked.ToString());
-            WinMain.winMain.backGround.ChangeVideo();
-            WinMain.winMain.backGround.ChangeWord();
-            if (ChangeSettings())
+            if (WinMain.winMain.WlpChangeSettings())
             {
                 MessageBox.ShowDialog("应用成功！");
             }
-
-        }
-
-        private bool ChangeSettings()
-        {
-            Settings.UseVideo = VideoSettings_cboxUseVideo.IsChecked;
-            Settings.UseWord = WordSettings_cboxUseWord.IsChecked;
-
-            Settings.VideoVolume = VideoSettings_sliderVideoVolume.Value;
-            Settings.VideoLoop = VideoSettings_cboxVideoLoop.IsChecked;
-            Settings.VideoUri = Source;
-
-            Settings.WordContent = WordSettings_tboxWordContent.Text;
-            Settings.FontSize = double.Parse(WordSettings_tboxFontSize.Text);
-            try
-            {
-                if (WordSettings_tboxDate1.Text != "Now")
-                {
-                    DateTime dt1 = Convert.ToDateTime(WordSettings_tboxDate1.Text);
-                }
-                if (WordSettings_tboxDate2.Text != "Now")
-                {
-                    DateTime dt2 = Convert.ToDateTime(WordSettings_tboxDate2.Text);
-                }
-                Settings.WordDate1 = WordSettings_tboxDate1.Text;
-                Settings.WordDate2 = WordSettings_tboxDate2.Text;
-            }
-            catch (FormatException)
-            {
-                MessageBox.ShowDialog("请输入一个正确的日期,如2022-6-14");
-                return false;
-            }
-            return true;
         }
 
         private void VideoSettings_cboxVideoLoop_Click(object sender, RoutedEventArgs e)
@@ -205,11 +190,10 @@ namespace MiaoywwwTools.Tools.WallPaper
         {
             VideoSettings_labVideoVolume.Content = VideoSettings_sliderVideoVolume.Value.ToString();
             Settings.VideoVolume = VideoSettings_sliderVideoVolume.Value;
-            if(WinMain.winMain.backGround != null)
+            if (WinMain.winMain.backGround != null)
             {
-                WinMain.winMain.backGround.ChangeVideo();
+                WinMain.winMain.backGround.ChangeVideo(false);
             }
-
         }
 
         private void WordSettings_tboxWordColor_TextChanged(object sender, TextChangedEventArgs e)
@@ -223,10 +207,12 @@ namespace MiaoywwwTools.Tools.WallPaper
                 {
                     WinMain.winMain.backGround.ChangeWord();
                 }
+                WordSettings_boerColorCard.BorderBrush = (Brush)brushConverter.ConvertFromString("#FFE0E0E0");
+                Registry.SetValue(keypath, "WordSettings_WordColor", WordSettings_tboxWordColor.Text);
             }
-            catch(Exception)
+            catch (Exception)
             {
-                
+                WordSettings_boerColorCard.BorderBrush = (Brush)brushConverter.ConvertFromString("#FFFF0000");
             }
         }
 
@@ -237,7 +223,6 @@ namespace MiaoywwwTools.Tools.WallPaper
             {
                 WinMain.winMain.backGround.ChangeWord();
             }
-            
         }
 
         private void WordSettings_tboxFontSize_TextChanged(object sender, TextChangedEventArgs e)

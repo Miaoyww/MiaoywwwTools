@@ -84,7 +84,7 @@
                             <Grid Margin="369,10,10,10">
                                 <!-- Controller -->
                                 <Label HorizontalAlignment="Left" Height="45" Width="50" Content="预览"/>
-                                <Border x:Name="WordSettings_boerColorCard"  CornerRadius="5,5,5,5" Background="Black" Width="45" Height="45" Margin="55,2,195,0">
+                                <Border x:Name="WordSettings_boerColorCard"  CornerRadius="5,5,5,5" Background="Black" Width="45" Height="45" Margin="55,2,195,0" BorderThickness="2,2,2,2" BorderBrush="#FFE0E0E0">
                                     <Border.Effect>
                                         <DropShadowEffect Color="#FFE6E6E6" Opacity="0.8"/>
                                     </Border.Effect>

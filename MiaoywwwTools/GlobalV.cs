@@ -1,5 +1,7 @@
 ﻿using MiaoywwwTools.Tools.RandomDraw;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Windows.Media;
 
 namespace MiaoywwwTools
 {
@@ -47,5 +49,21 @@ namespace MiaoywwwTools
             { "k", "11" },
             { "l", "12" },
         };
+    }
+
+    internal class Settings
+    {
+        public static bool? UseVideo;
+        public static bool? UseWord;
+
+        public static bool? VideoLoop;
+        public static Uri? VideoUri;
+        public static double? VideoVolume;
+
+        public static Brush? WordColor;
+        public static string? WordContent;
+        public static double? FontSize;
+        public static string? WordDate1;
+        public static string? WordDate2;
     }
 }
