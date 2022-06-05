@@ -10,7 +10,7 @@
         <Label x:Name="labTitle" Content="动态壁纸" VerticalAlignment="Top" Height="75" Width="694" Background="{x:Null}" Foreground="Black" FontSize="36" FontWeight="Bold" BorderBrush="Black" />
 
         <hc:ScrollViewer HorizontalAlignment="Center" Height="465" VerticalAlignment="Top" Width="700" Margin="0,80,0,0">
-            <StackPanel Height="875" Width="694" Background="#FFE6E6E6">
+            <StackPanel Height="893" Width="694" Background="#FFE6E6E6">
                 <!-- 文字设置 -->
                 <Grid x:Name="grid_word_settings" Height="417">
                     <Label Content="文字设置" Height="38" Margin="0,10,0,0" VerticalAlignment="Top" Width="694" Background="Transparent" BorderBrush="White" BorderThickness="0,0,0,0" Foreground="#FF464646" FontSize="18" FontWeight="Bold" FontFamily="Microsoft YaHei UI" HorizontalContentAlignment="Left" />
@@ -31,7 +31,7 @@
                             </Grid>
                         </Grid>
 
-                        <Grid Margin="0,10,0,0">
+                        <Grid x:Name="WordSettings_gridSetWordContent" Margin="0,10,0,0">
                             <Border Background="#FFF7F7F7" CornerRadius="4,4,4,4" >
                                 <Border.Effect>
                                     <DropShadowEffect Color="#FFDEDEDE" Opacity="0.4" />
@@ -49,7 +49,7 @@
                             </Grid>
                         </Grid>
 
-                        <Grid>
+                        <Grid x:Name="WordSettings_gridSetWordFormat">
                             <Border Background="#FFF7F7F7" CornerRadius="4,4,4,4" >
                                 <Border.Effect>
                                     <DropShadowEffect Color="#FFDEDEDE" Opacity="0.4" />
@@ -69,6 +69,24 @@
                             </Grid>
                         </Grid>
 
+                        <Grid>
+                            <Border Background="#FFF7F7F7" CornerRadius="4,4,4,4" >
+                                <Border.Effect>
+                                    <DropShadowEffect Color="#FFDEDEDE" Opacity="0.4" />
+                                </Border.Effect>
+                            </Border>
+                            <Grid>
+                                <!-- Content -->
+                                <Image Stretch="UniformToFill" Source="/resources/Images/icons/hitokoto.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="38" Width="38" Margin="10,0,0,0" />
+                                <Label Background="Transparent" Foreground="#FF464646" FontWeight="Bold" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="56,3,0,0" VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" Content="设置一言"/>
+                                <Label Background="Transparent" Foreground="#FF464646" FontWeight="Normal" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="57,38,0,0" VerticalAlignment="Top" FontSize="13" Content="将文本内容替换为一言" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" />
+                            </Grid>
+                            <Grid Margin="369,10,10,10">
+                                <!-- Controller -->
+                                <CheckBox x:Name="WordSettings_cboxUseHitokoto"  Margin="177,0,0,0" Content="启用一言" Height="26" Checked="WordSettings_cboxUseHitokoto_Checked" Click="WordSettings_cboxUseHitokoto_Checked"/>
+                            </Grid>
+                        </Grid>
+                        
                         <Grid>
                             <Border Background="#FFF7F7F7" CornerRadius="4,4,4,4" >
                                 <Border.Effect>
@@ -193,7 +211,7 @@
                     <hc:Divider LineStroke="#FFBBBBBB" LineStrokeThickness="2" Height="4" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="0,24,0,0"/>
                 </Grid>
                 <Grid Height="98">
-                    <CheckBox x:Name="cboxStartOn" Content="开机启动" HorizontalAlignment="Left" Height="34" VerticalAlignment="Top" Width="113" RenderTransformOrigin="0.404,0.5" Margin="571,10,0,0"/>
+                    <CheckBox x:Name="cboxStartOn" Content="开机启动" HorizontalAlignment="Left" Height="34" VerticalAlignment="Top" Width="113" RenderTransformOrigin="0.404,0.5" Margin="571,10,0,0" Checked="cboxStartOn_Checked" Click="cboxStartOn_Checked"/>
                     <Button x:Name="btnApply" Content="应用" Height="42" Width="110" Click="btnApply_Click" HorizontalAlignment="Left" Margin="574,49,0,0" VerticalAlignment="Top"/>
                     <Button x:Name="btnStart" Content="开始" Height="42" Width="110" Click="btnStart_Click"  Margin="0,23,0,0" VerticalAlignment="Top"/>
 

@@ -40,8 +40,11 @@
     <Content Include="resources\Data\stdata.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="resources\Images\icons\icon.ico" />
     <Resource Include="resources\Images\icons\typography.png" />
-    <Resource Include="resources\Images\icons\indeterminate_checkbox.png" />
+    <Resource Include="resources\Images\icons\indeterminate_checkbox.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="resources\Images\icons\t.png" />
     <Resource Include="resources\Images\icons\video_file.png" />
     <Resource Include="resources\Images\icons\sound.png" />
@@ -54,6 +57,7 @@
     <Resource Include="resources\Images\wallpaper\98466568.jpg" />
     <Resource Include="resources\Images\user.png" />
     <Content Include="version.json" />
+    <None Include="resources\Images\代码,程序,窗口,弹窗.png" />
     <Resource Include="resources\Images\icons\update.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -61,9 +65,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="resources\Images\icons\paint_palette.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="resources\Images\icons\info.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="resources\Images\icons\None.png">
@@ -88,6 +89,7 @@
 
   <ItemGroup>
     <PackageReference Include="HandyControl" Version="3.3.0" />
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.1.0" />
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.1.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="WPF-UI" Version="1.2.7" />

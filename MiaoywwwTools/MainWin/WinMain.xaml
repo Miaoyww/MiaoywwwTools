@@ -3,12 +3,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:tb="http://www.hardcodet.net/taskbar"
     xmlns:hc="https://handyorg.github.io/handycontrol"
     x:Class="MiaoywwwTools.WinMain"
         mc:Ignorable="d"
         Title="MiaoywwwTools" Height="565" Width="1035" AllowsTransparency="True" Background="#00000000" WindowStyle="None" Loaded="Window_Loaded" Closed="Window_Closed" Closing="Window_Closing">
+
     <Window.Resources>
         <ResourceDictionary>
+
             <Storyboard x:Key="HideWindow">
                 <DoubleAnimation Duration="0:0:0.2" From="1" To="0" Storyboard.TargetProperty="Opacity" FillBehavior="Stop" />
             </Storyboard>
@@ -22,7 +25,26 @@
             <BeginStoryboard Storyboard="{StaticResource ShowWindow}" />
         </EventTrigger>
     </Window.Triggers>
+
     <Grid x:Name="MainGrid">
+        <tb:TaskbarIcon
+                x:Name="MyNotifyIcon" 
+                IconSource="/resources/Images/icons/icon.ico" 
+                ToolTipText="MiaoywwwTools" >
+            <!-- 托盘图标菜单 -->
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu>
+                    <MenuItem x:Name="MenuItemShow"
+                              Header="显示主界面" 
+                              Click="MenuItemShow_Click">
+                    </MenuItem>
+                    <MenuItem x:Name="MenuItemExit"
+                              Header="退出" 
+                              Click="MenuItemExit_Click">
+                    </MenuItem>
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+        </tb:TaskbarIcon>
         <Border  CornerRadius="0,5,5,0" Background="#FFFCFCFC" Margin="50,0,0,0">
             <Border.Effect>
                 <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
@@ -109,24 +131,24 @@
                     </Grid>
                 </Grid>
             </Grid>
-            <Border Margin="50,0,0,0" Background="#FFFCFCFC" CornerRadius="0,10,10,0" >
+            <Border Margin="50,0,0,0" Background="#FFFCFCFC" CornerRadius="0,10,10,0">
                 <Grid x:Name="MainContent">
                     <hc:Carousel Name="MainCarousel" AutoRun="True" Interval="00:01:00" PageIndex="3">
                         <hc:SimplePanel>
-                            <Image Source="/resources/Images/wallpaper/98322266.jpg"  Width="986" Height="581" Stretch="UniformToFill"/>
-                            <TextBlock Text="ArtWork ID:98322266 By:banishment" FontSize="10" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="34" Width="304"/>
+                            <Image Source="/resources/Images/wallpaper/98322266.jpg"  Width="986" Height="581" Stretch="UniformToFill" />
+                            <TextBlock Text="ArtWork ID:98322266 By:banishment" FontSize="10" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="34" Width="304" />
                         </hc:SimplePanel>
                         <hc:SimplePanel>
-                            <Image Source="/resources/Images/wallpaper/98466568.jpg" Width="986" Height="581" Stretch="UniformToFill"/>
-                            <TextBlock Text="ArtWork ID:98466568 By:ポ～ン（出水ぽすか）" FontSize="10" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="321"/>
+                            <Image Source="/resources/Images/wallpaper/98466568.jpg" Width="986" Height="581" Stretch="UniformToFill" />
+                            <TextBlock Text="ArtWork ID:98466568 By:ポ～ン（出水ぽすか）" FontSize="10" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="321" />
                         </hc:SimplePanel>
                         <hc:SimplePanel>
-                            <Image Source="/resources/Images/wallpaper/90765657.png" Width="986" Height="581" Stretch="UniformToFill" StretchDirection="Both"/>
-                            <TextBlock Text="ArtWork ID:90765657 By:mocha＠2日目西1ひ52a" FontSize="10" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="299"/>
+                            <Image Source="/resources/Images/wallpaper/90765657.png" Width="986" Height="581" Stretch="UniformToFill" StretchDirection="Both" />
+                            <TextBlock Text="ArtWork ID:90765657 By:mocha＠2日目西1ひ52a" FontSize="10" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="299" />
                         </hc:SimplePanel>
                         <hc:SimplePanel>
-                            <Image Source="/resources/Images/wallpaper/96331655.png" Width="986" Height="569" Stretch="Fill" StretchDirection="Both"/>
-                            <TextBlock Text="ArtWork ID:96331655 By:Recneps-SAIS" FontSize="10" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="321"/>
+                            <Image Source="/resources/Images/wallpaper/96331655.png" Width="986" Height="569" Stretch="Fill" StretchDirection="Both" />
+                            <TextBlock Text="ArtWork ID:96331655 By:Recneps-SAIS" FontSize="10" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="321" />
                         </hc:SimplePanel>
                     </hc:Carousel>
                     <ContentControl x:Name="NestPage">

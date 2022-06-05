@@ -11,9 +11,23 @@
     <Grid Loaded="Grid_Loaded">
         <Grid>
             <Viewbox Stretch=" fill">
-                <Canvas Width="1920" Height="1080">
+                <Canvas Width="1920" Height="1099">
                     <MediaElement x:Name="medMain" MediaEnded="medMain_MediaEnded" UnloadedBehavior="Manual" Stretch="UniformToFill"/>
-                    <Label x:Name="labContent" Background="Transparent" Height="1098" Width="1920" Content="content" FontSize="80" Canvas.Top="-3" VerticalAlignment="Top" FontWeight="Normal" />
+                    <Grid x:Name="gridHitokoto" HorizontalAlignment="Center" Height="159" VerticalAlignment="Top" Width="1771" Canvas.Left="101" Canvas.Top="44">
+                        <Border Background="White" CornerRadius="8,8,8,8" BorderBrush="#FFFFB2B2" BorderThickness="2,2,2,2">
+                            <Border.Effect>
+                                <DropShadowEffect Color="#FFD6D6D6" BlurRadius="3" RenderingBias="Quality" Opacity="0.5"></DropShadowEffect>
+                            </Border.Effect>
+                        </Border>
+
+                        <Label x:Name="Label_HitokotoContent" Content="MiaoywwwTools" VerticalAlignment="Top" Height="80" Width="1771" FontSize="50" Background="Transparent" Foreground="Black" BorderBrush="Transparent" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold" FontFamily="Bahnschrift" BorderThickness="0,0,0,0" />
+                        <Label x:Name="Label_HitokotoFrom" Content="-Miaomiaoywww" Margin="-10,80,0,0" VerticalAlignment="Top" Height="79" Width="1771" FontSize="40" Background="Transparent" Foreground="Black" BorderBrush="Transparent" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" FontWeight="Bold" FontFamily="Segoe UI" BorderThickness="0,0,0,0" HorizontalAlignment="Left" />
+                    </Grid>
+                    <Label x:Name="labContent" Content="content" Background="Transparent" BorderBrush="Gray" BorderThickness="1" Height="1098" Width="1920" FontSize="80" Canvas.Top="-3" VerticalAlignment="Top" FontWeight="Normal" Foreground="#FFFF6565" >
+                        <Label.Effect>
+                            <DropShadowEffect Color="#FFBFBFBF" Opacity="0.7" BlurRadius="5" ShadowDepth="10" />
+                        </Label.Effect>
+                    </Label>
                 </Canvas>
             </Viewbox>
         </Grid>

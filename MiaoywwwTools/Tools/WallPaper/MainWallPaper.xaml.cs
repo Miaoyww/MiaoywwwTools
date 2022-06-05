@@ -15,50 +15,28 @@ namespace MiaoywwwTools.Tools.WallPaper
     {
         public string keypath = @"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\Tools\WallPaper";
         private Uri? Source;
+        public MainWallPaper mainWallPaper;
 
         public MainWallPaper()
         {
             InitializeComponent();
+            mainWallPaper = this;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             Thread thread = new(() =>
             {
-                string[][] keylist = new string[12][];
-                for (int i = 0; i < keylist.Length; i++)
-                {
-                    keylist[i] = new string[2];
-                }
-                keylist[0] = new string[] { "StartOnBoot", "False" };
-                keylist[1] = new string[] { "WordSettings_WordContent", "距离……还有{0}天" };
-                keylist[2] = new string[] { "WordSettings_Date1", "2022-6-14" };
-                keylist[3] = new string[] { "WordSettings_Date2", "Now" };
-                keylist[4] = new string[] { "WordSettings_WordColor", "#FF000000" };
-                keylist[5] = new string[] { "WordSettings_UseWord", "True" };
-                keylist[6] = new string[] { "VideoSettings_UseVideo", "False" };
-                keylist[7] = new string[] { "VideoSettings_VideoFilePath", "" };
-                keylist[8] = new string[] { "VideoSettings_VideoVolume", "100.0" };
-                keylist[9] = new string[] { "VideoSettings_VideoLoop", "True" };
-                keylist[10] = new string[] { "VideoSettings_VideoName", "None" };
-                keylist[11] = new string[] { "WordSettings_FontSize", "100" };
-                foreach (string[] item in keylist)
-                {
-                    object? keyvalue = Registry.GetValue(keypath, item[0], null);
-                    if (keyvalue is null)
-                    {
-                        Registry.SetValue(keypath, item[0], item[1]);
-                    }
-                }
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
                     WordSettings_tboxWordContent.Text = Settings.WordContent;
                     WordSettings_tboxDate1.Text = Settings.WordDate1;
                     WordSettings_tboxDate2.Text = Settings.WordDate2;
                     WordSettings_tboxWordColor.Text = Settings.WordColor.ToString();
-                    
+
                     WordSettings_tboxFontSize.Text = Settings.FontSize.ToString();
                     WordSettings_cboxUseWord.IsChecked = Settings.UseWord;
+                    WordSettings_cboxUseHitokoto.IsChecked = Settings.UseHitokoto;
 
                     VideoSettings_tboxVideoFileName.Text = Registry.GetValue(keypath, "VideoSettings_VideoName", "None").ToString();
                     VideoSettings_labVideoVolume.Content = Settings.VideoVolume.ToString();
@@ -251,6 +229,12 @@ namespace MiaoywwwTools.Tools.WallPaper
             }
         }
 
+        private void WordSettings_cboxUseHitokoto_Checked(object sender, RoutedEventArgs e)
+        {
+            Settings.UseHitokoto = WordSettings_cboxUseHitokoto.IsChecked;
+            Registry.SetValue(keypath, "WordSettings_UseHitokoto", WordSettings_cboxUseHitokoto.IsChecked.ToString());
+        }
+
         private void VideoSettings_btnChooseVideoFile_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new()
@@ -265,6 +249,24 @@ namespace MiaoywwwTools.Tools.WallPaper
                 string[] namesplit = openFileDialog.FileName.Split(".");
                 VideoSettings_tboxVideoFileName.Text = Path.GetFileName(openFileDialog.FileName);
                 Source = new Uri(openFileDialog.FileName);
+            }
+        }
+
+        private void cboxStartOn_Checked(object sender, RoutedEventArgs e)
+        {
+            Registry.SetValue(keypath, "StartOnBoot", cboxStartOn.IsChecked.ToString());
+            if ((bool)cboxStartOn.IsChecked)
+            {
+                RegistryKey registryKey = Registry.CurrentUser.OpenSubKey
+                ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                registryKey.SetValue("MiaoywwwTools", $"\"{Environment.CurrentDirectory}\\MiaoywwwTools.exe\" hidden");
+            }
+            else
+            {
+                RegistryKey registryKey = Registry.CurrentUser.OpenSubKey
+                    ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                registryKey.SetValue("MiaoywwwTools", "");
+
             }
         }
     }

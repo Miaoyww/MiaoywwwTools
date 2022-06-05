@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Threading;
-using static MiaoywwwTools.Tools.WallPaper.MainWallPaper;
 
 namespace MiaoywwwTools.Tools.WallPaper
 {
@@ -25,6 +25,12 @@ namespace MiaoywwwTools.Tools.WallPaper
             timerTick.Tick += new EventHandler(timerTick_Tick);
             timerTick.Interval = TimeSpan.FromSeconds(10); //设置刷新的间隔时间
             timerTick.Start();
+            string HitokotoLastContent = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\",
+            "HitokotoLastContent", "MiaoywwwTools").ToString();
+            string HitokotoLastFrom = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\",
+                "HitokotoLastFrom", "Miaomiaoywww").ToString();
+            Label_HitokotoContent.Content = HitokotoLastContent;
+            Label_HitokotoFrom.Content = "-" + HitokotoLastFrom;
         }
 
         public void ChangeWord()
@@ -36,7 +42,7 @@ namespace MiaoywwwTools.Tools.WallPaper
             }
             else
             {
-                    labContent.Content = "";
+                labContent.Content = "";
             }
         }
 
@@ -60,7 +66,6 @@ namespace MiaoywwwTools.Tools.WallPaper
             {
                 medMain.Position = TimeSpan.Zero;
                 medMain.Play();
-
             }
             else
             {
@@ -79,11 +84,27 @@ namespace MiaoywwwTools.Tools.WallPaper
             timerGetSettings.Tick += new EventHandler(timerGetSettings_Tick);
             timerGetSettings.Interval = TimeSpan.FromSeconds(0.5); //设置刷新的间隔时间
             timerGetSettings.Start();
-
         }
 
         private void Tick()
         {
+            if ((bool)Settings.UseHitokoto)
+            {
+                gridHitokoto.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                gridHitokoto.Visibility = Visibility.Hidden;
+            }
+            Label_HitokotoContent.Content = $"{GlobalV.HitokotoContent}";
+            if (GlobalV.HitokotoFromWho is not "")
+            {
+                Label_HitokotoFrom.Content = $"-{GlobalV.HitokotoFrom} / {GlobalV.HitokotoFromWho}";
+            }
+            else
+            {
+                Label_HitokotoFrom.Content = $"-{GlobalV.HitokotoFrom}";
+            }
             DateTime dt1;
             DateTime dt2;
             if (Settings.WordDate1 == "Now")
@@ -110,6 +131,7 @@ namespace MiaoywwwTools.Tools.WallPaper
         {
             labContent.FontSize = (double)Settings.FontSize;
         }
+
         private void timerTick_Tick(object sender, EventArgs e)
         {
             Tick();

@@ -35,7 +35,11 @@ namespace MiaoywwwTools
                     if (e.Args[0] == "updateed")
                     {
 
-                        MessageBox.ShowDialog($"更新完成！当前版本{GlobalV.AppVersion_ver}");
+                        MessageBox.ShowDialog($"当前版本{GlobalV.AppVersion_ver}");
+                    }
+                    if (e.Args[0] == "hidden")
+                    {
+                        GlobalV.WinMainHidden = true;
                     }
                 }
             }

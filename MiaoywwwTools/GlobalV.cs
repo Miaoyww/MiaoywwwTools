@@ -8,6 +8,7 @@ namespace MiaoywwwTools
     internal static class GlobalV
     {
         public static bool MessageBoxHided;
+        public static bool WinMainHidden;
         public static ShowResult showResult = new();
         public static bool Login;  // ToolsRr的Result窗口是否登录
         public static bool FaceChanged; // Home的头像是否已经修改
@@ -49,12 +50,17 @@ namespace MiaoywwwTools
             { "k", "11" },
             { "l", "12" },
         };
+
+        public static string? HitokotoContent;
+        public static string? HitokotoFrom;
+        public static string? HitokotoFromWho;
     }
 
     internal class Settings
     {
         public static bool? UseVideo;
         public static bool? UseWord;
+        public static bool? UseHitokoto;
 
         public static bool? VideoLoop;
         public static Uri? VideoUri;

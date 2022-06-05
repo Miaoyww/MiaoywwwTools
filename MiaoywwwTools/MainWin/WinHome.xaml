@@ -24,7 +24,6 @@
                         <DropShadowEffect Color="#FFD6D6D6" BlurRadius="3" RenderingBias="Quality" Opacity="0.5"></DropShadowEffect>
                     </Border.Effect>
                 </Border>
-
                 <Label x:Name="Label_HitokotoContent" Content="MiaoywwwTools" VerticalAlignment="Top" Height="38" Width="967" FontSize="18" Background="Transparent" Foreground="Black" MouseLeftButtonDown="Label_Title_MouseLeftButtonDown" BorderBrush="Transparent" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" FontWeight="Bold" FontFamily="Bahnschrift" BorderThickness="0,0,0,0" />
                 <Label x:Name="Label_HitokotoFrom" Content="-Miaomiaoywww" Margin="0,38,0,0" VerticalAlignment="Top" Height="38" Width="967" FontSize="13" Background="Transparent" Foreground="Black" MouseLeftButtonDown="Label_Title_MouseLeftButtonDown" BorderBrush="Transparent" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" FontWeight="Bold" FontFamily="Segoe UI" BorderThickness="0,0,0,0" />
             </Grid>
