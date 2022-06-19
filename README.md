@@ -7,7 +7,7 @@
 |   功能   | 是否实现 |
 | :------: | -------- |
 |  点名器  | √        |
-|   壁纸   | ×        |
+|   壁纸   | √        |
 | 其他功能 | 等待探索 |
 
 ---
@@ -21,36 +21,14 @@
 + 3.解压到一个`英文`文件夹中,打开 MiaoywwwTools.exe 即可使用
 
 
-# 为何要开发MiaoywwwTools?
+# 感谢JetBrains对本项目的大力支持
 
-一开始主要是`由于我的老师想要一个点名器`
+[<img src="./jb_beam.png" alt="https://www.jetbrains.com/" title="JetBrains" width="40%">](https://www.jetbrains.com/)
 
-但当时我做出来的Python版点名器老师并不怎么满意
-
-于是我重操旧业再次配置开发环境，打算用C#写一个出来
-
-但之后点名器完成了我并不满足于此，想要进一步完善它
-
-于是有了现在这个样子的MiaoywwwTools
-
-不过，与其叫它MiaoywwwTools不如叫点名器Tool
-
-因为它现在最主要的功能也就只有点名器了
-
-所以我便把它当作我以后开发C#项目的基础课
-
-至于以后的MiaoywwwTools是什么样，我也说不准
-
-
-### **但现在 它的确是我目前为止`最完整，最完美`的作品**
-
----
-
-**声明: 本程序仅供参考与学习，禁止用于非法用途**
 
 **特别鸣谢:**
 
 - [Hitokoto / 一言](https://hitokoto.cn/)
 
 - [Handycontrol](http://handyorg.gitee.io/)
-        
+ 
