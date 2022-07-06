@@ -34,13 +34,13 @@ namespace MiaoywwwTools
                 {
                     if (e.Args[0] == "updateed")
                     {
-
                         MessageBox.ShowDialog($"当前版本{GlobalV.AppVersion_ver}");
                     }
+                    /*
                     if (e.Args[0] == "hidden")
                     {
                         GlobalV.WinMainHidden = true;
-                    }
+                    }*/
                 }
             }
             catch (Exception ex)
@@ -48,13 +48,11 @@ namespace MiaoywwwTools
                 MessageBox.ShowDialog($"读取版本信息错误, {ex}");
             }
 
-
             if (bool.Parse(Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\", "CheckUpdateOnStart", "false").ToString()))
             {
                 Thread check = new(() =>
                 {
                     // Requires Microsoft.Toolkit.Uwp.Notifications NuGet package version 7.0 or greater
-
                 });
             }
             base.OnStartup(e);

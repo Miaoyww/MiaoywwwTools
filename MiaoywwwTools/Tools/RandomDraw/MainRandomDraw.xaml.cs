@@ -74,6 +74,5 @@ namespace MiaoywwwTools.Tools.RandomDraw
             Settings settings = new();
             settings.ShowDialog();
         }
-
     }
 }

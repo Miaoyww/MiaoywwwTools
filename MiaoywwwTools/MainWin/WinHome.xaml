@@ -4,28 +4,28 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:hc="https://handyorg.github.io/handycontrol"
       mc:Ignorable="d"
-      Title="Home" Width="985" Height="565" Background="Transparent">
+      Title="Home" Width="990" Height="570" Background="Transparent">
     <Page.Resources>
         <ResourceDictionary>
             <Storyboard x:Key="HideLabel">
-                <DoubleAnimation Duration="0:0:2" From="1" To="0" Storyboard.TargetProperty="Opacity" FillBehavior="Stop" Completed="HideLabel_Completed" />
+                <DoubleAnimation Duration="0:0:1.5" From="1" To="0" Storyboard.TargetProperty="Opacity" FillBehavior="Stop" Completed="HideLabel_Completed" />
             </Storyboard>
             <Storyboard x:Key="ShowLabel">
-                <DoubleAnimation Duration="0:0:2" From="0" To="1" Storyboard.TargetProperty="Opacity" FillBehavior="HoldEnd" Completed="ShowLabel_Completed" />
+                <DoubleAnimation Duration="0:0:1.5" From="0" To="1" Storyboard.TargetProperty="Opacity" FillBehavior="HoldEnd" Completed="ShowLabel_Completed" />
             </Storyboard>
         </ResourceDictionary>
     </Page.Resources>
     <Border CornerRadius="0,5,5,0">
         <Grid x:Name="MainGrid" Loaded="MainGrid_Loaded" Margin="0,0,-2,0">
-            <Label x:Name="Label_Emotion" Height="37" Margin="0,134,0,0" VerticalAlignment="Top" Width="120" Background="{x:Null}" Foreground="#FF212121" FontSize="15" FontWeight="Bold" BorderThickness="0,0,0,0" FontFamily="Microsoft JhengHei UI" Opacity="0" BorderBrush="#FF3E3E3E" />
-            <Grid HorizontalAlignment="Center" Height="75" Margin="0,54,0,0" VerticalAlignment="Top" Width="967">
+            <Label x:Name="Label_Emotion" Height="37" Margin="0,134,0,0" VerticalAlignment="Top" Width="120" Background="{x:Null}" Foreground="#FF009CFF" FontSize="15" FontWeight="Bold" BorderThickness="0,0,0,0" FontFamily="Microsoft JhengHei UI" Opacity="0" BorderBrush="#FF3E3E3E" />
+            <Grid HorizontalAlignment="Center" Height="75" Margin="0,54,0,0" VerticalAlignment="Top" Width="940">
                 <Border Background="#FFF9F9F9" CornerRadius="8,8,8,8">
                     <Border.Effect>
                         <DropShadowEffect Color="#FFD6D6D6" BlurRadius="3" RenderingBias="Quality" Opacity="0.5"></DropShadowEffect>
                     </Border.Effect>
                 </Border>
-                <Label x:Name="Label_HitokotoContent" Content="MiaoywwwTools" VerticalAlignment="Top" Height="38" Width="967" FontSize="18" Background="Transparent" Foreground="Black" MouseLeftButtonDown="Label_Title_MouseLeftButtonDown" BorderBrush="Transparent" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" FontWeight="Bold" FontFamily="Bahnschrift" BorderThickness="0,0,0,0" />
-                <Label x:Name="Label_HitokotoFrom" Content="-Miaomiaoywww" Margin="0,38,0,0" VerticalAlignment="Top" Height="38" Width="967" FontSize="13" Background="Transparent" Foreground="Black" MouseLeftButtonDown="Label_Title_MouseLeftButtonDown" BorderBrush="Transparent" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" FontWeight="Bold" FontFamily="Segoe UI" BorderThickness="0,0,0,0" />
+                <Label x:Name="Label_HitokotoContent" Content="MiaoywwwTools" VerticalAlignment="Top" Height="38" Width="940" FontSize="18" Background="Transparent" Foreground="Black" MouseLeftButtonDown="Label_Title_MouseLeftButtonDown" BorderBrush="Transparent" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" FontWeight="Bold" FontFamily="Bahnschrift" BorderThickness="0,0,0,0" />
+                <Label x:Name="Label_HitokotoFrom" Content="-Miaomiaoywww" Margin="0,38,0,0" VerticalAlignment="Top" Height="38" Width="940" FontSize="13" Background="Transparent" Foreground="Black" MouseLeftButtonDown="Label_Title_MouseLeftButtonDown" BorderBrush="Transparent" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" FontWeight="Bold" FontFamily="Segoe UI" BorderThickness="0,0,0,0" />
             </Grid>
         </Grid>
     </Border>

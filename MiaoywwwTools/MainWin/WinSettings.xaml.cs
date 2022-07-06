@@ -25,6 +25,7 @@ namespace MiaoywwwTools
         public JObject? jsonContent;
         public int SourceSelected;
         private bool ThreadOver = false;
+
         public void CheckUpdate()
         {
             string? api_version = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Miaoywww\MiaoywwwTools\", "UpdateApiVersion", null).ToString();
@@ -128,7 +129,6 @@ namespace MiaoywwwTools
             });
             checkover.IsBackground = true;
             checkover.Start();
-
         }
 
         private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)

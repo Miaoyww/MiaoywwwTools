@@ -10,122 +10,122 @@
         <Label x:Name="labTitle" Content="动态壁纸" VerticalAlignment="Top" Height="75" Width="694" Background="{x:Null}" Foreground="Black" FontSize="36" FontWeight="Bold" BorderBrush="Black" />
 
         <hc:ScrollViewer HorizontalAlignment="Center" Height="465" VerticalAlignment="Top" Width="700" Margin="0,80,0,0">
-            <StackPanel Height="893" Width="694" Background="#FFE6E6E6">
+            <StackPanel Height="943" Width="694" Background="#FFE6E6E6">
                 <!-- 文字设置 -->
-                <Grid x:Name="grid_word_settings" Height="417">
+                <Grid x:Name="grid_word_settings" Height="491">
                     <Label Content="文字设置" Height="38" Margin="0,10,0,0" VerticalAlignment="Top" Width="694" Background="Transparent" BorderBrush="White" BorderThickness="0,0,0,0" Foreground="#FF464646" FontSize="18" FontWeight="Bold" FontFamily="Microsoft YaHei UI" HorizontalContentAlignment="Left" />
                     <StackPanel Margin="10,53,10,2">
                         <Grid>
-                            <Border Background="#FFF7F7F7" CornerRadius="4,4,4,4" >
+                            <Border Background="#FFF7F7F7" CornerRadius="4,4,4,4">
                                 <Border.Effect>
                                     <DropShadowEffect Color="#FFDEDEDE" Opacity="0.4" />
                                 </Border.Effect>
                             </Border>
                             <Grid>
-                                <Image Stretch="UniformToFill" Source="/resources/Images/icons/settings.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="38" Width="38" Margin="10,0,0,0" />
-                                <Label Background="Transparent" Foreground="#FF464646" FontWeight="Bold" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="56,3,0,0" VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" Content="文字样式设置"/>
+                                <Image Stretch="UniformToFill" Source="/resources/Images/icons/settings_settings.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="38" Width="38" Margin="10,0,0,0" />
+                                <Label Background="Transparent" Foreground="#FF464646" FontWeight="Bold" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="56,3,0,0" VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" Content="文字样式设置" />
                                 <Label Background="Transparent" Foreground="#FF464646" FontWeight="Normal" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="57,38,0,0" VerticalAlignment="Top" FontSize="13" Content="设置文字的样式" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" />
                             </Grid>
                             <Grid Margin="400,10,10,10">
-                                <CheckBox x:Name="WordSettings_cboxUseWord" Margin="177,0,0,0" Content="启用文字" Height="26"/>
+                                <CheckBox x:Name="WordSettings_cboxUseWord" Margin="177,0,0,0" Content="启用文字" Height="26" />
                             </Grid>
                         </Grid>
 
                         <Grid x:Name="WordSettings_gridSetWordContent" Margin="0,10,0,0">
-                            <Border Background="#FFF7F7F7" CornerRadius="4,4,4,4" >
+                            <Border Background="#FFF7F7F7" CornerRadius="4,4,4,4">
                                 <Border.Effect>
                                     <DropShadowEffect Color="#FFDEDEDE" Opacity="0.4" />
                                 </Border.Effect>
                             </Border>
                             <Grid>
                                 <!-- Content -->
-                                <Image Stretch="UniformToFill" Source="/resources/Images/icons/t.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="38" Width="38" Margin="10,0,0,0" />
-                                <Label Background="Transparent" Foreground="#FF464646" FontWeight="Bold" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="56,3,0,0" VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" Content="设置文本内容"/>
+                                <Image Stretch="UniformToFill" Source="/resources/Images/icons/settings_t.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="38" Width="38" Margin="10,0,0,0" />
+                                <Label Background="Transparent" Foreground="#FF464646" FontWeight="Bold" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="56,3,0,0" VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" Content="设置文本内容" />
                                 <Label Background="Transparent" Foreground="#FF464646" FontWeight="Normal" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="57,38,0,0" VerticalAlignment="Top" FontSize="13" Content="输入一个可格式化的字符串,例: 今天是{0}" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" />
                             </Grid>
                             <Grid Margin="369,10,10,10">
                                 <!-- Controller -->
-                                <TextBox x:Name="WordSettings_tboxWordContent" Margin="0,10,0,10" TextChanged="WordSettings_tboxWordContent_TextChanged"/>
+                                <TextBox x:Name="WordSettings_tboxWordContent" Margin="0,10,0,10" TextChanged="WordSettings_tboxWordContent_TextChanged" />
                             </Grid>
                         </Grid>
 
                         <Grid x:Name="WordSettings_gridSetWordFormat">
-                            <Border Background="#FFF7F7F7" CornerRadius="4,4,4,4" >
+                            <Border Background="#FFF7F7F7" CornerRadius="4,4,4,4">
                                 <Border.Effect>
                                     <DropShadowEffect Color="#FFDEDEDE" Opacity="0.4" />
                                 </Border.Effect>
                             </Border>
                             <Grid>
                                 <!-- Content -->
-                                <Image Stretch="UniformToFill" Source="/resources/Images/icons/indeterminate_checkbox.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="38" Width="38" Margin="10,0,0,0" />
-                                <Label Background="Transparent" Foreground="#FF464646" FontWeight="Bold" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="56,3,0,0" VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" Content="设置格式化内容"/>
+                                <Image Stretch="UniformToFill" Source="/resources/Images/icons/settings_indeterminate_checkbox.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="38" Width="38" Margin="10,0,0,0" />
+                                <Label Background="Transparent" Foreground="#FF464646" FontWeight="Bold" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="56,3,0,0" VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" Content="设置格式化内容" />
                                 <Label Background="Transparent" Foreground="#FF464646" FontWeight="Normal" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="57,38,0,0" VerticalAlignment="Top" FontSize="13" Content="暂仅支持日期之差，后续会更新更多功能" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" />
                             </Grid>
                             <Grid Margin="369,10,10,10">
                                 <!-- Controller -->
                                 <TextBox x:Name="WordSettings_tboxDate1" Margin="10,10,168,10" />
-                                <hc:Divider Margin="132,24,135,24" LineStrokeThickness="3" LineStroke="#FF797979" Orientation="Horizontal"/>
+                                <hc:Divider Margin="132,24,135,24" LineStrokeThickness="3" LineStroke="#FF797979" Orientation="Horizontal" />
                                 <TextBox x:Name="WordSettings_tboxDate2" Margin="168,10,10,10" />
                             </Grid>
                         </Grid>
 
                         <Grid>
-                            <Border Background="#FFF7F7F7" CornerRadius="4,4,4,4" >
+                            <Border Background="#FFF7F7F7" CornerRadius="4,4,4,4">
                                 <Border.Effect>
                                     <DropShadowEffect Color="#FFDEDEDE" Opacity="0.4" />
                                 </Border.Effect>
                             </Border>
                             <Grid>
                                 <!-- Content -->
-                                <Image Stretch="UniformToFill" Source="/resources/Images/icons/hitokoto.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="38" Width="38" Margin="10,0,0,0" />
-                                <Label Background="Transparent" Foreground="#FF464646" FontWeight="Bold" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="56,3,0,0" VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" Content="设置一言"/>
+                                <Image Stretch="UniformToFill" Source="/resources/Images/icons/settings_hitokoto.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="38" Width="38" Margin="10,0,0,0" />
+                                <Label Background="Transparent" Foreground="#FF464646" FontWeight="Bold" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="56,3,0,0" VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" Content="设置一言" />
                                 <Label Background="Transparent" Foreground="#FF464646" FontWeight="Normal" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="57,38,0,0" VerticalAlignment="Top" FontSize="13" Content="将文本内容替换为一言" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" />
                             </Grid>
                             <Grid Margin="369,10,10,10">
                                 <!-- Controller -->
-                                <CheckBox x:Name="WordSettings_cboxUseHitokoto"  Margin="177,0,0,0" Content="启用一言" Height="26" Checked="WordSettings_cboxUseHitokoto_Checked" Click="WordSettings_cboxUseHitokoto_Checked"/>
-                            </Grid>
-                        </Grid>
-                        
-                        <Grid>
-                            <Border Background="#FFF7F7F7" CornerRadius="4,4,4,4" >
-                                <Border.Effect>
-                                    <DropShadowEffect Color="#FFDEDEDE" Opacity="0.4" />
-                                </Border.Effect>
-                            </Border>
-                            <Grid>
-                                <!-- Content -->
-                                <Image Stretch="UniformToFill" Source="/resources/Images/icons/color_mode.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="38" Width="38" Margin="10,0,0,0" />
-                                <Label Background="Transparent" Foreground="#FF464646" FontWeight="Bold" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="56,3,0,0" VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" Content="设置文本颜色"/>
-                                <Label Background="Transparent" Foreground="#FF464646" FontWeight="Normal" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="57,38,0,0" VerticalAlignment="Top" FontSize="13" Content="设置显示时文本的颜色" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" />
-                            </Grid>
-                            <Grid Margin="369,10,10,10">
-                                <!-- Controller -->
-                                <Label HorizontalAlignment="Left" Height="45" Width="50" Content="预览"/>
-                                <Border x:Name="WordSettings_boerColorCard"  CornerRadius="5,5,5,5" Background="Black" Width="45" Height="45" Margin="55,2,195,0" BorderThickness="2,2,2,2" BorderBrush="#FFE0E0E0">
-                                    <Border.Effect>
-                                        <DropShadowEffect Color="#FFE6E6E6" Opacity="0.8"/>
-                                    </Border.Effect>
-                                </Border>
-                                <TextBox x:Name="WordSettings_tboxWordColor" Margin="112,10,10,10" TextChanged="WordSettings_tboxWordColor_TextChanged" FontSize="14"/>
+                                <CheckBox x:Name="WordSettings_cboxUseHitokoto"  Margin="177,0,0,0" Content="启用一言" Height="26" Checked="WordSettings_cboxUseHitokoto_Checked" Click="WordSettings_cboxUseHitokoto_Checked" />
                             </Grid>
                         </Grid>
 
                         <Grid>
-                            <Border Background="#FFF7F7F7" CornerRadius="4,4,4,4" >
+                            <Border Background="#FFF7F7F7" CornerRadius="4,4,4,4">
                                 <Border.Effect>
                                     <DropShadowEffect Color="#FFDEDEDE" Opacity="0.4" />
                                 </Border.Effect>
                             </Border>
                             <Grid>
                                 <!-- Content -->
-                                <Image Stretch="UniformToFill" Source="/resources/Images/icons/typography.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="38" Width="38" Margin="10,0,0,0" />
-                                <Label Background="Transparent" Foreground="#FF464646" FontWeight="Bold" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="56,3,0,0" VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" Content="设置文本字号"/>
+                                <Image Stretch="UniformToFill" Source="/resources/Images/icons/settings_color_mode.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="38" Width="38" Margin="10,0,0,0" />
+                                <Label Background="Transparent" Foreground="#FF464646" FontWeight="Bold" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="56,3,0,0" VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" Content="设置文本颜色" />
+                                <Label Background="Transparent" Foreground="#FF464646" FontWeight="Normal" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="57,38,0,0" VerticalAlignment="Top" FontSize="13" Content="设置显示时文本的颜色" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" />
+                            </Grid>
+                            <Grid Margin="369,10,10,10">
+                                <!-- Controller -->
+                                <Label HorizontalAlignment="Left" Height="45" Width="50" Content="预览" />
+                                <Border x:Name="WordSettings_boerColorCard"  CornerRadius="5,5,5,5" Background="Black" Width="45" Height="45" Margin="55,2,195,0" BorderThickness="2,2,2,2" BorderBrush="#FFE0E0E0">
+                                    <Border.Effect>
+                                        <DropShadowEffect Color="#FFE6E6E6" Opacity="0.8" />
+                                    </Border.Effect>
+                                </Border>
+                                <TextBox x:Name="WordSettings_tboxWordColor" Margin="112,10,10,10" TextChanged="WordSettings_tboxWordColor_TextChanged" FontSize="14" />
+                            </Grid>
+                        </Grid>
+
+                        <Grid>
+                            <Border Background="#FFF7F7F7" CornerRadius="4,4,4,4">
+                                <Border.Effect>
+                                    <DropShadowEffect Color="#FFDEDEDE" Opacity="0.4" />
+                                </Border.Effect>
+                            </Border>
+                            <Grid>
+                                <!-- Content -->
+                                <Image Stretch="UniformToFill" Source="/resources/Images/icons/settings_typography.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="38" Width="38" Margin="10,0,0,0" />
+                                <Label Background="Transparent" Foreground="#FF464646" FontWeight="Bold" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="56,3,0,0" VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" Content="设置文本字号" />
                                 <Label Background="Transparent" Foreground="#FF464646" FontWeight="Normal" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="57,38,0,0" VerticalAlignment="Top" FontSize="13" Content="设置显示时文本的大小" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" />
                             </Grid>
                             <Grid Margin="369,10,10,10">
                                 <!-- Controller -->
-                                <TextBox x:Name="WordSettings_tboxFontSize" Margin="10,10,10,10" TextChanged="WordSettings_tboxFontSize_TextChanged" HorizontalContentAlignment="Center" FontSize="14"/>
+                                <TextBox x:Name="WordSettings_tboxFontSize" Margin="10,10,10,10" TextChanged="WordSettings_tboxFontSize_TextChanged" HorizontalContentAlignment="Center" FontSize="14" />
                             </Grid>
                         </Grid>
                     </StackPanel>
@@ -136,85 +136,84 @@
                     <Label Content="视频设置" Height="38" Margin="0,10,0,0" VerticalAlignment="Top" Width="694" Background="Transparent" BorderBrush="White" BorderThickness="0,0,0,0" Foreground="#FF464646" FontSize="18" FontWeight="Bold" FontFamily="Microsoft YaHei UI" HorizontalContentAlignment="Left" />
                     <StackPanel Margin="10,53,10,2">
                         <Grid>
-                            <Border Background="#FFF7F7F7" CornerRadius="4,4,4,4" >
+                            <Border Background="#FFF7F7F7" CornerRadius="4,4,4,4">
                                 <Border.Effect>
                                     <DropShadowEffect Color="#FFDEDEDE" Opacity="0.4" />
                                 </Border.Effect>
                             </Border>
                             <Grid>
-                                <Image Stretch="UniformToFill" Source="/resources/Images/icons/settings.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="38" Width="38" Margin="10,0,0,0" />
-                                <Label Background="Transparent" Foreground="#FF464646" FontWeight="Bold" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="56,3,0,0" VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" Content="视频样式设置"/>
+                                <Image Stretch="UniformToFill" Source="/resources/Images/icons/settings_settings.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="38" Width="38" Margin="10,0,0,0" />
+                                <Label Background="Transparent" Foreground="#FF464646" FontWeight="Bold" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="56,3,0,0" VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" Content="视频样式设置" />
                                 <Label Background="Transparent" Foreground="#FF464646" FontWeight="Normal" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="57,38,0,0" VerticalAlignment="Top" FontSize="13" Content="设置视频的样式" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" />
                             </Grid>
                             <Grid Margin="400,10,10,10">
-                                <CheckBox x:Name="VideoSettings_cboxUseVideo" Margin="177,0,0,0" Content="启用视频" Height="26"/>
+                                <CheckBox x:Name="VideoSettings_cboxUseVideo" Margin="177,0,0,0" Content="启用视频" Height="26" />
                             </Grid>
                         </Grid>
 
                         <Grid Margin="0,10,0,0">
-                            <Border Background="#FFF7F7F7" CornerRadius="4,4,4,4" >
+                            <Border Background="#FFF7F7F7" CornerRadius="4,4,4,4">
                                 <Border.Effect>
                                     <DropShadowEffect Color="#FFDEDEDE" Opacity="0.4" />
                                 </Border.Effect>
                             </Border>
                             <Grid>
                                 <!-- Content -->
-                                <Image Stretch="UniformToFill" Source="/resources/Images/icons/video_file.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="38" Width="38" Margin="10,0,0,0" />
-                                <Label Background="Transparent" Foreground="#FF464646" FontWeight="Bold" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="56,3,0,0" VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" Content="选择视频"/>
+                                <Image Stretch="UniformToFill" Source="/resources/Images/icons/settings_video_file.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="38" Width="38" Margin="10,0,0,0" />
+                                <Label Background="Transparent" Foreground="#FF464646" FontWeight="Bold" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="56,3,0,0" VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" Content="选择视频" />
                                 <Label Background="Transparent" Foreground="#FF464646" FontWeight="Normal" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="57,38,0,0" VerticalAlignment="Top" FontSize="13" Content="选择一个mp4格式的视频" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" />
                             </Grid>
                             <Grid Margin="369,10,10,10">
                                 <!-- Controller -->
                                 <Label Height="30" Width="58" HorizontalAlignment="Left" Content="文件名" />
-                                <TextBox x:Name="VideoSettings_tboxVideoFileName" Margin="58,10,84,10"/>
-                                <Button x:Name="VideoSettings_btnChooseVideoFile" Width="79" HorizontalAlignment="Left" Margin="216,0,0,0" Height="46" Content="选择文件" Click="VideoSettings_btnChooseVideoFile_Click"/>
+                                <TextBox x:Name="VideoSettings_tboxVideoFileName" Margin="58,10,84,10" />
+                                <Button x:Name="VideoSettings_btnChooseVideoFile" Width="79" HorizontalAlignment="Left" Margin="216,0,0,0" Height="46" Content="选择文件" Click="VideoSettings_btnChooseVideoFile_Click" />
                             </Grid>
                         </Grid>
 
                         <Grid>
-                            <Border Background="#FFF7F7F7" CornerRadius="4,4,4,4" >
+                            <Border Background="#FFF7F7F7" CornerRadius="4,4,4,4">
                                 <Border.Effect>
                                     <DropShadowEffect Color="#FFDEDEDE" Opacity="0.4" />
                                 </Border.Effect>
                             </Border>
                             <Grid>
                                 <!-- Content -->
-                                <Image Stretch="UniformToFill" Source="/resources/Images/icons/sound.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="38" Width="38" Margin="10,0,0,0" />
-                                <Label Background="Transparent" Foreground="#FF464646" FontWeight="Bold" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="56,3,0,0" VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" Content="声音"/>
+                                <Image Stretch="UniformToFill" Source="/resources/Images/icons/settings_sound.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="38" Width="38" Margin="10,0,0,0" />
+                                <Label Background="Transparent" Foreground="#FF464646" FontWeight="Bold" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="56,3,0,0" VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" Content="声音" />
                                 <Label Background="Transparent" Foreground="#FF464646" FontWeight="Normal" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="57,38,0,0" VerticalAlignment="Top" FontSize="13" Content="设置视频的声音" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" />
                             </Grid>
                             <Grid Margin="400,10,10,10">
                                 <!-- Controller -->
-                                <Label x:Name="VideoSettings_labVideoVolume" HorizontalAlignment="Left" Height="45" Width="45" Background="Transparent" BorderThickness="1,1,1,1" Content="100" Margin="23,0,0,0"/>
-                                <Slider x:Name="VideoSettings_sliderVideoVolume" Margin="73,13,10,13" Maximum="100" ValueChanged="VideoSettings_sliderVideoVolume_ValueChanged"/>
+                                <Label x:Name="VideoSettings_labVideoVolume" HorizontalAlignment="Left" Height="45" Width="45" Background="Transparent" BorderThickness="1,1,1,1" Content="100" Margin="23,0,0,0" />
+                                <Slider x:Name="VideoSettings_sliderVideoVolume" Margin="73,13,10,13" Maximum="100" ValueChanged="VideoSettings_sliderVideoVolume_ValueChanged" />
                             </Grid>
                         </Grid>
 
                         <Grid>
-                            <Border Background="#FFF7F7F7" CornerRadius="4,4,4,4" >
+                            <Border Background="#FFF7F7F7" CornerRadius="4,4,4,4">
                                 <Border.Effect>
                                     <DropShadowEffect Color="#FFDEDEDE" Opacity="0.4" />
                                 </Border.Effect>
                             </Border>
                             <Grid>
                                 <!-- Content -->
-                                <Image Stretch="UniformToFill" Source="/resources/Images/icons/update.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="38" Width="38" Margin="10,0,0,0" />
-                                <Label Background="Transparent" Foreground="#FF464646" FontWeight="Bold" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="56,3,0,0" VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" Content="循环播放"/>
+                                <Image Stretch="UniformToFill" Source="/resources/Images/icons/settings_update.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="38" Width="38" Margin="10,0,0,0" />
+                                <Label Background="Transparent" Foreground="#FF464646" FontWeight="Bold" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="56,3,0,0" VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" Content="循环播放" />
                                 <Label Background="Transparent" Foreground="#FF464646" FontWeight="Normal" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Left" Margin="57,38,0,0" VerticalAlignment="Top" FontSize="13" Content="设置视频是否循环播放" HorizontalContentAlignment="Left" BorderThickness="0,0,0,0" />
                             </Grid>
                             <Grid Margin="400,10,10,10">
                                 <!-- Controller -->
-                                <CheckBox x:Name="VideoSettings_cboxVideoLoop" Content="循环播放" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="184,0,0,0" Click="VideoSettings_cboxVideoLoop_Click"/>
+                                <CheckBox x:Name="VideoSettings_cboxVideoLoop" Content="循环播放" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="184,0,0,0" Click="VideoSettings_cboxVideoLoop_Click" />
                             </Grid>
                         </Grid>
                     </StackPanel>
-                    <hc:Divider LineStroke="#FFBBBBBB" LineStrokeThickness="2" Height="4" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="0,24,0,0"/>
+                    <hc:Divider LineStroke="#FFBBBBBB" LineStrokeThickness="2" Height="4" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="0,24,0,0" />
                 </Grid>
                 <Grid Height="98">
-                    <CheckBox x:Name="cboxStartOn" Content="开机启动" HorizontalAlignment="Left" Height="34" VerticalAlignment="Top" Width="113" RenderTransformOrigin="0.404,0.5" Margin="571,10,0,0" Checked="cboxStartOn_Checked" Click="cboxStartOn_Checked"/>
-                    <Button x:Name="btnApply" Content="应用" Height="42" Width="110" Click="btnApply_Click" HorizontalAlignment="Left" Margin="574,49,0,0" VerticalAlignment="Top"/>
-                    <Button x:Name="btnStart" Content="开始" Height="42" Width="110" Click="btnStart_Click"  Margin="0,23,0,0" VerticalAlignment="Top"/>
-
+                    <!--<CheckBox x:Name="cboxStartOn" Content="开机启动" HorizontalAlignment="Left" Height="34" VerticalAlignment="Top" Width="113" RenderTransformOrigin="0.404,0.5" Margin="571,10,0,0" Checked="cboxStartOn_Checked" />-->
+                    <Button x:Name="btnApply" Content="应用" Height="42" Width="110" Click="btnApply_Click" HorizontalAlignment="Left" Margin="574,49,0,0" VerticalAlignment="Top" />
+                    <Button x:Name="btnStart" Content="开始" Height="42" Width="110" Click="btnStart_Click"  Margin="0,23,0,0" VerticalAlignment="Top" />
                 </Grid>
             </StackPanel>
         </hc:ScrollViewer>

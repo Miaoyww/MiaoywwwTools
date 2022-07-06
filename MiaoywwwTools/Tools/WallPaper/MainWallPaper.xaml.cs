@@ -42,7 +42,7 @@ namespace MiaoywwwTools.Tools.WallPaper
                     VideoSettings_labVideoVolume.Content = Settings.VideoVolume.ToString();
                     VideoSettings_cboxVideoLoop.IsChecked = Settings.VideoLoop;
                     VideoSettings_cboxUseVideo.IsChecked = Settings.UseVideo;
-                    cboxStartOn.IsChecked = bool.Parse(Registry.GetValue(keypath, "StartOnBoot", "False").ToString());
+                    // cboxStartOn.IsChecked = bool.Parse(Registry.GetValue(keypath, "StartOnBoot", "False").ToString());
                     try
                     {
                         Source = new Uri(Registry.GetValue(keypath, "VideoSettings_VideoFilePath", null).ToString());
@@ -152,7 +152,7 @@ namespace MiaoywwwTools.Tools.WallPaper
             Registry.SetValue(keypath, "VideoSettings_VideoVolume", VideoSettings_sliderVideoVolume.Value.ToString());
             Registry.SetValue(keypath, "VideoSettings_VideoLoop", VideoSettings_cboxVideoLoop.IsChecked.ToString());
             Registry.SetValue(keypath, "VideoSettings_UseVideo", VideoSettings_cboxUseVideo.IsChecked.ToString());
-            Registry.SetValue(keypath, "StartOnBoot", cboxStartOn.IsChecked.ToString());
+            // Registry.SetValue(keypath, "StartOnBoot", cboxStartOn.IsChecked.ToString());
             if (WinMain.winMain.WlpChangeSettings())
             {
                 MessageBox.ShowDialog("应用成功！");
@@ -252,6 +252,7 @@ namespace MiaoywwwTools.Tools.WallPaper
             }
         }
 
+        /*
         private void cboxStartOn_Checked(object sender, RoutedEventArgs e)
         {
             Registry.SetValue(keypath, "StartOnBoot", cboxStartOn.IsChecked.ToString());
@@ -266,8 +267,7 @@ namespace MiaoywwwTools.Tools.WallPaper
                 RegistryKey registryKey = Registry.CurrentUser.OpenSubKey
                     ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
                 registryKey.SetValue("MiaoywwwTools", "");
-
             }
-        }
+        }*/
     }
 }

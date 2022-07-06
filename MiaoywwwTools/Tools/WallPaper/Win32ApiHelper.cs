@@ -13,6 +13,7 @@ namespace Demo
 
         //查找窗口的委托 查找逻辑
         public delegate bool EnumWindowsProc(IntPtr hwnd, IntPtr lParam);
+
         [DllImport("user32.dll")]
         public static extern bool EnumWindows(EnumWindowsProc proc, IntPtr lParam);
 

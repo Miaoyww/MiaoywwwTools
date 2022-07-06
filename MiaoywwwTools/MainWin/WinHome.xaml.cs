@@ -1,10 +1,5 @@
 ﻿using Microsoft.Win32;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
-using System.IO;
-using System.Net;
-using System.Net.Http;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
@@ -42,11 +37,7 @@ namespace MiaoywwwTools
             winHome = this;
         }
 
-        public int lastTitleClickTimes;
-        public int nowTitleClickTimes;
         public bool animationCompleted = true;
-
-
 
         // 彩蛋的文字变更
         public void ChangeEmotion(string emotion)
@@ -61,50 +52,30 @@ namespace MiaoywwwTools
                     Label_Emotion.Content = emotion;
                     story.Begin(Label_Emotion, true);
                     animationCompleted = false;
-                    lastTitleClickTimes = nowTitleClickTimes;
                 }
-            }
-            else
-            {
-                // 防止动画播放时，继续点击的次数计入
-                nowTitleClickTimes = lastTitleClickTimes;
             }
         }
 
-        // 彩蛋的入口
+        // 彩蛋
+        private string[] emotions = {
+         "ヾ(•ω•`)o",
+         "(*/ω＼*)",
+         "✪ ω ✪",
+         "ヾ(≧▽≦*)o",
+         "q(≧▽≦q)",
+         "(oﾟvﾟ)ノ",
+         "(p≧w≦q)",
+         "(∩^o^)⊃━☆",
+         "ouo",
+         "pup",
+         "ovo"
+        };
+
         private void Label_Title_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            nowTitleClickTimes++;
-            switch (nowTitleClickTimes)
-            {
-                case 3:
-                    ChangeEmotion("ヾ(•ω•`)o");
-                    return;
-
-                case 6:
-                    ChangeEmotion("(*/ω＼*)");
-                    return;
-
-                case 10:
-                    ChangeEmotion("✪ ω ✪");
-                    return;
-
-                case 14:
-                    ChangeEmotion(".·´¯`(>▂<)´¯`·. ");
-                    return;
-
-                case 16:
-                    ChangeEmotion("(っ °Д °))っ");
-                    return;
-
-                case 18:
-                    ChangeEmotion("（＞人＜；）");
-                    return;
-
-                case 20:
-                    ChangeEmotion("(´。＿。｀)");
-                    return;
-            }
+            Random random = new();
+            int index = random.Next(0, emotions.Length);
+            ChangeEmotion(emotions[index]);
         }
 
         // 这是彩蛋内容显现动画完成事件
@@ -120,10 +91,6 @@ namespace MiaoywwwTools
         // 这是彩蛋内容隐藏动画完成事件
         private void HideLabel_Completed(object sender, EventArgs e)
         {
-            if (nowTitleClickTimes >= 20)
-            {
-                WinMain.winMain.ChangePage("MiaoywwwTools.EasterEgg");
-            }
             animationCompleted = true;
         }
 

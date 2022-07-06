@@ -4,11 +4,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Class="MiaoywwwTools.WinMore"
-    mc:Ignorable="d"  Width="985" Height="565" Background="Transparent" Title="WinMore">
+    mc:Ignorable="d"  Width="990" Height="570" Background="Transparent" Title="WinMore">
     <Border CornerRadius="10,10,10,10" Background="Transparent">
         <Grid>
             <Grid Margin="10,10,724,10">
-                <Border Background="#FFF5F7FB" CornerRadius="10" >
+                <Border Background="#FFF5F7FB" CornerRadius="10">
                     <Border.Effect>
                         <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
                     </Border.Effect>

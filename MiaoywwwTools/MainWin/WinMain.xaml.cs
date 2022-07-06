@@ -11,9 +11,9 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
 namespace MiaoywwwTools
@@ -29,6 +29,8 @@ namespace MiaoywwwTools
         public static WinMain? winMain;
         public BackGround backGround;
         private DispatcherTimer timerHitokoto = new DispatcherTimer();
+        private bool visibility = true;
+        private Transform btnHidVisTransform;
 
         public WinMain()
         {
@@ -40,6 +42,7 @@ namespace MiaoywwwTools
 
             WlpChangeSettings();
             backGround = new();
+            btnHidVisTransform = WinMain.winMain.Btns_HidVis.Background.RelativeTransform;
         }
 
         public JObject HttpGetJson(string url)
@@ -89,7 +92,6 @@ namespace MiaoywwwTools
             });
             thread.IsBackground = true;
             thread.Start();
-
         }
 
         public bool WlpChangeSettings()
@@ -174,6 +176,7 @@ namespace MiaoywwwTools
         }
 
         public static string PageName;     // 储存页面
+        public static string HiOrVisPageName;
 
         /// <summary>
         /// 切换窗口
@@ -192,6 +195,25 @@ namespace MiaoywwwTools
                     };
                 }
                 PageName = pagename;
+                HiOrVisPageName = pagename;
+                visibility = true;
+                /*
+                                                     <ImageBrush.RelativeTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.5" ScaleY="0.5" />
+                                            <SkewTransform CenterX="0.5" CenterY="0.5" />
+                                            <RotateTransform CenterX="0.5" CenterY="0.5" />
+                                            <TranslateTransform X="0" />
+                                        </TransformGroup>
+                                    </ImageBrush.RelativeTransform>
+                */
+
+                Btns_HidVis.Background = new ImageBrush
+                {
+                    Stretch = Stretch.Uniform,
+                    RelativeTransform = btnHidVisTransform,
+                    ImageSource = new BitmapImage(new Uri("pack://application:,,,/resources/Images/icons/settings_arrow-left.png"))
+                };
             }
         }
 
@@ -249,6 +271,7 @@ namespace MiaoywwwTools
                 WinSettings check = new();
                 check.CheckUpdate();
             }
+            /*
             if (GlobalV.WinMainHidden)
             {
                 this.Visibility = Visibility.Hidden;
@@ -259,21 +282,24 @@ namespace MiaoywwwTools
                 backGround.Show();
                 GlobalV.Started = true;
 
-                /*设置窗口为ToolWindow 用于隐藏ALT+TAB内显示*/
+                # 设置窗口为ToolWindow 用于隐藏ALT+TAB内显示
                 WindowInteropHelper wndHelper = new(this);
                 int exStyle = (int)SetWindowStyle.GetWindowLong(wndHelper.Handle, (int)SetWindowStyle.GetWindowLongFields.GWL_EXSTYLE);
                 exStyle |= (int)SetWindowStyle.ExtendedWindowStyles.WS_EX_TOOLWINDOW;
                 SetWindowStyle.SetWindowLong(wndHelper.Handle, (int)SetWindowStyle.GetWindowLongFields.GWL_EXSTYLE, (IntPtr)exStyle);
-            }
+            }*/
         }
-
 
         private void Btn_Mini_Click(object sender, RoutedEventArgs e)
         {
             var story = (Storyboard)this.Resources["HideWindow"];
             if (story != null)
             {
-                story.Completed += delegate { this.WindowState = WindowState.Minimized; };
+                story.Completed += delegate
+                {
+                    this.WindowState = WindowState.Minimized;
+                    this.Visibility = Visibility.Hidden;
+                };
                 story.Begin(this);
             }
         }
@@ -306,10 +332,12 @@ namespace MiaoywwwTools
             }
         }
 
-        private void MenuItemShow_Click(object sender, RoutedEventArgs e)
+        private void MenuItemShowOrHide_Click(object sender, RoutedEventArgs e)
         {
+            this.WindowState = WindowState.Normal;
             this.Visibility = Visibility.Visible;
             this.Show();
+            this.Activate();
         }
 
         private void MenuItemExit_Click(object sender, RoutedEventArgs e)
@@ -317,20 +345,26 @@ namespace MiaoywwwTools
             CloseWindow();
         }
 
-        private void Btns_next_Click(object sender, RoutedEventArgs e)
+        private void Btns_HidVis_Click(object sender, RoutedEventArgs e)
         {
-            int maxpage = MainCarousel.Items.Count;
-            int nowpage = MainCarousel.PageIndex;
-            if (nowpage + 1 > maxpage)
+            if (visibility)
             {
-                MainCarousel.PageIndex = 0;
+                visibility = false;
+                NestPage.Content = null;
+                HiOrVisPageName = PageName;
+                PageName = null;
+                Btns_HidVis.Background = new ImageBrush
+                {
+                    RelativeTransform = btnHidVisTransform,
+                    ImageSource = new BitmapImage(new Uri("pack://application:,,,/resources/Images/icons/settings_arrow-right.png"))
+                };
             }
             else
             {
-                MainCarousel.PageIndex++;
+                visibility = true;
+                ChangePage(HiOrVisPageName);
             }
         }
-
 
         internal class NativeMethods
         {
@@ -338,11 +372,12 @@ namespace MiaoywwwTools
             public const uint SWP_NOMOVE = 0x0002;
             public const uint SWP_NOACTIVATE = 0x0010;
             public static readonly IntPtr HWND_BOTTOM = new(1);
+
             [DllImport("user32.dll")]
             internal static extern IntPtr SetParent(IntPtr hWndChild, IntPtr hWndNewParent);
 
             [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
-            static extern IntPtr FindWindow(string lpWindowClass, string lpWindowName);
+            private static extern IntPtr FindWindow(string lpWindowClass, string lpWindowName);
 
             [DllImport("user32.dll")]
             internal static extern IntPtr SetWinEventHook(uint eventMin, uint eventMax, IntPtr hmodWinEventProc, ShowDesktop.WinEventDelegate lpfnWinEventProc, uint idProcess, uint idThread, uint dwFlags);
@@ -356,6 +391,7 @@ namespace MiaoywwwTools
             [DllImport("user32.dll")]
             internal static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
         }
+
         public static class ShowDesktop
         {
             private const uint WINEVENT_OUTOFCONTEXT = 0u;
@@ -456,10 +492,13 @@ namespace MiaoywwwTools
 
             [DllImport("user32.dll")]
             public static extern IntPtr GetWindowLong(IntPtr hWnd, int nIndex);
+
             [DllImport("user32.dll", EntryPoint = "SetWindowLongPtr", SetLastError = true)]
             private static extern IntPtr IntSetWindowLongPtr(IntPtr hWnd, int nIndex, IntPtr dwNewLong);
+
             [DllImport("user32.dll", EntryPoint = "SetWindowLong", SetLastError = true)]
             private static extern Int32 IntSetWindowLong(IntPtr hWnd, int nIndex, Int32 dwNewLong);
+
             [DllImport("kernel32.dll", EntryPoint = "SetLastError")]
             public static extern void SetLastError(int dwErrorCode);
 
@@ -491,7 +530,6 @@ namespace MiaoywwwTools
 
                 return result;
             }
-
 
             private static int IntPtrToInt32(IntPtr intPtr)
             {
