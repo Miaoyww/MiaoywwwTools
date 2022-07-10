@@ -6,6 +6,8 @@ using System.Diagnostics;
 using System.Net.Http;
 using System.Threading;
 using System.Windows.Controls;
+using System.IO;
+using System.Data;
 
 namespace MiaoywwwTools
 {
@@ -63,9 +65,20 @@ namespace MiaoywwwTools
                                 jsonContentD = (JObject)JsonConvert.DeserializeObject(download);
                             }
                             string downloadurl = jsonContentD["assets"][0]["browser_download_url"].ToString();
+                            string updateInfoFileName = "./update_info.json";
+                            if (!File.Exists(updateInfoFileName))
+                            {
+                                File.Create(updateInfoFileName);
+                            }
+                            JObject updateInfoJs = new JObject();
+                            updateInfoJs.Add(new JProperty("download_url", downloadurl));
+                            updateInfoJs.Add(new JProperty("target_version", ver));
+                            updateInfoJs.Add(new JProperty("current_version", GlobalV.AppVersion_ver));
+                            updateInfoJs.Add(new JProperty("update_finsh", "false"));
+                            File.WriteAllText(updateInfoFileName, updateInfoJs.ToString(), System.Text.Encoding.UTF8);//将内容写进jon文件中
                             ProcessStartInfo process = new ProcessStartInfo();
                             process.FileName = Environment.CurrentDirectory + @"\update.exe";
-                            process.Arguments = downloadurl;
+                            // process.Arguments = downloadurl;
                             Process.Start(process);
                             Environment.Exit(0);
                         }

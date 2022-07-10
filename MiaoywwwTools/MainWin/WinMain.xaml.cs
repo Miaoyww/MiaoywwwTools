@@ -332,6 +332,7 @@ namespace MiaoywwwTools
             }
         }
 
+        /*
         private void MenuItemShowOrHide_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Normal;
@@ -343,7 +344,7 @@ namespace MiaoywwwTools
         private void MenuItemExit_Click(object sender, RoutedEventArgs e)
         {
             CloseWindow();
-        }
+        }*/
 
         private void Btns_HidVis_Click(object sender, RoutedEventArgs e)
         {

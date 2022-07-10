@@ -1,8 +1,7 @@
 {
   "profiles": {
     "update": {
-      "commandName": "Project",
-      "commandLineArgs": "https://github.com/Miaoywww/MiaoywwwTools/releases/download/Ver.0.5.8.0.35.0220504-Alpha/MiaoywwwTools.zip"
+      "commandName": "Project"
     }
   }
 }

@@ -27,11 +27,11 @@
     </Window.Triggers>
 
     <Grid x:Name="MainGrid">
+        <!--
         <tb:TaskbarIcon
                 Name="MainTaskbar"
                 IconSource="/resources/Images/icons/icon.ico"
                 ToolTipText="MiaoywwwTools">
-            <!-- 托盘图标菜单 -->
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu>
                     <MenuItem x:Name="MenuItemShowOrHide"
@@ -45,7 +45,7 @@
                     </MenuItem>
                 </ContextMenu>
             </tb:TaskbarIcon.ContextMenu>
-        </tb:TaskbarIcon>
+        </tb:TaskbarIcon>-->
         <Border  CornerRadius="0,5,5,0" Background="#FFFCFCFC" Margin="50,0,0,0">
             <Border.Effect>
                 <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.5" Direction="0" />
