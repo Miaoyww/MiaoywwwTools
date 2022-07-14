@@ -20,15 +20,11 @@
 
 + 3.解压到一个`英文`文件夹中,打开 MiaoywwwTools.exe 即可使用
 
-
-# 感谢JetBrains对本项目的大力支持
-
-[<img src="./jb_beam.png" alt="https://www.jetbrains.com/" title="JetBrains" width="40%">](https://www.jetbrains.com/)
-
-
 **特别鸣谢:**
 
 - [Hitokoto / 一言](https://hitokoto.cn/)
 
 - [Handycontrol](http://handyorg.gitee.io/)
+
+- [JetBrains](https://www.jetbrains.com/)
  
