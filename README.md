@@ -1,14 +1,14 @@
+<div align="center">
+
 # MiaoywwwTools
 
-### \- 这是一个来自Miaomiaoywww的小工具箱 -
+![Alt](https://repobeats.axiom.co/api/embed/7f2ab59fb3d8079ce83e078390ce85ae179f3412.svg "Repobeats analytics image")
 
----
-## 功能
-|   功能   | 是否实现 |
-| :------: | -------- |
-|  点名器  | √        |
-|   壁纸   | √        |
-| 其他功能 | 等待探索 |
+</div>
+
+## 可以做什么？
+
+不介绍啦
 
 ---
 
